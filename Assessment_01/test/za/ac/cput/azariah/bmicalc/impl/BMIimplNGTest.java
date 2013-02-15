@@ -60,13 +60,13 @@ public class BMIimplNGTest {
     public void testTimeout(){
         bmi = new BMIimpl();
         bmi.randomBMI(200);
-        System.out.println("Method 9 - testTimeout()");
+        System.out.println("Method 10 - testTimeout()");
     }
     
     //Assertion of exception
     @Test(expectedExceptions=ArithmeticException.class)
     public void testException(){
-        System.out.println("Method 8 - testException()");
+        System.out.println("Method 9 - testException()");
         bmi = new BMIimpl();
         double bmiInx = bmi.calcBMI(76, 0);        
     }
@@ -75,7 +75,15 @@ public class BMIimplNGTest {
     @Test
     public void testObjEquality(){
         BMIimpl bmiInx = null;
-        System.out.println("Method 7 - testObjEquality()");
+        System.out.println("Method 8 - testObjEquality()");
+        assertEquals(bmiInx, bmi);
+    }
+    
+    //Assertion of identity
+    @Test
+    public void testObjIdentity(){
+        BMIimpl bmiInx = null;
+        System.out.println("Method 7 - testObjIdentity()");
         assertSame(bmiInx, bmi);
     }
     
