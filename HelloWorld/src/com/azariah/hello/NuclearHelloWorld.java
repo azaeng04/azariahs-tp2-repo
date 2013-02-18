@@ -6,10 +6,9 @@ package com.azariah.hello;
 
 /**
  *
- * @author 210192461
+ * @author Azariahs
  */
-public interface HelloWorld {
-
-    String getString();
-    
+public interface NuclearHelloWorld {
+    String getName();
+    String getString();    
 }

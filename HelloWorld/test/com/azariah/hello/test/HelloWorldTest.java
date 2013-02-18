@@ -4,8 +4,11 @@
  */
 package com.azariah.hello.test;
 
-import com.azariah.hello.HelloWorld;
-import com.azariah.hello.HelloWorldImpl;
+import com.azariah.hello.NuclearHelloWorld;
+import com.azariah.hello.config.AppConfig;
+import com.azariah.hello.impl.NuclearHelloWorldImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -18,7 +21,8 @@ import org.testng.annotations.Test;
  * @author 210192461
  */
 public class HelloWorldTest {
-    private HelloWorld helloWorld;
+    private static NuclearHelloWorld helloWorld;
+    private static ApplicationContext ctx;
     public HelloWorldTest() {
     }
     // TODO add test methods here.
@@ -26,13 +30,14 @@ public class HelloWorldTest {
     //
      @Test
      public void testHelloWorld() {
-         helloWorld = new  HelloWorldImpl();
          String hello = helloWorld.getString();
-         Assert.assertEquals(hello, "Hello World");
+         Assert.assertEquals(hello, "Hello Nuclear World");
      }
 
     @BeforeClass
-    public static void setUpClass() throws Exception {
+    public static void setUpClass() throws Exception {        
+        ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        helloWorld = (NuclearHelloWorldImpl)ctx.getBean("hello");
     }
 
     @AfterClass
