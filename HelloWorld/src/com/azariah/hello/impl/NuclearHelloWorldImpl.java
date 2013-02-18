@@ -4,13 +4,13 @@
  */
 package com.azariah.hello.impl;
 
-import com.azariah.hello.NuclearHelloWorld;
+import com.azariah.hello.HelloWorld;
 
 /**
  *
  * @author Azariahs
  */
-public class NuclearHelloWorldImpl implements NuclearHelloWorld{
+public class NuclearHelloWorldImpl implements HelloWorld{
 
     @Override
     public String getString() {

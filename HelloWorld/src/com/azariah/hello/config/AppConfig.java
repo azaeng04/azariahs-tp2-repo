@@ -4,26 +4,25 @@
  */
 package com.azariah.hello.config;
 
-import com.azariah.hello.GasHelloWorld;
-import com.azariah.hello.NuclearHelloWorld;
+import com.azariah.hello.HelloWorld;
 import com.azariah.hello.impl.GasHelloWorldImpl;
 import com.azariah.hello.impl.NuclearHelloWorldImpl;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  *
  * @author Azariahs
  */
-@Configuration
+@Configurable
 public class AppConfig {
     @Bean(name="hello")
-    public NuclearHelloWorld getNuclear(){
+    public HelloWorld getNuclear(){
         return new NuclearHelloWorldImpl();
     }
     
     @Bean
-    public GasHelloWorld getGas(){
+    public HelloWorld getGas(){
         return new GasHelloWorldImpl();
     }
 }
