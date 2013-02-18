@@ -8,7 +8,7 @@ package com.azariah.hello;
  *
  * @author Azariahs
  */
-public interface NuclearHelloWorld {
+public interface HelloWorld {
     String getName();
     String getString();    
 }

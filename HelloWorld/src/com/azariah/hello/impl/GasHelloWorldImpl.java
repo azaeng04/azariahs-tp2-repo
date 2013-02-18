@@ -4,13 +4,13 @@
  */
 package com.azariah.hello.impl;
 
-import com.azariah.hello.GasHelloWorld;
+import com.azariah.hello.HelloWorld;
 
 /**
  *
  * @author 210192461
  */
-public class GasHelloWorldImpl implements GasHelloWorld {
+public class GasHelloWorldImpl implements HelloWorld {
 
     public GasHelloWorldImpl() {
     }
