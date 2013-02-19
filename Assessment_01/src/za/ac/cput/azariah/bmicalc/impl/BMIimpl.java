@@ -5,8 +5,6 @@
 package za.ac.cput.azariah.bmicalc.impl;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import za.ac.cput.azariah.bmicalc.BMI;
 
