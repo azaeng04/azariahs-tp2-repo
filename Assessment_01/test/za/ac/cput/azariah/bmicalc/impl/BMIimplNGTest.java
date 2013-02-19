@@ -4,6 +4,8 @@
  */
 package za.ac.cput.azariah.bmicalc.impl;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -11,18 +13,21 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import za.ac.cput.azariah.bmicalc.BMI;
+import za.ac.cput.azariah.bmicalc.config.AppConfig;
 
 /**
  *
  * @author Ronald
  */
 public class BMIimplNGTest {
-    private BMI bmi = null;
+    private static BMI bmi;
+    private static ApplicationContext ctx;
     public BMIimplNGTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        ctx = new AnnotationConfigApplicationContext(AppConfig.class);
     }
 
     @AfterClass
@@ -31,34 +36,31 @@ public class BMIimplNGTest {
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
+        bmi = (BMI)ctx.getBean("bmi");
     }
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
-        bmi = null;
     }
 
     //Deliberately fail a test
     @Test
-    public void testFail(){
-        bmi = new BMIimpl();
+    public void testFail(){         
         bmi.randomBMI(200);
         System.out.println("Method 12 - testTimeout()");
-        fail();
+        fail("This is to test assertion of false pass");
     }
     
     //Ignore test
     @Test(enabled=false)
     public void testCalcMultipleBMI(){
-        System.out.println("Method 11 - testCalcMultipleBMI()");
-        bmi = new BMIimpl();
+        System.out.println("Method 11 - testCalcMultipleBMI()");         
         bmi.calcMultipleBMI(new double [] {50, 60, 70}, new double [] {1.68, 1.7, 1.8});
     }
     
     //Assertion of timeout
     @Test(timeOut=10000)
-    public void testTimeout(){
-        bmi = new BMIimpl();
+    public void testTimeout(){         
         bmi.randomBMI(200);
         System.out.println("Method 10 - testTimeout()");
     }
@@ -66,15 +68,14 @@ public class BMIimplNGTest {
     //Assertion of exception
     @Test(expectedExceptions=ArithmeticException.class)
     public void testException(){
-        System.out.println("Method 9 - testException()");
-        bmi = new BMIimpl();
+        System.out.println("Method 9 - testException()");         
         double bmiInx = bmi.calcBMI(76, 0);        
     }
     
     //Assertion of equality
     @Test
     public void testObjEquality(){
-        BMIimpl bmiInx = null;
+        BMI bmiInx = bmi;
         System.out.println("Method 8 - testObjEquality()");
         assertEquals(bmiInx, bmi);
     }
@@ -82,15 +83,14 @@ public class BMIimplNGTest {
     //Assertion of identity
     @Test
     public void testObjIdentity(){
-        BMIimpl bmiInx = null;
+        BMI bmiInx = bmi;
         System.out.println("Method 7 - testObjIdentity()");
         assertSame(bmiInx, bmi);
     }
     
     //Assertion of truth
     @Test
-    public void testWeightStatusAboveAvg(){
-        bmi = new BMIimpl();
+    public void testWeightStatusAboveAvg(){         
         double bmiInx = bmi.calcBMI(76, 170.8);
         System.out.println("Method 6 - testWeightStatusAboveAvg()");
         assertTrue(bmi.aboveAvg(bmiInx));
@@ -98,8 +98,7 @@ public class BMIimplNGTest {
     
     //Assertion of falsity
     @Test
-    public void testWeightStatusBelowOrEqualAvg(){
-        bmi = new BMIimpl();
+    public void testWeightStatusBelowOrEqualAvg(){         
         double bmiInx = bmi.calcBMI(63.5, 170.8);
         System.out.println("Method 5 - testWeightStatusBelowOrEqualAvg()");
         assertFalse(bmi.aboveAvg(bmiInx));
@@ -107,8 +106,7 @@ public class BMIimplNGTest {
     
     //Assertion of integer values
     @Test
-    public void testBMIWeightStatus(){
-        bmi = new BMIimpl();
+    public void testBMIWeightStatus(){         
         double bmiInx = bmi.calcBMI(81, 1.8);
         System.out.println("Method 4 - testBMIWeightStatus()");
         assertEquals(bmi.weightStatus(bmiInx), 3);
@@ -116,8 +114,7 @@ public class BMIimplNGTest {
     
     //Assertion of double values
     @Test
-    public void testBMIcalcDouble(){
-        bmi = new BMIimpl();
+    public void testBMIcalcDouble(){         
         double bmiInx = bmi.calcBMI(63.5, 170.8);
         final double DELTA = 0.01;
         System.out.println("Method 3 - testBMIcalcDouble()");
@@ -126,19 +123,17 @@ public class BMIimplNGTest {
     
     //Assertion of floating point values
     @Test
-    public void testBMIcalcFloat(){
-        bmi = new BMIimpl();
+    public void testBMIcalcFloat(){         
         float bmiInx = bmi.calcBMI(63, 170);
         final double DELTA = 0.1;
         System.out.println("Method 2 - testBMIcalcFloat()");
         assertEquals(bmiInx, 21.8, DELTA);
     }
     
-    //Assertion of null object
+    //Assertion of not null object
     @Test
     public void testBMIobj(){        
-        System.out.println("Method 1 - testBMIobj()");        
-        System.out.println("BMI object is: " + bmi);
-        assertNull(bmi, "New instance BMIimpl object needs made on bmi");        
+        System.out.println("Method 1 - testBMIobj()");
+        assertNotNull(bmi, "New instance BMI object needs made on bmi");        
     }
 }
