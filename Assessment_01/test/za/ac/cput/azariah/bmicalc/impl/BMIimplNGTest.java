@@ -92,24 +92,27 @@ public class BMIimplNGTest {
     @Test
     public void testWeightStatusAboveAvg(){         
         double bmiInx = bmi.calcBMI(76, 170.8);
+        boolean status = bmi.aboveAvg(bmiInx);
         System.out.println("Method 6 - testWeightStatusAboveAvg()");
-        assertTrue(bmi.aboveAvg(bmiInx));
+        assertTrue(status);
     }
     
     //Assertion of falsity
     @Test
     public void testWeightStatusBelowOrEqualAvg(){         
         double bmiInx = bmi.calcBMI(63.5, 170.8);
+        boolean status = bmi.aboveAvg(bmiInx);
         System.out.println("Method 5 - testWeightStatusBelowOrEqualAvg()");
-        assertFalse(bmi.aboveAvg(bmiInx));
+        assertFalse(status);
     }
     
     //Assertion of integer values
     @Test
     public void testBMIWeightStatus(){         
         double bmiInx = bmi.calcBMI(81, 1.8);
+        int status = bmi.weightStatus(bmiInx);
         System.out.println("Method 4 - testBMIWeightStatus()");
-        assertEquals(bmi.weightStatus(bmiInx), 3);
+        assertEquals(status, 3);
     }
     
     //Assertion of double values
