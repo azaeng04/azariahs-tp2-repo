@@ -19,10 +19,10 @@ import za.ac.cput.azariah.bmicalc.config.AppConfig;
  *
  * @author Ronald
  */
-public class BMIimplNGTest {
+public class BMIimplTest {
     private static BMI bmi;
     private static ApplicationContext ctx;
-    public BMIimplNGTest() {
+    public BMIimplTest() {
     }
 
     @BeforeClass
