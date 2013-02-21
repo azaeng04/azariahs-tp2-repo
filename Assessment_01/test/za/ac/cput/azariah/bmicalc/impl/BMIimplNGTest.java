@@ -47,7 +47,7 @@ public class BMIimplNGTest {
     @Test
     public void testFail(){         
         bmi.randomBMI(200);
-        System.out.println("Method 12 - testTimeout()");
+        System.out.println("Method 12 - testFail()");
         fail("This is to test assertion of false pass");
     }
     
