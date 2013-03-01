@@ -12,7 +12,7 @@ public interface CalculateShape {
     public double getArea(double s1);
     public double getArea(double s1, double s2);
     public double getArea(double s1, double s2, double s3);
-    public double getPerimter(double s1);
-    public double getPerimter(double s1, double s2);
-    public double getPerimter(double s1, double s2, double s3);
+    public double getPerimeter(double s1);
+    public double getPerimeter(double s1, double s2);
+    public double getPerimeter(double s1, double s2, double s3);
 }

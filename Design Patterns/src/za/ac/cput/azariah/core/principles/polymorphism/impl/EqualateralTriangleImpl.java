@@ -23,7 +23,7 @@ public class EqualateralTriangleImpl implements CalculateShape{
     }
 
     @Override
-    public double getPerimter(double s1) {
+    public double getPerimeter(double s1) {
         double result = 0;
         for (int i = 0; i < 3; i++) {
            result += s1;
@@ -32,7 +32,7 @@ public class EqualateralTriangleImpl implements CalculateShape{
     }
 
     @Override
-    public double getPerimter(double s1, double s2) {
+    public double getPerimeter(double s1, double s2) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -42,7 +42,7 @@ public class EqualateralTriangleImpl implements CalculateShape{
     }
 
     @Override
-    public double getPerimter(double s1, double s2, double s3) {
+    public double getPerimeter(double s1, double s2, double s3) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
