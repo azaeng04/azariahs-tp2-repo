@@ -14,7 +14,7 @@ public class UniCycleImpl implements Transport{
 
     @Override
     public String hasMotor() {
-        return "Has no motor";
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
