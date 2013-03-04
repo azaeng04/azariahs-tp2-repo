@@ -25,8 +25,6 @@ public class Department implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Embedded
-    private Address address;
-    @Embedded
     private Contact contact;
     @OneToOne
     private Faculty faculty;
@@ -43,14 +41,6 @@ public class Department implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public Contact getContact() {
