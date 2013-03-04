@@ -5,6 +5,7 @@
 package za.ac.cput.azariah.marksapp.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,12 @@ public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    private String firstName;
+    private String lastName;
+    private String studetNumber;
+    
+    @Embedded
+    private Demographics demographic;
     public Long getId() {
         return id;
     }
@@ -29,6 +35,38 @@ public class Student implements Serializable {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getStudetNumber() {
+        return studetNumber;
+    }
+
+    public void setStudetNumber(String studetNumber) {
+        this.studetNumber = studetNumber;
+    }
+
+    public Demographics getDemographic() {
+        return demographic;
+    }
+
+    public void setDemographic(Demographics demographic) {
+        this.demographic = demographic;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
