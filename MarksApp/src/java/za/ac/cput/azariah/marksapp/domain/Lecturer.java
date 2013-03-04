@@ -5,10 +5,12 @@
 package za.ac.cput.azariah.marksapp.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +23,12 @@ public class Lecturer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Embedded
+    private Contact contact;
+    @OneToOne
+    private Subject subject;
+    private String lecturerCode;
+    private String lecturerName;
     public Long getId() {
         return id;
     }
@@ -29,6 +37,38 @@ public class Lecturer implements Serializable {
         this.id = id;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public String getLecturerCode() {
+        return lecturerCode;
+    }
+
+    public void setLecturerCode(String lecturerCode) {
+        this.lecturerCode = lecturerCode;
+    }
+
+    public String getLecturerName() {
+        return lecturerName;
+    }
+
+    public void setLecturerName(String lecturerName) {
+        this.lecturerName = lecturerName;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
