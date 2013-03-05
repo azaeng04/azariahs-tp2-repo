@@ -5,7 +5,7 @@
 package za.ac.cput.azariah.marksapp.domain;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +25,8 @@ public class Subject implements Serializable {
 
     @OneToOne
     private Lecturer lecturer;
+    @Embedded
+    private Marks mark;
     private String subjectName;
     private String subjectCode;
     
@@ -59,6 +61,14 @@ public class Subject implements Serializable {
     public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;
     }    
+
+    public Marks getMark() {
+        return mark;
+    }
+
+    public void setMark(Marks mark) {
+        this.mark = mark;
+    }
     
     @Override
     public int hashCode() {
