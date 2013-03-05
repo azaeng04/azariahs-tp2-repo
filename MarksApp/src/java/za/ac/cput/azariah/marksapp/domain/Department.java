@@ -32,7 +32,7 @@ public class Department implements Serializable {
     private List<Lecturer> lecturer;
     @OneToMany
     private List<Course> courses; 
-    private String name;
+    private String depName;
     private String depCode;
     
     public Long getId() {
@@ -67,12 +67,12 @@ public class Department implements Serializable {
         this.lecturer = lecturer;
     }
 
-    public String getName() {
-        return name;
+    public String getDeptName() {
+        return depName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeptName(String name) {
+        this.depName = name;
     }
 
     public String getDepCode() {
