@@ -17,7 +17,7 @@
 
 <!-- Scans within the base package of the application for @Components to configure as beans -->
  
-    <bean id="contextApplicationContextProvider" class="za.ac.cput.azariah.marksapp.app.app.conf.ApplicationContextProvider"></bean>
+    <bean id="contextApplicationContextProvider" class="za.ac.cput.azariah.marksapp.app.config.ApplicationContextProvider"></bean>
     
    
     <tx:annotation-driven />
