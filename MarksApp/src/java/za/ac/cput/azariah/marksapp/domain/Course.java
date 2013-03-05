@@ -25,8 +25,6 @@ public class Course implements Serializable {
     
     @OneToMany
     private List<Subject> subjects;
-    @OneToMany
-    private List<Student> students;
     private String courseName;
     private String courseCode;
     
@@ -44,14 +42,6 @@ public class Course implements Serializable {
 
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
     }
 
     public String getCourseName() {
