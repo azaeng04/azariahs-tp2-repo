@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -29,8 +29,8 @@ public class Student implements Serializable {
     
     @Embedded
     private Demographics demographic;
-    @OneToMany
-    private List<Course> courses;
+    @OneToOne
+    private Course courses;
     
     public Long getId() {
         return id;
@@ -72,13 +72,13 @@ public class Student implements Serializable {
         this.demographic = demographic;
     }
 
-    public List<Course> getCourses() {
+    public Course getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Course courses) {
         this.courses = courses;
-    }    
+    }       
     
     @Override
     public int hashCode() {

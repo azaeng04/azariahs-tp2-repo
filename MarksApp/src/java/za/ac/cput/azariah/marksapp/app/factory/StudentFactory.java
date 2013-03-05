@@ -15,12 +15,12 @@ import za.ac.cput.azariah.marksapp.domain.Student;
  * @author Azariahs
  */
 public class StudentFactory {
-    public static Student createStudent(Map<String, String> studentDetails, Demographics demographics, List<Course> courseList) {
+    public static Student createStudent(Map<String, String> studentDetails, Demographics demographics, Course course) {
         Student student = new Student();
         student.setFirstName(studentDetails.get("fName"));
         student.setLastName(studentDetails.get("lName"));
         student.setDemographic(demographics);
-        student.setCourses(courseList);
+        student.setCourses(course);
         return student;
     }
 
