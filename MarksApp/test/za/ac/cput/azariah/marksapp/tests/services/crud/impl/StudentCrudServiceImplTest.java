@@ -4,14 +4,22 @@
  */
 package za.ac.cput.azariah.marksapp.tests.services.crud.impl;
 
+import static org.testng.Assert.*;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import za.ac.cput.azariah.marksapp.app.factory.CourseFactory;
+import za.ac.cput.azariah.marksapp.app.factory.DemographicsFactory;
+import za.ac.cput.azariah.marksapp.app.factory.StudentFactory;
+import za.ac.cput.azariah.marksapp.domain.Course;
+import za.ac.cput.azariah.marksapp.domain.Demographics;
+import za.ac.cput.azariah.marksapp.domain.Student;
 import za.ac.cput.azariah.marksapp.services.crud.StudentCrudService;
 
 /**
@@ -48,7 +56,33 @@ public class StudentCrudServiceImplTest {
     public void testCreateStudent() {
         studentCrudService = (StudentCrudService)ctx.getBean("studentCrudService");
         
+        Course course;
         
+        Map<String, String> courseDetails = new HashMap<String, String>();
+        courseDetails.put("code", "IT_100S");
+        courseDetails.put("name", "Information Technology 1");
+        
+        course = CourseFactory.createCourse(courseDetails, null);
+        
+        assertNotNull(course);
+        
+        Demographics demographics;
+        Map<String, String> demoDetails = new HashMap<String, String>();
+        demoDetails.put("gender", "Male");
+        demoDetails.put("race", "Black");
+        demographics = DemographicsFactory.createDemographics(demoDetails);
+        
+        assertNotNull(demographics);
+        
+        Student student;
+        Map<String, String> studentDetails = new HashMap<String, String>();
+        studentDetails.put("fName", "James");
+        studentDetails.put("lName", "Morrison");
+        student = StudentFactory.createStudent(studentDetails, demographics, course);
+        
+        assertNotNull(student);
+        
+//        studentCrudService.persist(student);
     }
 
 }
