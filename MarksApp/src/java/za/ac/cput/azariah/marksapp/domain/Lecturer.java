@@ -23,12 +23,11 @@ public class Lecturer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String staffNumber;
+    private String firstName;
+    private String lastName;
     @Embedded
-    private Contact contact;
-    @OneToOne
-    private Subject subject;
-    private String lecturerCode;
-    private String lecturerName;
+    private Demographics demographic;
     public Long getId() {
         return id;
     }
@@ -37,36 +36,36 @@ public class Lecturer implements Serializable {
         this.id = id;
     }
 
-    public Contact getContact() {
-        return contact;
+    public String getStaffNumber() {
+        return staffNumber;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setStaffNumber(String staffNumber) {
+        this.staffNumber = staffNumber;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLecturerCode() {
-        return lecturerCode;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLecturerCode(String lecturerCode) {
-        this.lecturerCode = lecturerCode;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLecturerName() {
-        return lecturerName;
+    public Demographics getDemographic() {
+        return demographic;
     }
 
-    public void setLecturerName(String lecturerName) {
-        this.lecturerName = lecturerName;
+    public void setDemographic(Demographics demographic) {
+        this.demographic = demographic;
     }
     
     @Override

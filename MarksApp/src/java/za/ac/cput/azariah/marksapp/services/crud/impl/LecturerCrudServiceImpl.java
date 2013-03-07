@@ -8,53 +8,53 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import za.ac.cput.azariah.marksapp.domain.Student;
+import za.ac.cput.azariah.marksapp.domain.Lecturer;
 import za.ac.cput.azariah.marksapp.repository.GenericDAO;
-import za.ac.cput.azariah.marksapp.services.crud.StudentCrudService;
+import za.ac.cput.azariah.marksapp.services.crud.LecturerCrudService;
 
 /**
  *
- * @author Azariahs
+ * @author 210192461
  */
-@Service("StudentCrudService")
+@Service("LecturerCrudService")
 @Transactional
-public class StudentCrudServiceImpl implements StudentCrudService{
-
+public class LecturerCrudServiceImpl implements LecturerCrudService{
+    
     @Autowired
-    private GenericDAO<Student> dao;
+    private GenericDAO<Lecturer> dao;
 
-    public final void setDao(final GenericDAO< Student> daoToSet) {
+    public final void setDao(final GenericDAO< Lecturer> daoToSet) {
         this.dao = daoToSet;
-        this.dao.setClazz(Student.class);
+        this.dao.setClazz(Lecturer.class);
     }
 
-    public StudentCrudServiceImpl() {
+    public LecturerCrudServiceImpl() {
     }
     @Override
-    public Student findById(Long id) {
+    public Lecturer findById(Long id) {
         setDao(dao);
         return dao.findById(id);
     }
     @Override
-    public List<Student> findAll() {
+    public List<Lecturer> findAll() {
         setDao(dao);
         return dao.findAll();
     }
 
     @Override
-    public void persist(Student entity) {
+    public void persist(Lecturer entity) {
         setDao(dao);
         dao.persist(entity);
     }
 
     @Override
-    public void merge(Student entity) {
+    public void merge(Lecturer entity) {
         setDao(dao);
         dao.merge(entity);
     }
 
     @Override
-    public void remove(Student entity) {
+    public void remove(Lecturer entity) {
         setDao(dao);
         dao.remove(entity);
     }
@@ -62,12 +62,12 @@ public class StudentCrudServiceImpl implements StudentCrudService{
     @Override
     public void removeById(Long entityId) {
         setDao(dao);
-        Student v = dao.findById(entityId);
+        Lecturer v = dao.findById(entityId);
         dao.remove(v);
     }
 
     @Override
-    public List<Student> findInRange(int firstResult, int maxResults) {
+    public List<Lecturer> findInRange(int firstResult, int maxResults) {
         setDao(dao);
         return dao.findInRange(firstResult, maxResults);
 
@@ -78,15 +78,14 @@ public class StudentCrudServiceImpl implements StudentCrudService{
         return dao.count();
     }
     @Override
-    public Student getByPropertyName(String name, String value) {
+    public Lecturer getByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getByPropertyName(name, value);
     }
 
     @Override
-    public List<Student> getEntitiesByProperName(String name, String value) {
+    public List<Lecturer> getEntitiesByProperName(String name, String value) {
         setDao(dao);
         return dao.getEntitiesByProperName(name, value);
     }
-    
 }
