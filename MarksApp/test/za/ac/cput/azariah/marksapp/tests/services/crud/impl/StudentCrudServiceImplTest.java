@@ -28,7 +28,9 @@ import za.ac.cput.azariah.marksapp.services.crud.StudentCrudService;
  */
 public class StudentCrudServiceImplTest {
     private StudentCrudService studentCrudService;
+    private Long id;
     private static ApplicationContext ctx;
+    
     public StudentCrudServiceImplTest() {
     }
 
@@ -54,7 +56,7 @@ public class StudentCrudServiceImplTest {
      */
     @Test
     public void testCreateStudent() {
-        studentCrudService = (StudentCrudService)ctx.getBean("studentCrudService");
+        studentCrudService = (StudentCrudService)ctx.getBean("StudentCrudService");
         
         Course course;
         
@@ -66,11 +68,7 @@ public class StudentCrudServiceImplTest {
         
         assertNotNull(course);
         
-        Demographics demographics;
-        Map<String, String> demoDetails = new HashMap<String, String>();
-        demoDetails.put("gender", "Male");
-        demoDetails.put("race", "Black");
-        demographics = DemographicsFactory.createDemographics(demoDetails);
+        Demographics demographics = DemographicsFactory.createDemographics("Male", "African");
         
         assertNotNull(demographics);
         

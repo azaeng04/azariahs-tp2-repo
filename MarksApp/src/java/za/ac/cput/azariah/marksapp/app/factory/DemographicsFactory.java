@@ -4,7 +4,6 @@
  */
 package za.ac.cput.azariah.marksapp.app.factory;
 
-import java.util.Map;
 import za.ac.cput.azariah.marksapp.domain.Demographics;
 
 /**
@@ -12,10 +11,10 @@ import za.ac.cput.azariah.marksapp.domain.Demographics;
  * @author Azariahs
  */
 public class DemographicsFactory {
-    public static Demographics createDemographics(Map<String, String> info){
+    public static Demographics createDemographics(String gender, String race){
         Demographics demographic = new Demographics();
-        demographic.setGender(info.get("gender"));
-        demographic.setRace(info.get("race"));
+        demographic.setGender(gender);
+        demographic.setRace(race);
         return demographic;
     }
 }
