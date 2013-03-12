@@ -23,10 +23,8 @@ public class Subject implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    private Lecturer lecturer;
     @Embedded
-    private Marks mark;
+    private Mark mark;
     private String subjectName;
     private String subjectCode;
     
@@ -36,14 +34,6 @@ public class Subject implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Lecturer getLecturer() {
-        return lecturer;
-    }
-
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
     }
     
     public String getSubjectName() {
@@ -62,11 +52,11 @@ public class Subject implements Serializable {
         this.subjectCode = subjectCode;
     }    
 
-    public Marks getMark() {
+    public Mark getMark() {
         return mark;
     }
 
-    public void setMark(Marks mark) {
+    public void setMark(Mark mark) {
         this.mark = mark;
     }
     

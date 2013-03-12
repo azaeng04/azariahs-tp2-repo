@@ -4,6 +4,7 @@
  */
 package za.ac.cput.azariah.marksapp.tests.services.crud.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +18,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import za.ac.cput.azariah.marksapp.app.factory.DemographicsFactory;
 import za.ac.cput.azariah.marksapp.app.factory.LecturerFactory;
+import za.ac.cput.azariah.marksapp.app.factory.SubjectFactory;
 import za.ac.cput.azariah.marksapp.domain.Demographics;
 import za.ac.cput.azariah.marksapp.domain.Lecturer;
+import za.ac.cput.azariah.marksapp.domain.Subject;
 import za.ac.cput.azariah.marksapp.services.crud.LecturerCrudService;
 
 /**
@@ -26,7 +29,8 @@ import za.ac.cput.azariah.marksapp.services.crud.LecturerCrudService;
  * @author 210192461
  */
 public class LecturerCrudServiceImplTest {
-    private LecturerCrudService lecturerCrudService;
+    private static LecturerCrudService lecturerCrudService;
+    private static List<Lecturer> lecturerList;
     private Long id;
     private static ApplicationContext ctx;
     
@@ -45,10 +49,15 @@ public class LecturerCrudServiceImplTest {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        lecturerList = lecturerCrudService.findAll();
+        for (Lecturer lecturer : lecturerList) {
+            lecturerCrudService.removeById(lecturer.getId());
+        }
     }
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
+        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");
     }
 
     @AfterMethod
@@ -56,8 +65,7 @@ public class LecturerCrudServiceImplTest {
     }
     
     @Test
-    public void createLecturer() {
-        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");
+    public void createLecturer() {        
         Demographics demographics = DemographicsFactory.createDemographics("Male", "Asian");
         
         Map<String, String> lecturerDetails = new HashMap<String, String>();
@@ -65,7 +73,25 @@ public class LecturerCrudServiceImplTest {
         lecturerDetails.put("lastName", "Naidoo");
         lecturerDetails.put("staffNumber", "3526351829");
         
-        Lecturer lecturer = LecturerFactory.createLecturer(demographics, lecturerDetails);
+                
+        Map<String, String> subjectDetails = new HashMap<String, String>();
+        
+        subjectDetails.put("name", "3D Graphics Programming");
+        subjectDetails.put("code", "GPD_100S");
+        
+        Subject subject1 = SubjectFactory.createSubject(null, subjectDetails);
+        
+        subjectDetails.put("name", "Web Design");
+        subjectDetails.put("code", "WEBD_100S");
+        
+        Subject subject2 = SubjectFactory.createSubject(null, subjectDetails);
+        
+        List<Subject> subjects = new ArrayList<Subject>();
+        
+        subjects.add(subject1);
+        subjects.add(subject2);
+        
+        Lecturer lecturer = LecturerFactory.createLecturer(demographics, lecturerDetails, subjects);
         
         lecturerCrudService.persist(lecturer);
         id = lecturer.getId();
@@ -75,21 +101,18 @@ public class LecturerCrudServiceImplTest {
     
     @Test(dependsOnMethods= "createLecturer")
     public void readLecturer() {
-        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");
         Lecturer lecturer1 = lecturerCrudService.findById(id);
         assertNotNull(lecturer1);
     } 
     
     @Test(dependsOnMethods= "createLecturer")
     public void readLecturers() {
-        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");
-        List<Lecturer> lecturerList = lecturerCrudService.findAll();
-        assertTrue(lecturerList.size()>0);        
+        List<Lecturer> lecturers = lecturerCrudService.findAll();
+        assertTrue(lecturers.size()>0);        
     }
     
     @Test(dependsOnMethods= "createLecturer")
     public void updateLecturer() {  
-        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");
         Lecturer lecturer2 = lecturerCrudService.findById(id);
         lecturer2.setStaffNumber("9304928371");
         lecturerCrudService.merge(lecturer2);
@@ -99,8 +122,7 @@ public class LecturerCrudServiceImplTest {
     }
     
     @Test(dependsOnMethods= "readLecturer")
-    public void deleteLecturer() {
-        lecturerCrudService = (LecturerCrudService)ctx.getBean("LecturerCrudService");        
+    public void deleteLecturer() {      
         lecturerCrudService.removeById(id);
         Lecturer lecturer4 = lecturerCrudService.findById(id);
         
