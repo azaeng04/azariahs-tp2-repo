@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
  * @author 210192461
  */
 @Embeddable
-public class Marks implements Serializable{
+public class Mark implements Serializable{
     private double mark;
     private String grade;
 

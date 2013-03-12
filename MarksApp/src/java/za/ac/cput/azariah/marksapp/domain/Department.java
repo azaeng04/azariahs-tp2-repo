@@ -5,14 +5,15 @@
 package za.ac.cput.azariah.marksapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -26,12 +27,12 @@ public class Department implements Serializable {
     private Long id;
     @Embedded
     private Contact contact;
-    @OneToOne
-    private Faculty faculty;
     @OneToMany
-    private List<Lecturer> lecturer;
+    @JoinColumn(name="department_id")
+    private List<Lecturer> lecturer = new ArrayList<Lecturer>();
     @OneToMany
-    private List<Course> courses; 
+    @JoinColumn(name="department_id")
+    private List<Course> courses = new ArrayList<Course>(); 
     private String depName;
     private String depCode;
     
@@ -49,14 +50,6 @@ public class Department implements Serializable {
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }
-
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
     }
 
     public List<Lecturer> getLecturer() {

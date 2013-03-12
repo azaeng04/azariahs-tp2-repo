@@ -5,12 +5,15 @@
 package za.ac.cput.azariah.marksapp.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +26,9 @@ public class Lecturer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @OneToMany
+    @JoinColumn(name="lecturer_id")
+    private List<Subject> subject = new ArrayList<Subject>();
     private String staffNumber;
     private String firstName;
     private String lastName;
@@ -66,6 +72,14 @@ public class Lecturer implements Serializable {
 
     public void setDemographic(Demographics demographic) {
         this.demographic = demographic;
+    }
+
+    public List<Subject> getSubject() {
+        return subject;
+    }
+
+    public void setSubject(List<Subject> subject) {
+        this.subject = subject;
     }
     
     @Override
