@@ -4,8 +4,8 @@
  */
 package com.test.question03;
 
-import com.question03.design.principles.isp.correct.CalculateShape;
-import com.question03.design.principles.isp.correct.config.AppConfig;
+import com.question03.design.principles.lsp.violation.config.AppConfig;
+import com.question03.design.principles.lsp.violation.Transport;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.testng.Assert.*;
@@ -19,10 +19,12 @@ import org.testng.annotations.Test;
  *
  * @author Azariahs
  */
-public class IntegrationSegregationCorrectTest {
+public class LiskovSubstitutionViolationTest {
+
     private static ApplicationContext ctx;
-    private static CalculateShape triangle;
-    public IntegrationSegregationCorrectTest() {
+    private static Transport bikeTransport;
+
+    public LiskovSubstitutionViolationTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -33,7 +35,7 @@ public class IntegrationSegregationCorrectTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        triangle = (CalculateShape)ctx.getBean("triangle");
+        bikeTransport = (Transport) ctx.getBean("bike");
     }
 
     @AfterClass
@@ -47,12 +49,9 @@ public class IntegrationSegregationCorrectTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-    
-    @Test
-    public void testISPCorrect() {
-        double triangleArea = triangle.getArea(10, 5);
-        double trianglePerimeter = triangle.getPerimeter(5, 5, 5);
-        assertEquals(triangleArea, 25.0);
-        assertEquals(trianglePerimeter, 15.0);
+
+    @Test(expectedExceptions = UnsupportedOperationException.class)
+    public void testLSPViolate() {
+        String bike = bikeTransport.hasMotor();
     }
 }

@@ -4,7 +4,7 @@
  */
 package com.question03.design.principles.isp.correct.impl;
 
-import com.question03.design.principles.isp.violation.CalculateShape;
+import com.question03.design.principles.isp.correct.CalculateShape;
 
 /**
  *

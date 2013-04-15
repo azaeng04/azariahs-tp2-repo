@@ -31,9 +31,7 @@ public class TriangleImpl implements CalculateShape{
 
     @Override
     public double getPerimeter(double s1) {
-        double result = s1 * 3;
-        result = Math.round(result * 100.0)/100.0;
-        return result;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -43,6 +41,8 @@ public class TriangleImpl implements CalculateShape{
 
     @Override
     public double getPerimeter(double s1, double s2, double s3) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        double result = s1 + s2 + s3;
+        result = Math.round(result * 100.0)/100.0;
+        return result;
     }
 }

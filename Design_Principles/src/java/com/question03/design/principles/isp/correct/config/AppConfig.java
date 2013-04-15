@@ -4,9 +4,9 @@
  */
 package com.question03.design.principles.isp.correct.config;
 
-import com.question03.design.principles.isp.violation.CalculateShape;
-import com.question03.design.principles.isp.violation.impl.CircleImpl;
-import com.question03.design.principles.isp.violation.impl.TriangleImpl;
+import com.question03.design.principles.isp.correct.CalculateShape;
+import com.question03.design.principles.isp.correct.impl.CircleImpl;
+import com.question03.design.principles.isp.correct.impl.TriangleImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

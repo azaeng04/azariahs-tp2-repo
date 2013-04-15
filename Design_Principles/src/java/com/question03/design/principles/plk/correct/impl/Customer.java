@@ -12,9 +12,13 @@ import java.util.List;
  * @author Ronald
  */
 public class Customer {
-    List<Order> orders = new ArrayList<Order>();
-    public List<Order> getOrder() {
-        return orders;        
+    private List<Order> orders = new ArrayList<Order>();
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 }
