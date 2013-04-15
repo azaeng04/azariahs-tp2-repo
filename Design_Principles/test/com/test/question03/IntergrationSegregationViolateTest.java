@@ -4,8 +4,8 @@
  */
 package com.test.question03;
 
-import com.question03.design.principles.dip.violation.config.AppConfig;
-import com.question03.design.principles.dip.violation.impl.FourWheelsImpl;
+import com.question03.design.principles.isp.violation.config.AppConfig;
+import com.question03.design.principles.isp.violation.CalculateShape;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import static org.testng.Assert.*;
@@ -20,10 +20,8 @@ import org.testng.annotations.Test;
  * @author Azariahs
  */
 public class IntergrationSegregationViolateTest {
-
-    private static ApplicationContext ctx;
-    private static FourWheelsImpl fourWheels;
-
+private static ApplicationContext ctx;
+    private static CalculateShape triangle;
     public IntergrationSegregationViolateTest() {
     }
     // TODO add test methods here.
@@ -35,7 +33,7 @@ public class IntergrationSegregationViolateTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-        fourWheels = (FourWheelsImpl) ctx.getBean("fourWheels");
+        triangle = (CalculateShape)ctx.getBean("triangle");
     }
 
     @AfterClass
@@ -49,10 +47,12 @@ public class IntergrationSegregationViolateTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-
+    
     @Test
-    public void testDIPViolate() {
-        String noWheels = fourWheels.getWheels();
-        assertEquals(noWheels, "Uses four wheels");
+    public void testISPViolate() {
+        double triangleArea = triangle.getArea(10, 5);
+        double trianglePerimeter = triangle.getPerimeter(5, 5, 5);
+        assertEquals(triangleArea, 25.0);
+        assertEquals(trianglePerimeter, 15.0);
     }
 }

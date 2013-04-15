@@ -12,8 +12,13 @@ import java.util.List;
  * @author Ronald
  */
 public class Order {
-    List<OrderLine> orderLine = new ArrayList<OrderLine>();
+    private List<OrderLine> orderLine = new ArrayList<OrderLine>();
+
     public List<OrderLine> getOrderLine() {
         return orderLine;
+    }
+
+    public void setOrderLine(List<OrderLine> orderLine) {
+        this.orderLine = orderLine;
     }
 }
