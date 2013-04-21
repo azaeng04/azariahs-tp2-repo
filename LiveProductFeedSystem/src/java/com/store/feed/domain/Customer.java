@@ -5,38 +5,37 @@
 package com.store.feed.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Ronald
  */
 @Entity
-public class Customer implements Serializable {
+public class Customer extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Person person;
-
-    public Customer() {
-    }
-
-    public Customer(Person person) {
-        this.person = person;
-    }
-    
     private String customerNumber;
+        
+    @OneToMany
+    @JoinColumn(name = "customerNumber")
+    private List<Notification> notifications;
 
-    public Person getPerson() {
-        return person;
+    public List<Notification> getNotifications() {
+        return notifications;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public String getCustomerNumber() {

@@ -6,6 +6,8 @@ package com.store.feed.repository.jpa;
 
 import com.store.feed.repository.GenericDAO;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,11 +19,11 @@ import org.springframework.stereotype.Repository;
  * @author boniface
  */
 @Repository("dao")
-public class GenericJPAImpl< T extends Serializable>  implements GenericDAO<T>{
+public class GenericJPAImpl< T extends Serializable> implements GenericDAO<T> {
+
     private Class<T> clazz;
-    @PersistenceContext(type=PersistenceContextType.EXTENDED)
-    EntityManager em; 
-    
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    EntityManager em;
 
     @Override
     public void setClazz(final Class< T> clazzToSet) {
@@ -39,7 +41,7 @@ public class GenericJPAImpl< T extends Serializable>  implements GenericDAO<T>{
     }
 
     @Override
-    public void persist(final T entity) { 
+    public void persist(final T entity) {
         this.em.persist(entity);
     }
 
@@ -77,8 +79,32 @@ public class GenericJPAImpl< T extends Serializable>  implements GenericDAO<T>{
     }
 
     @Override
-    public List<T> getEntitiesByProperName(String name, String value) {
+    public List<T> getEntitiesByPropertyName(String name, String value) {
         List<T> list = em.createQuery("SELECT e FROM  " + this.clazz.getName() + " e WHERE e." + name + "=?1").setParameter(1, value).getResultList();
         return list;
+    }
+
+    @Override
+    public void persistMultipleEntites(final List<T> entities) {
+        if (entities.isEmpty()) {
+            for (T entity : entities) {
+                persist(entity);
+            }
+        } else {
+            removeMultipleEntities();
+            for (T entity : entities) {
+                persist(entity);
+            }
+        }
+    }
+
+    @Override
+    public void removeMultipleEntities() {
+        List<T> entities = findAll();
+        if (!entities.isEmpty()) {
+            for (T entity : entities) {
+                remove(entity);
+            }
+        }
     }
 }

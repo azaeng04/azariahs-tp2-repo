@@ -15,28 +15,12 @@ import javax.persistence.Id;
  * @author Ronald
  */
 @Entity
-public class StockManager implements Serializable {
+public class StockManager extends Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Person person;
     private String stockManagerNumber;
-    
-    public StockManager() {
-    }
-
-    public StockManager(Person person) {
-        this.person = person;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
     public String getStockManagerNumber() {
         return stockManagerNumber;

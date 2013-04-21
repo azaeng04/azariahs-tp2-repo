@@ -18,9 +18,13 @@ public interface Service<T, ID> {
 
     public void persist(final T entity);
 
+    public void persistMultipleEntites(final List<T> entity);
+
     public void merge(final T entity);
 
     public void remove(final T entity);
+
+    public void removeMultipleEntities();
 
     public void removeById(final Long entityId);
 
@@ -30,5 +34,5 @@ public interface Service<T, ID> {
 
     public T getByPropertyName(String name, String value);
 
-    public List<T> getEntitiesByProperName(String name, String value);
+    public List<T> getEntitiesByPropertyName(String name, String value);
 }

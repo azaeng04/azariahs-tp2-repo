@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="LiveProductFeedSystemPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>com.store.feed.domain.Person</class>
-    <class>com.store.feed.domain.Address</class>
-    <class>com.store.feed.domain.User</class>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.store.feed.domain.Roles</class>
+    <class>com.store.feed.domain.Users</class>
+    <class>com.store.feed.domain.Customer</class>
     <class>com.store.feed.domain.StockManager</class>
     <class>com.store.feed.domain.StoreManager</class>
-    <class>com.store.feed.domain.Customer</class>
     <class>com.store.feed.domain.Notification</class>
-    <class>com.store.feed.domain.Store</class>
-    <class>com.store.feed.domain.Location</class>
     <class>com.store.feed.domain.Product</class>
-    <class>com.store.feed.domain.ProductLocation</class>
+    <class>com.store.feed.domain.WastedProduct</class>
+    <class>com.store.feed.domain.Address</class>
     <class>com.store.feed.domain.Category</class>
+    <class>com.store.feed.domain.ProductLocation</class>
+    <class>com.store.feed.domain.ProductSpecial</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/store"/>
-      <property name="javax.persistence.jdbc.password" value="app"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.user" value="admin1"/>
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="hibernate.connection.username" value="admin1"/>
+      <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="hibernate.connection.password" value="admin1"/>
+      <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/store"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
   </persistence-unit>
 </persistence>
