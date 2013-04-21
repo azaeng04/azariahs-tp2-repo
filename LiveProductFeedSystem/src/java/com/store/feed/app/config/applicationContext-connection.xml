@@ -17,7 +17,7 @@
 
 <!-- Scans within the base package of the application for @Components to configure as beans -->
  
-    <bean id="contextApplicationContextProvider" class="com.startup.musicstore.app.conf.ApplicationContextProvider"></bean>
+    <bean id="contextApplicationContextProvider" class="com.store.feed.app.config.ApplicationContextProvider"></bean>
     
    
     <tx:annotation-driven />
@@ -27,7 +27,7 @@
 
  
   <!-- Scan components for annotations within the configured package -->
-    <context:component-scan base-package="com.startup.musicstore">
+    <context:component-scan base-package="com.store.feed">
         <context:exclude-filter type="annotation" expression="org.springframework.context.annotation.Configuration"/>
     </context:component-scan>
 
@@ -48,7 +48,7 @@
 
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="musicstorePU" />
+        <property name="persistenceUnitName" value="LiveProductFeedSystemPU" />
         <property name="dataSource" ref="dataSource" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

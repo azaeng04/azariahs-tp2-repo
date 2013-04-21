@@ -5,10 +5,14 @@
 package com.store.feed.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +27,18 @@ public class Notification implements Serializable {
     private String notificationNumber;
     private Boolean isActive;
 
+    @OneToMany
+    @JoinColumn(name = "notificationNumber")        
+    List<Product> products;
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+    
     public String getNotificationNumber() {
         return notificationNumber;
     }

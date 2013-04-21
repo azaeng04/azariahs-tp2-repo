@@ -20,15 +20,15 @@ public class ProductLocation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String productLocation;
+    private String productLocationNumber;
     private String productLocationName;
 
-    public String getProductLocation() {
-        return productLocation;
+    public String getProductLocationNumber() {
+        return productLocationNumber;
     }
 
-    public void setProductLocation(String productLocation) {
-        this.productLocation = productLocation;
+    public void setProductLocationNumber(String productLocationNumber) {
+        this.productLocationNumber = productLocationNumber;
     }
 
     public String getProductLocationName() {
