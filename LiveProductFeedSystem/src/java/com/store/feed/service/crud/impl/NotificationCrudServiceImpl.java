@@ -4,9 +4,9 @@
  */
 package com.store.feed.service.crud.impl;
 
-import com.store.feed.domain.Users;
+import com.store.feed.domain.Notification;
 import com.store.feed.repository.GenericDAO;
-import com.store.feed.service.crud.UsersCrudService;
+import com.store.feed.service.crud.NotificationCrudService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,63 +16,63 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Ronald
  */
-@Service("UsersCrudService")
+@Service("NotificationCrudService")
 @Transactional
-public class UsersCrudServiceImpl implements UsersCrudService {
-
+public class NotificationCrudServiceImpl implements NotificationCrudService {
+    
     @Autowired
-    private GenericDAO<Users> dao;
-
-    public final void setDao(final GenericDAO< Users> daoToSet) {
+    private GenericDAO<Notification> dao;
+    
+    public final void setDao(final GenericDAO< Notification> daoToSet) {
         this.dao = daoToSet;
-        this.dao.setClazz(Users.class);
+        this.dao.setClazz(Notification.class);
     }
-
-    public UsersCrudServiceImpl() {
+    
+    public NotificationCrudServiceImpl() {
     }
 
     @Override
-    public Users findById(Long id) {
+    public Notification findById(Long id) {
         setDao(dao);
         return dao.findById(id);
     }
 
     @Override
-    public List<Users> findAll() {
+    public List<Notification> findAll() {
         setDao(dao);
         return dao.findAll();
     }
-
+    
     @Override
-    public void persist(Users entity) {
+    public void persist(Notification entity) {
         setDao(dao);
         dao.persist(entity);
     }
-
+    
     @Override
-    public void merge(Users entity) {
+    public void merge(Notification entity) {
         setDao(dao);
         dao.merge(entity);
     }
-
+    
     @Override
-    public void remove(Users entity) {
+    public void remove(Notification entity) {
         setDao(dao);
         dao.remove(entity);
     }
-
+    
     @Override
     public void removeById(Long entityId) {
         setDao(dao);
-        Users v = dao.findById(entityId);
+        Notification v = dao.findById(entityId);
         dao.remove(v);
     }
-
+    
     @Override
-    public List<Users> findInRange(int firstResult, int maxResults) {
+    public List<Notification> findInRange(int firstResult, int maxResults) {
         setDao(dao);
         return dao.findInRange(firstResult, maxResults);
-
+        
     }
 
     @Override
@@ -82,26 +82,26 @@ public class UsersCrudServiceImpl implements UsersCrudService {
     }
 
     @Override
-    public Users getByPropertyName(String name, String value) {
+    public Notification getByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getByPropertyName(name, value);
     }
-
+    
     @Override
-    public List<Users> getEntitiesByPropertyName(String name, String value) {
+    public List<Notification> getEntitiesByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getEntitiesByPropertyName(name, value);
     }
-
+    
     @Override
-    public void persistMultipleEntities(List<Users> users) {
+    public void persistMultipleEntities(List<Notification> object) {
         setDao(dao);
-        dao.persistMultipleEntites(users);
+        dao.persistMultipleEntites(object);
     }
-
+    
     @Override
-    public void removeMultipleEntities(List<Users> users) {
+    public void removeMultipleEntities(List<Notification> object) {
         setDao(dao);
-        dao.removeMultipleEntities(users);
+        dao.removeMultipleEntities(object);
     }
 }

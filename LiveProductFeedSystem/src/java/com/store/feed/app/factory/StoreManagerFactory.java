@@ -25,7 +25,6 @@ public class StoreManagerFactory {
         private String middleName;
         private String gender;
         private Date dateOfBirth;
-        private Users user;
         private Contact contact;
         private List<Address> addresses;
 
@@ -63,11 +62,6 @@ public class StoreManagerFactory {
             return this;
         }
 
-        public Builder setUser(Users user) {
-            this.user = user;
-            return this;
-        }
-
         public Builder setAddresses(List<Address> addresses) {
             this.addresses = addresses;
             return this;
@@ -79,14 +73,13 @@ public class StoreManagerFactory {
 
         private StoreManager buildStoreManager(Builder object) {
             StoreManager storeManager = new StoreManager();
-            storeManager.setStoreManagerNumber(object.storeManagerNumber);
+            storeManager.setUsersIDNumber(object.storeManagerNumber);
             storeManager.setAddresses(object.addresses);
             storeManager.setDateOfBirth(object.dateOfBirth);
             storeManager.setFirstName(object.firstName);
             storeManager.setGender(object.gender);
             storeManager.setLastName(object.lastName);
             storeManager.setMiddleName(object.middleName);
-            storeManager.setUser(object.user);
             storeManager.setContact(object.contact);
             return storeManager;
         }

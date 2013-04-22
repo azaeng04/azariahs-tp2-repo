@@ -94,14 +94,14 @@ public class CategoryCrudServiceImpl implements CategoryCrudService {
     }
     
     @Override
-    public void persistMultipleEntites(List<Category> categories) {
+    public void persistMultipleEntities(List<Category> object) {
         setDao(dao);
-        dao.persistMultipleEntites(categories);
+        dao.persistMultipleEntites(object);
     }
     
     @Override
-    public void removeMultipleEntities() {
+    public void removeMultipleEntities(List<Category> object) {
         setDao(dao);
-        dao.removeMultipleEntities();
+        dao.removeMultipleEntities(object);
     }
 }

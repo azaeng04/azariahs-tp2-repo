@@ -21,10 +21,6 @@ public interface Person {
 
     public void setContact(Contact contact);
 
-    public Users getUser();
-
-    public void setUser(Users user);
-
     public void setFirstName(String firstName);
 
     public String getFirstName();
@@ -44,4 +40,8 @@ public interface Person {
     public void setGender(String gender);
 
     public String getGender();
+
+    String getUsersIDNumber();
+
+    void setUsersIDNumber(String customerNumber);
 }

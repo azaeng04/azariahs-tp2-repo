@@ -94,14 +94,14 @@ public class CustomerCrudServiceImpl implements CustomerCrudService {
     }
     
     @Override
-    public void persistMultipleEntites(List<Customer> customers) {
+    public void persistMultipleEntities(List<Customer> customers) {
         setDao(dao);
         dao.persistMultipleEntites(customers);
     }
     
     @Override
-    public void removeMultipleEntities() {
+    public void removeMultipleEntities(List<Customer> customers) {
         setDao(dao);
-        dao.removeMultipleEntities();
+        dao.removeMultipleEntities(customers);
     }
 }

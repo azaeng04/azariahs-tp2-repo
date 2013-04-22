@@ -6,8 +6,6 @@ package com.store.feed.repository.jpa;
 
 import com.store.feed.repository.GenericDAO;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -91,7 +89,7 @@ public class GenericJPAImpl< T extends Serializable> implements GenericDAO<T> {
                 persist(entity);
             }
         } else {
-            removeMultipleEntities();
+            removeMultipleEntities(entities);
             for (T entity : entities) {
                 persist(entity);
             }
@@ -99,8 +97,7 @@ public class GenericJPAImpl< T extends Serializable> implements GenericDAO<T> {
     }
 
     @Override
-    public void removeMultipleEntities() {
-        List<T> entities = findAll();
+    public void removeMultipleEntities(final List<T> entities) {
         if (!entities.isEmpty()) {
             for (T entity : entities) {
                 remove(entity);
