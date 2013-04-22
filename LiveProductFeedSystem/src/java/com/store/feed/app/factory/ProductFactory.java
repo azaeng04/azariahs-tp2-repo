@@ -67,7 +67,7 @@ public class ProductFactory {
             return this;
         }
 
-        public Builder setProductPrice(ProductStatus productStatus) {
+        public Builder setProductStatus(ProductStatus productStatus) {
             this.productStatus = productStatus;
             return this;
         }
