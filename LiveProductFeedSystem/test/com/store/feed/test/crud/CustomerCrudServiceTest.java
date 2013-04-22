@@ -5,28 +5,20 @@
 package com.store.feed.test.crud;
 
 import com.store.feed.app.factory.AddressFactory;
-import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ContactFactory;
 import com.store.feed.app.factory.CustomerFactory;
-import com.store.feed.app.factory.ProductFactory;
-import com.store.feed.app.factory.ProductLocationFactory;
-import com.store.feed.app.factory.ProductStatusFactory;
 import com.store.feed.app.factory.RolesFactory;
 import com.store.feed.app.factory.UsersFactory;
 import com.store.feed.domain.Address;
-import com.store.feed.domain.Category;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.Customer;
-import com.store.feed.domain.Product;
-import com.store.feed.domain.ProductLocation;
-import com.store.feed.domain.ProductStatus;
 import com.store.feed.domain.Roles;
 import com.store.feed.domain.Users;
+import com.store.feed.service.crud.AddressCrudService;
 import com.store.feed.service.crud.CustomerCrudService;
 import com.store.feed.service.crud.RolesCrudService;
 import com.store.feed.service.crud.UsersCrudService;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
@@ -48,7 +40,9 @@ public class CustomerCrudServiceTest {
     private static CustomerCrudService customerCrudService;
     private static RolesCrudService rolesCrudService;
     private static UsersCrudService usersCrudService;
-
+    private static AddressCrudService addressCrudService;
+    private static Long customerID;
+    
     public CustomerCrudServiceTest() {
     }
     // TODO add test methods here.
@@ -61,13 +55,20 @@ public class CustomerCrudServiceTest {
         customerCrudService = (CustomerCrudService) ctx.getBean("CustomerCrudService");
         rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
         usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
+        addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-//        rolesCrudService.removeMultipleEntities();
-//        usersCrudService.removeMultipleEntities();
-//        customerCrudService.removeMultipleEntities();
+        List<Address> addresses = addressCrudService.findAll();
+        List<Roles> roles = rolesCrudService.findAll();
+        List<Users> users = usersCrudService.findAll();
+        List<Customer> customers = customerCrudService.findAll();
+        
+        addressCrudService.removeMultipleEntities(addresses);
+        rolesCrudService.removeMultipleEntities(roles);
+        usersCrudService.removeMultipleEntities(users);
+        customerCrudService.removeMultipleEntities(customers);
     }
 
     @BeforeMethod
@@ -107,28 +108,55 @@ public class CustomerCrudServiceTest {
                 .setRoles(roles)
                 .buildUser();
         
-        customer.setUser(user);
-//        rolesCrudService.persistMultipleEntites(roles);
-        
-        user.setCustomer(customer);
-        
-//        usersCrudService.persist(user);
+        rolesCrudService.persistMultipleEntities(roles);
+        addressCrudService.persistMultipleEntities(addresses);
         customerCrudService.persist(customer);
+        usersCrudService.persist(user);
+        
+        customerID = customer.getId();
     }
 
     @Test(dependsOnMethods = "createCustomer")
     public void readCustomer() {
+        Customer customer = customerCrudService.findById(customerID);
+        
+        assertNotNull(customer);
     }
 
     @Test(dependsOnMethods = "createCustomer")
     public void readCustomers() {
+        List<Customer> customers = customerCrudService.findAll();
+        
+        assertTrue(customers.size()>0);
     }
 
     @Test(dependsOnMethods = "createCustomer")
     public void updateCustomer() {
+        Customer customer = customerCrudService.findById(customerID);
+        
+        assertNotNull(customer);
+        
+        customer.setFirstName("Jason");
+        
+        customerCrudService.merge(customer);
+        
+        Customer customer1 = customerCrudService.findById(customerID);
+        
+        assertEquals(customer1.getFirstName(), "Jason");
     }
 
     @Test(dependsOnMethods = "readCustomer")
     public void deleteCustomer() {
+        Customer customer = customerCrudService.findById(customerID);
+        List<Address> addresses = addressCrudService.findAll();
+        List<Users> users = usersCrudService.findAll();
+        
+        addressCrudService.removeMultipleEntities(addresses);
+        usersCrudService.removeMultipleEntities(users);
+        customerCrudService.remove(customer);
+        
+        Customer customer1 = customerCrudService.findById(customerID);
+        
+        assertNull(customer1);
     }
 }

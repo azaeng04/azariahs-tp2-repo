@@ -4,9 +4,9 @@
  */
 package com.store.feed.service.crud.impl;
 
-import com.store.feed.domain.Users;
+import com.store.feed.domain.WastedProduct;
 import com.store.feed.repository.GenericDAO;
-import com.store.feed.service.crud.UsersCrudService;
+import com.store.feed.service.crud.WastedProductCrudService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,63 +16,63 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Ronald
  */
-@Service("UsersCrudService")
+@Service("WastedProductCrudService")
 @Transactional
-public class UsersCrudServiceImpl implements UsersCrudService {
-
+public class WastedProductCrudServiceImpl implements WastedProductCrudService {
+    
     @Autowired
-    private GenericDAO<Users> dao;
-
-    public final void setDao(final GenericDAO< Users> daoToSet) {
+    private GenericDAO<WastedProduct> dao;
+    
+    public final void setDao(final GenericDAO< WastedProduct> daoToSet) {
         this.dao = daoToSet;
-        this.dao.setClazz(Users.class);
+        this.dao.setClazz(WastedProduct.class);
     }
-
-    public UsersCrudServiceImpl() {
+    
+    public WastedProductCrudServiceImpl() {
     }
 
     @Override
-    public Users findById(Long id) {
+    public WastedProduct findById(Long id) {
         setDao(dao);
         return dao.findById(id);
     }
 
     @Override
-    public List<Users> findAll() {
+    public List<WastedProduct> findAll() {
         setDao(dao);
         return dao.findAll();
     }
-
+    
     @Override
-    public void persist(Users entity) {
+    public void persist(WastedProduct entity) {
         setDao(dao);
         dao.persist(entity);
     }
-
+    
     @Override
-    public void merge(Users entity) {
+    public void merge(WastedProduct entity) {
         setDao(dao);
         dao.merge(entity);
     }
-
+    
     @Override
-    public void remove(Users entity) {
+    public void remove(WastedProduct entity) {
         setDao(dao);
         dao.remove(entity);
     }
-
+    
     @Override
     public void removeById(Long entityId) {
         setDao(dao);
-        Users v = dao.findById(entityId);
+        WastedProduct v = dao.findById(entityId);
         dao.remove(v);
     }
-
+    
     @Override
-    public List<Users> findInRange(int firstResult, int maxResults) {
+    public List<WastedProduct> findInRange(int firstResult, int maxResults) {
         setDao(dao);
         return dao.findInRange(firstResult, maxResults);
-
+        
     }
 
     @Override
@@ -82,26 +82,26 @@ public class UsersCrudServiceImpl implements UsersCrudService {
     }
 
     @Override
-    public Users getByPropertyName(String name, String value) {
+    public WastedProduct getByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getByPropertyName(name, value);
     }
-
+    
     @Override
-    public List<Users> getEntitiesByPropertyName(String name, String value) {
+    public List<WastedProduct> getEntitiesByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getEntitiesByPropertyName(name, value);
     }
-
+    
     @Override
-    public void persistMultipleEntities(List<Users> users) {
+    public void persistMultipleEntities(List<WastedProduct> object) {
         setDao(dao);
-        dao.persistMultipleEntites(users);
+        dao.persistMultipleEntites(object);
     }
-
+    
     @Override
-    public void removeMultipleEntities(List<Users> users) {
+    public void removeMultipleEntities(List<WastedProduct> object) {
         setDao(dao);
-        dao.removeMultipleEntities(users);
+        dao.removeMultipleEntities(object);
     }
 }

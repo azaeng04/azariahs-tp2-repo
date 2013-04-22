@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -35,21 +36,11 @@ public class StoreManager implements Person, Serializable {
     private String gender;
 
     @OneToMany
+    @JoinColumn(name = "storeManagerNumber")
     private List<Address> addresses;
     
     @Embedded
     private Contact contact;
-    
-    @OneToOne
-    private Users user;
-    
-    public String getStoreManagerNumber() {
-        return storeManagerNumber;
-    }
-
-    public void setStoreManagerNumber(String storeManagerNumber) {
-        this.storeManagerNumber = storeManagerNumber;
-    }
     
     public Long getId() {
         return id;
@@ -153,14 +144,14 @@ public class StoreManager implements Person, Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-
+    
     @Override
-    public Users getUser() {
-        return user;
+    public String getUsersIDNumber() {
+        return storeManagerNumber;
     }
 
     @Override
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsersIDNumber(String storeManagerNumber) {
+        this.storeManagerNumber = storeManagerNumber;
     }
 }

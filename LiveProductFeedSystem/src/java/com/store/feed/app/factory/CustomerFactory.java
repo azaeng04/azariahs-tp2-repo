@@ -25,7 +25,6 @@ public class CustomerFactory {
         private String middleName;
         private String gender;
         private Date dateOfBirth;
-        private Users user;
         private Contact contact;
         private List<Address> addresses;
         private List<Notification> notifications;
@@ -64,11 +63,6 @@ public class CustomerFactory {
             return this;
         }
 
-        public Builder setUser(Users user) {
-            this.user = user;
-            return this;
-        }
-
         public Builder setAddresses(List<Address> addresses) {
             this.addresses = addresses;
             return this;
@@ -85,7 +79,7 @@ public class CustomerFactory {
 
         private Customer buildCustomer(Builder object) {
             Customer customer = new Customer();
-            customer.setCustomerNumber(object.customerNumber);
+            customer.setUsersIDNumber(object.customerNumber);
             customer.setAddresses(object.addresses);
             customer.setDateOfBirth(object.dateOfBirth);
             customer.setFirstName(object.firstName);
@@ -93,7 +87,6 @@ public class CustomerFactory {
             customer.setLastName(object.lastName);
             customer.setMiddleName(object.middleName);
             customer.setNotifications(object.notifications);
-            customer.setUser(object.user);
             customer.setContact(object.contact);
             return customer;
         }

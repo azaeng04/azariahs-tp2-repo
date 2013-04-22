@@ -18,13 +18,13 @@ public interface DAO<T, ID> {
 
     public void persist(final T entity);
 
-    public void persistMultipleEntites(final List<T> entity);
+    public void persistMultipleEntites(final List<T> entities);
 
     public void merge(final T entity);
 
     public void remove(final T entity);
 
-    public void removeMultipleEntities();
+    public void removeMultipleEntities(final List<T> entities);
 
     public void removeById(final Long entityId);
 

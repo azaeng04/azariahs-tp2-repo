@@ -7,6 +7,7 @@ package com.store.feed.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
  * @author Ronald
  */
 @Entity
-public class Customer implements Person, Serializable {
+public class Customer implements Person, Serializable{
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,14 +35,12 @@ public class Customer implements Person, Serializable {
     private Date dateOfBirth;
     private String gender;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "customerNumber")
     private List<Address> addresses;
     
     @Embedded
     private Contact contact;
-    
-    @OneToOne
-    private Users user;
     
     @OneToMany
     @JoinColumn(name = "customerNumber")
@@ -54,14 +52,6 @@ public class Customer implements Person, Serializable {
 
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
-    }
-
-    public String getCustomerNumber() {
-        return customerNumber;
-    }
-
-    public void setCustomerNumber(String customerNumber) {
-        this.customerNumber = customerNumber;
     }
     
     public Long getId() {
@@ -166,14 +156,14 @@ public class Customer implements Person, Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-
+    
     @Override
-    public Users getUser() {
-        return user;
+    public String getUsersIDNumber() {
+        return customerNumber;
     }
 
     @Override
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsersIDNumber(String customerNumber) {
+        this.customerNumber = customerNumber;
     }
 }

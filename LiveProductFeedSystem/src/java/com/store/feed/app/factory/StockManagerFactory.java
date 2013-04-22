@@ -25,7 +25,6 @@ public class StockManagerFactory {
         private String middleName;
         private String gender;
         private Date dateOfBirth;
-        private Users user;
         private Contact contact;
         private List<Address> addresses;
 
@@ -63,11 +62,6 @@ public class StockManagerFactory {
             return this;
         }
 
-        public Builder setUser(Users user) {
-            this.user = user;
-            return this;
-        }
-
         public Builder setAddresses(List<Address> addresses) {
             this.addresses = addresses;
             return this;
@@ -79,14 +73,13 @@ public class StockManagerFactory {
 
         private StockManager buildStockManager(Builder object) {
             StockManager stockManager = new StockManager();
-            stockManager.setStockManagerNumber(object.stockManagerNumber);
+            stockManager.setUsersIDNumber(object.stockManagerNumber);
             stockManager.setAddresses(object.addresses);
             stockManager.setDateOfBirth(object.dateOfBirth);
             stockManager.setFirstName(object.firstName);
             stockManager.setGender(object.gender);
             stockManager.setLastName(object.lastName);
             stockManager.setMiddleName(object.middleName);
-            stockManager.setUser(object.user);
             stockManager.setContact(object.contact);
             return stockManager;
         }

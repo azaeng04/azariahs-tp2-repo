@@ -94,14 +94,14 @@ public class RolesCrudServiceImpl implements RolesCrudService {
     }
 
     @Override
-    public void persistMultipleEntites(List<Roles> roles) {
+    public void persistMultipleEntities(List<Roles> roles) {
         setDao(dao);
         dao.persistMultipleEntites(roles);
     }
 
     @Override
-    public void removeMultipleEntities() {
+    public void removeMultipleEntities(List<Roles> roles) {
         setDao(dao);
-        dao.removeMultipleEntities();
+        dao.removeMultipleEntities(roles);
     }
 }
