@@ -47,22 +47,8 @@ public class GradeServiceTest {
 
     @Test
     public void testGradeService() {
-        int grade1 = 80;
-        gradeServiceImpl.fetchGrade(grade1);
-
-        int grade2 = 73;
-        gradeServiceImpl.fetchGrade(grade2);
-
-        int grade3 = 65;
-        gradeServiceImpl.fetchGrade(grade3);
-
-        int grade4 = 60;
-        gradeServiceImpl.fetchGrade(grade4);
-
-        int grade5 = 57;
-        gradeServiceImpl.fetchGrade(grade5);
-
-        int grade6 = 53;
-        gradeServiceImpl.fetchGrade(grade6);
+        int grade1 = 97;
+        String grading1 = gradeServiceImpl.fetchGrade(grade1);
+        assertEquals(grading1, "A");
     }
 }
