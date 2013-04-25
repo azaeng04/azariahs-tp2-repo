@@ -15,5 +15,5 @@ public abstract class GradeHandler {
         this.successor = successor;
     }
     
-    public abstract String handleRequest(int grade);
+    public abstract void handleRequest(int grade);
 }

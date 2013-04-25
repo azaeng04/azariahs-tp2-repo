@@ -9,5 +9,5 @@ package com.design.service;
  * @author 210192461
  */
 public interface GradeService {
-    public String fetchGrade(int grade);
+    public void fetchGrade(int grade);
 }
