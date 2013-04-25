@@ -13,9 +13,10 @@ import com.design.service.GradeService;
 public class GradeServiceImpl implements GradeService {
 
     @Override
-    public void fetchGrade(int grade) {
+    public String fetchGrade(int grade) {
         GradeHandler chain = setUpChain();
-        chain.handleRequest(grade);
+        String grading = chain.handleRequest(grade);
+        return grading;
     }
 
     private GradeHandler setUpChain() {
