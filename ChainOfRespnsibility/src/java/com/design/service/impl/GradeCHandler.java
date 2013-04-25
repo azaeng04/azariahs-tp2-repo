@@ -10,19 +10,14 @@ package com.design.service.impl;
  */
 public class GradeCHandler extends GradeHandler {
 
-    public GradeCHandler() {
-    }
-
-    @Override
-    public String handleRequest(int grade) {
+    public void handleRequest(int grade) {
         String grading = "";
         if (grade >= 65) {
-            grading = "C";
+            System.out.println("Your grade is a C");
         } else {
             if (successor != null) {
-                grading = successor.handleRequest(grade);
+                successor.handleRequest(grade);
             }
         }
-        return grading;
     }
 }

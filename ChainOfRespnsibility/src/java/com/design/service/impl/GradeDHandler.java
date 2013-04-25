@@ -10,19 +10,13 @@ package com.design.service.impl;
  */
 public class GradeDHandler extends GradeHandler {
 
-    public GradeDHandler() {
-    }
-
-    @Override
-    public String handleRequest(int grade) {
-        String grading = "";
+    public void handleRequest(int grade) {
         if (grade >= 60) {
-            grading = "D";
+            System.out.println("Your grade is a D");
         } else {
             if (successor != null) {
-                grading = successor.handleRequest(grade);
+                successor.handleRequest(grade);
             }
         }
-        return grading;
     }
 }
