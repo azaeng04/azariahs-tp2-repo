@@ -18,7 +18,6 @@ import com.store.feed.service.crud.CategoryCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.AfterClass;
