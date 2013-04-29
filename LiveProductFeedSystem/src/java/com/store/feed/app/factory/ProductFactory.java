@@ -5,12 +5,12 @@
 package com.store.feed.app.factory;
 
 import com.store.feed.domain.Category;
+import com.store.feed.domain.Notification;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
 import com.store.feed.domain.ProductSpecial;
 import com.store.feed.domain.ProductStatus;
-import com.store.feed.domain.WastedProduct;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -32,18 +32,25 @@ public class ProductFactory {
         private ProductStatus productStatus;
         private ProductLifespan productLifespan;
         private Category category;
-        private ProductSpecial productSpecial;
         private List<ProductLocation> productLocations;
-        private WastedProduct wastedProduct;
+        private List<Notification> notifications;
 
-        public Builder(String productNumber, String productName, Integer quantity) {
+        public Builder(String productNumber) {
             this.productNumber = productNumber;
-            this.productName = productName;
-            this.quantity = quantity;
         }
 
-        public Builder setWastedProduct(WastedProduct wastedProduct) {
-            this.wastedProduct = wastedProduct;
+        public Builder setQuantity(Integer quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+        
+        public Builder setProductName(String productName) {
+            this.productName = productName;
+            return this;
+        }
+        
+        public Builder setNotifications(List<Notification> notifications) {
+            this.notifications = notifications;
             return this;
         }
 
@@ -82,11 +89,6 @@ public class ProductFactory {
             return this;
         }
 
-        public Builder setProductSpecial(ProductSpecial productSpecial) {
-            this.productSpecial = productSpecial;
-            return this;
-        }
-
         public Builder setProductLocation(List<ProductLocation> productLocations) {
             this.productLocations = productLocations;
             return this;
@@ -99,18 +101,17 @@ public class ProductFactory {
         private Product buildProduct(Builder object) {
             Product product = new Product();
             product.setCategory(object.category);
+            product.setIsWasted(object.isWasted);
+            product.setNotifications(object.notifications);
+            product.setOnSpecial(object.onSpecial);
+            product.setProductLifespan(object.productLifespan);
             product.setProductLocations(object.productLocations);
             product.setProductName(object.productName);
             product.setProductNumber(object.productNumber);
             product.setProductPicturURL(object.productPicturURL);
-            product.setQuantity(object.quantity);
-            product.setProductStatus(object.productStatus);
-            product.setIsWasted(object.isWasted);
-            product.setOnSpecial(object.onSpecial);
-            product.setProductLifespan(object.productLifespan);
             product.setProductPrice(object.productPrice);
-            product.setProductSpecials(object.productSpecial);
-            product.setWastedProduct(object.wastedProduct);
+            product.setProductStatus(object.productStatus);
+            product.setQuantity(object.quantity);
             return product;
         }
     }

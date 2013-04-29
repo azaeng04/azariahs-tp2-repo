@@ -12,6 +12,7 @@ import com.store.feed.app.factory.UsersFactory;
 import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.Customer;
+import com.store.feed.domain.Person;
 import com.store.feed.domain.Roles;
 import com.store.feed.domain.Users;
 import com.store.feed.service.crud.AddressCrudService;
@@ -60,15 +61,15 @@ public class CustomerCrudServiceTest {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        List<Address> addresses = addressCrudService.findAll();
-        List<Roles> roles = rolesCrudService.findAll();
-        List<Users> users = usersCrudService.findAll();
-        List<Customer> customers = customerCrudService.findAll();
-        
-        addressCrudService.removeMultipleEntities(addresses);
-        rolesCrudService.removeMultipleEntities(roles);
-        usersCrudService.removeMultipleEntities(users);
-        customerCrudService.removeMultipleEntities(customers);
+//        List<Address> addresses = addressCrudService.findAll();
+//        List<Roles> roles = rolesCrudService.findAll();
+//        List<Users> users = usersCrudService.findAll();
+//        List<Customer> customers = customerCrudService.findAll();
+//        
+//        addressCrudService.removeMultipleEntities(addresses);
+//        rolesCrudService.removeMultipleEntities(roles);
+//        usersCrudService.removeMultipleEntities(users);
+//        customerCrudService.removeMultipleEntities(customers);
     }
 
     @BeforeMethod
@@ -91,7 +92,7 @@ public class CustomerCrudServiceTest {
         Roles role = RolesFactory.createRoles("View product notifications", "View");
         roles.add(role);
 
-        Customer customer = new CustomerFactory.Builder("CUS_82918")
+        Customer customer = new CustomerFactory.Builder("CUS_82118")
                 .setAddresses(addresses)
                 .setContact(contact)
                 .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
@@ -102,16 +103,16 @@ public class CustomerCrudServiceTest {
                 .buildCustomer();
 
         Users user = new UsersFactory.Builder()
-                .setCustomer(customer)
+                .setPerson(customer)
                 .setUsername("jamesParker1234")
                 .setPassword("jamesParker")
                 .setRoles(roles)
                 .buildUser();
         
-        rolesCrudService.persistMultipleEntities(roles);
-        addressCrudService.persistMultipleEntities(addresses);
-        customerCrudService.persist(customer);
-        usersCrudService.persist(user);
+//        rolesCrudService.persistMultipleEntities(roles);
+//        addressCrudService.persistMultipleEntities(addresses);
+//        customerCrudService.persist(customer);
+//        usersCrudService.persist(user);
         
         customerID = customer.getId();
     }

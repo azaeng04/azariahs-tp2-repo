@@ -6,6 +6,7 @@ package com.store.feed.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,38 +28,17 @@ public class Users implements Serializable {
     private Long id;
     private String username;
     private String password;
-    @OneToOne
-    private Customer customer;
-    @OneToOne
-    private StoreManager storeManager;
-    @OneToOne
-    private StockManager stockManager;
+    private Person person;
     @OneToMany
     @JoinColumn(name = "username")
     private List<Roles> roles;
 
-    public Customer getCustomer() {
-        return customer;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public StoreManager getStoreManager() {
-        return storeManager;
-    }
-
-    public void setStoreManager(StoreManager storeManager) {
-        this.storeManager = storeManager;
-    }
-
-    public StockManager getStockManager() {
-        return stockManager;
-    }
-
-    public void setStockManager(StockManager stockManager) {
-        this.stockManager = stockManager;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public List<Roles> getRoles() {

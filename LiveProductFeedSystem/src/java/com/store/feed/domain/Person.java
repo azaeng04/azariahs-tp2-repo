@@ -4,6 +4,7 @@
  */
 package com.store.feed.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author Ronald
  */
-public interface Person {
+public interface Person extends Serializable{
 
     public List<Address> getAddresses();
 

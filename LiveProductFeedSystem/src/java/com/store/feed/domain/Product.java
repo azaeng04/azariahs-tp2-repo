@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -45,10 +44,17 @@ public class Product implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "productNumber")
     private List<ProductLocation> productLocations;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private WastedProduct wastedProduct;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private ProductSpecial productSpecials;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "productNumber")
+    private List<Notification> notifications;
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
 
     public ProductLifespan getProductLifespan() {
         return productLifespan;
@@ -80,22 +86,6 @@ public class Product implements Serializable {
 
     public void setIsWasted(Boolean isWasted) {
         this.isWasted = isWasted;
-    }
-
-    public WastedProduct getWastedProduct() {
-        return wastedProduct;
-    }
-
-    public void setWastedProduct(WastedProduct wastedProduct) {
-        this.wastedProduct = wastedProduct;
-    }
-
-    public ProductSpecial getProductSpecials() {
-        return productSpecials;
-    }
-
-    public void setProductSpecials(ProductSpecial productSpecials) {
-        this.productSpecials = productSpecials;
     }
 
     public Category getCategory() {
