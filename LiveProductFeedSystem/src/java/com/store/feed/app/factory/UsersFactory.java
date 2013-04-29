@@ -4,10 +4,8 @@
  */
 package com.store.feed.app.factory;
 
-import com.store.feed.domain.Customer;
+import com.store.feed.domain.Person;
 import com.store.feed.domain.Roles;
-import com.store.feed.domain.StockManager;
-import com.store.feed.domain.StoreManager;
 import com.store.feed.domain.Users;
 import java.util.List;
 
@@ -21,23 +19,11 @@ public class UsersFactory {
 
         private String username;
         private String password;
-        private Customer customer;
-        private StoreManager storeManager;
-        private StockManager stockManager;
+        private Person person;
         private List<Roles> roles;
 
-        public Builder setCustomer(Customer customer) {
-            this.customer = customer;
-            return this;
-        }
-
-        public Builder setStoreManager(StoreManager storeManager) {
-            this.storeManager = storeManager;
-            return this;
-        }
-
-        public Builder setStockManager(StockManager stockManager) {
-            this.stockManager = stockManager;
+        public Builder setPerson(Person person) {
+            this.person = person;
             return this;
         }
 
@@ -62,21 +48,11 @@ public class UsersFactory {
 
         private Users buildUser(Builder object) {
             Users user = new Users();
-            user.setCustomer(object.customer);
+            user.setPerson(object.person);
             user.setPassword(object.password);
             user.setRoles(object.roles);
-            user.setStockManager(object.stockManager);
             user.setUsername(object.username);
             return user;
         }
-    }
-
-    public static Users createUsers(String password, Customer employee, List<Roles> roles, String username) {
-        Users user = new Users();
-        user.setPassword(password);
-        user.setCustomer(employee);
-        user.setRoles(roles);
-        user.setUsername(username);
-        return user;
     }
 }

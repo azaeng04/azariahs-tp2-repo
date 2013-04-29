@@ -26,18 +26,6 @@ public class Notification implements Serializable {
     private Long id;
     private String notificationNumber;
     private Boolean isActive;
-
-    @OneToMany
-    @JoinColumn(name = "notificationNumber")        
-    List<Product> products;
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
     
     public String getNotificationNumber() {
         return notificationNumber;
