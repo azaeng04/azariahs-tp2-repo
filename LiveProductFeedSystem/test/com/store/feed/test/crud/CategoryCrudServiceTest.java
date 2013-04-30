@@ -8,12 +8,10 @@ import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ProductFactory;
 import com.store.feed.app.factory.ProductLifespanFactory;
 import com.store.feed.app.factory.ProductLocationFactory;
-import com.store.feed.app.factory.ProductStatusFactory;
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.domain.ProductStatus;
 import com.store.feed.service.crud.CategoryCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  *
@@ -50,8 +49,8 @@ public class CategoryCrudServiceTest {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-//        List<Category> categories = categoryCrudService.findAll();
-//        categoryCrudService.removeMultipleEntities(categories);
+        List<Category> categories = categoryCrudService.findAll();
+        categoryCrudService.removeMultipleEntities(categories);
     }
 
     @BeforeMethod
@@ -89,25 +88,45 @@ public class CategoryCrudServiceTest {
         products.add(product1);
         
         categoryCrudService.persist(category);
+        
+        categoryID = category.getId();
     }
     
     @Test
     public void readCategory() {
+        Category category = categoryCrudService.findById(categoryID);
         
+        assertEquals(category.getCategoryName(), "Long life");
     }
     
     @Test
     public void readCategories() {
+        List<Category> categories = categoryCrudService.findAll();
         
+        assertTrue(categories.size()>0);
     }
     
     @Test
     public void updateCategory() {
+        Category category = categoryCrudService.findById(categoryID);
         
+        category.setCategoryName("Long life products");
+        
+        categoryCrudService.merge(category);
+        
+        Category category1 = categoryCrudService.findById(categoryID);
+        
+        assertEquals(category1.getCategoryName(), "Long life products");
     }
     
     @Test
     public void deleteCategory() {
+        Category category = categoryCrudService.findById(categoryID);
         
+        categoryCrudService.remove(category);
+        
+        Category category1 = categoryCrudService.findById(categoryID);
+        
+        assertNull(category1);
     }
 }

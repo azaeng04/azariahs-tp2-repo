@@ -8,7 +8,6 @@ import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.Customer;
 import com.store.feed.domain.Notification;
-import com.store.feed.domain.Users;
 import java.util.Date;
 import java.util.List;
 

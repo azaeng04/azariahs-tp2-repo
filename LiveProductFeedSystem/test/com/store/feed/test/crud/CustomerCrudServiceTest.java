@@ -12,7 +12,6 @@ import com.store.feed.app.factory.UsersFactory;
 import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.Customer;
-import com.store.feed.domain.Person;
 import com.store.feed.domain.Roles;
 import com.store.feed.domain.Users;
 import com.store.feed.service.crud.AddressCrudService;
@@ -103,16 +102,16 @@ public class CustomerCrudServiceTest {
                 .buildCustomer();
 
         Users user = new UsersFactory.Builder()
-                .setPerson(customer)
+                .setPersonNumber(customer.getUsersIDNumber())
                 .setUsername("jamesParker1234")
                 .setPassword("jamesParker")
                 .setRoles(roles)
                 .buildUser();
         
-//        rolesCrudService.persistMultipleEntities(roles);
-//        addressCrudService.persistMultipleEntities(addresses);
-//        customerCrudService.persist(customer);
-//        usersCrudService.persist(user);
+        rolesCrudService.persistMultipleEntities(roles);
+        addressCrudService.persistMultipleEntities(addresses);
+        customerCrudService.persist(customer);
+        usersCrudService.persist(user);
         
         customerID = customer.getId();
     }
