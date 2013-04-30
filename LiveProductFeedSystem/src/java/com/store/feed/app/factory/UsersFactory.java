@@ -4,7 +4,6 @@
  */
 package com.store.feed.app.factory;
 
-import com.store.feed.domain.Person;
 import com.store.feed.domain.Roles;
 import com.store.feed.domain.Users;
 import java.util.List;
@@ -19,11 +18,11 @@ public class UsersFactory {
 
         private String username;
         private String password;
-        private Person person;
+        private String personNumber;
         private List<Roles> roles;
 
-        public Builder setPerson(Person person) {
-            this.person = person;
+        public Builder setPersonNumber(String personNumber) {
+            this.personNumber = personNumber;
             return this;
         }
 
@@ -48,7 +47,7 @@ public class UsersFactory {
 
         private Users buildUser(Builder object) {
             Users user = new Users();
-            user.setPerson(object.person);
+            user.setPersonNumber(object.personNumber);
             user.setPassword(object.password);
             user.setRoles(object.roles);
             user.setUsername(object.username);
