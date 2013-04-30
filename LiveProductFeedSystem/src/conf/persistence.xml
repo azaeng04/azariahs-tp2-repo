@@ -2,18 +2,18 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="LiveProductFeedSystemPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>com.store.feed.domain.Roles</class>
-    <class>com.store.feed.domain.Users</class>
-    <class>com.store.feed.domain.Customer</class>
-    <class>com.store.feed.domain.StockManager</class>
-    <class>com.store.feed.domain.StoreManager</class>
-    <class>com.store.feed.domain.Notification</class>
-    <class>com.store.feed.domain.Product</class>
-    <class>com.store.feed.domain.WastedProduct</class>
     <class>com.store.feed.domain.Address</class>
     <class>com.store.feed.domain.Category</class>
+    <class>com.store.feed.domain.Customer</class>
+    <class>com.store.feed.domain.Notification</class>
+    <class>com.store.feed.domain.Product</class>
     <class>com.store.feed.domain.ProductLocation</class>
     <class>com.store.feed.domain.ProductSpecial</class>
+    <class>com.store.feed.domain.Roles</class>
+    <class>com.store.feed.domain.StockManager</class>
+    <class>com.store.feed.domain.StoreManager</class>
+    <class>com.store.feed.domain.Users</class>
+    <class>com.store.feed.domain.WastedProduct</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.connection.username" value="admin1"/>
@@ -21,7 +21,7 @@
       <property name="hibernate.connection.password" value="admin1"/>
       <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/store"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
   </persistence-unit>
 </persistence>
