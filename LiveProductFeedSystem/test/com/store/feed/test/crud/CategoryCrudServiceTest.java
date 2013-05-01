@@ -92,21 +92,21 @@ public class CategoryCrudServiceTest {
         categoryID = category.getId();
     }
     
-    @Test
+    @Test(dependsOnMethods = "createCategory")
     public void readCategory() {
         Category category = categoryCrudService.findById(categoryID);
         
         assertEquals(category.getCategoryName(), "Long life");
     }
     
-    @Test
+    @Test(dependsOnMethods = "createCategory")
     public void readCategories() {
         List<Category> categories = categoryCrudService.findAll();
         
         assertTrue(categories.size()>0);
     }
     
-    @Test
+    @Test(dependsOnMethods = "createCategory")
     public void updateCategory() {
         Category category = categoryCrudService.findById(categoryID);
         
@@ -119,7 +119,7 @@ public class CategoryCrudServiceTest {
         assertEquals(category1.getCategoryName(), "Long life products");
     }
     
-    @Test
+    @Test(dependsOnMethods = "readCategory")
     public void deleteCategory() {
         Category category = categoryCrudService.findById(categoryID);
         
