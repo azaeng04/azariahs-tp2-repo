@@ -60,15 +60,15 @@ public class CustomerCrudServiceTest {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-//        List<Address> addresses = addressCrudService.findAll();
-//        List<Roles> roles = rolesCrudService.findAll();
-//        List<Users> users = usersCrudService.findAll();
-//        List<Customer> customers = customerCrudService.findAll();
-//        
-//        addressCrudService.removeMultipleEntities(addresses);
-//        rolesCrudService.removeMultipleEntities(roles);
-//        usersCrudService.removeMultipleEntities(users);
-//        customerCrudService.removeMultipleEntities(customers);
+        List<Address> addresses = addressCrudService.findAll();
+        List<Roles> roles = rolesCrudService.findAll();
+        List<Users> users = usersCrudService.findAll();
+        List<Customer> customers = customerCrudService.findAll();
+        
+        addressCrudService.removeMultipleEntities(addresses);
+        rolesCrudService.removeMultipleEntities(roles);
+        usersCrudService.removeMultipleEntities(users);
+        customerCrudService.removeMultipleEntities(customers);
     }
 
     @BeforeMethod
