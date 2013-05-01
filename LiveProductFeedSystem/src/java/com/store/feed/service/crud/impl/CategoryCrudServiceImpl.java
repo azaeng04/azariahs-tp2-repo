@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ronald
  */
 @Service("CategoryCrudService")
-@Transactional
+@Transactional(readOnly = true)
 public class CategoryCrudServiceImpl implements CategoryCrudService {
     
     @Autowired

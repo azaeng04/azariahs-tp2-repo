@@ -9,7 +9,6 @@ import com.store.feed.domain.Notification;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.domain.ProductSpecial;
 import com.store.feed.domain.ProductStatus;
 import java.math.BigDecimal;
 import java.util.List;

@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ronald
  */
 @Service("StoreManagerCrudService")
-@Transactional
+@Transactional(readOnly = true)
 public class StoreManagerCrudServiceImpl implements StoreManagerCrudService {
     
     @Autowired
