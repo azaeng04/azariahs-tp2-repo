@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Apr 19, 2013, 8:11:11 PM
-    Author     : Ronald
+    Document   : hello
+    Created on : May 1, 2013, 4:18:00 PM
+    Author     : Ronalds
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Spring MVC 3.0</title>
+        <title>Hello World!</title>
     </head>
     <body>
-        <a href="hello.html" >Say Hello</a>
+        ${message}
     </body>
 </html>
