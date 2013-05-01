@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Ronald
  */
 @Service("ProductLocationServiceImpl")
-@Transactional
+@Transactional(readOnly = true)
 public class ProductLocationCrudServiceImpl implements ProductLocationCrudService {
     
     @Autowired

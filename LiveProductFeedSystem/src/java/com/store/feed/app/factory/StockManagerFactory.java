@@ -7,7 +7,6 @@ package com.store.feed.app.factory;
 import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.StockManager;
-import com.store.feed.domain.Users;
 import java.util.Date;
 import java.util.List;
 
