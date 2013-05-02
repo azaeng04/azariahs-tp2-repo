@@ -7,12 +7,10 @@ package com.store.feed.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -25,31 +23,21 @@ public class ProductSpecial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String productSpecialNumber;
     private BigDecimal specialDiscountValue;
-    private Integer discountPercentage;
+    private BigDecimal discountPercentage;
     private String specialDescription;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date startDate;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Product product;
+    private String productNumber;
 
-    public Product getProduct() {
-        return product;
+    public String getProductNumber() {
+        return productNumber;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-    
-    public String getProductSpecialNumber() {
-        return productSpecialNumber;
-    }
-
-    public void setProductSpecialNumber(String productSpecialNumber) {
-        this.productSpecialNumber = productSpecialNumber;
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
     }
 
     public BigDecimal getSpecialDiscountValue() {
@@ -60,14 +48,14 @@ public class ProductSpecial implements Serializable {
         this.specialDiscountValue = specialDiscountValue;
     }
 
-    public Integer getDiscountPercentage() {
+    public BigDecimal getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(Integer discountPercentage) {
+    public void setDiscountPercentage(BigDecimal discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
-
+    
     public String getSpecialDescription() {
         return specialDescription;
     }

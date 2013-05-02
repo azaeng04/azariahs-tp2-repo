@@ -66,7 +66,7 @@ public class StockManagerFactory {
             return this;
         }
 
-        public StockManager getStockManager() {
+        public StockManager buildStockManager() {
             return buildStockManager(this);
         }
 

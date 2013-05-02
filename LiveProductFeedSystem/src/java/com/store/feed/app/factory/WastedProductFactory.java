@@ -12,12 +12,51 @@ import java.math.BigDecimal;
  * @author Ronald
  */
 public class WastedProductFactory {
-    public static WastedProduct createWastedProduct(String description, BigDecimal discountPercentage, BigDecimal discountValue, Integer quantity) {
-        WastedProduct wastedProduct = new WastedProduct();
-        wastedProduct.setDescription(description);
-        wastedProduct.setWasteDiscountPercentage(discountPercentage);
-        wastedProduct.setWasteDiscountValue(discountValue);
-        wastedProduct.setWastedQuantity(quantity);
-        return wastedProduct;
+
+    public static class Builder {
+
+        private BigDecimal wasteDiscountValue;
+        private BigDecimal wasteDiscountPercentage;
+        private String description;
+        private Integer wastedQuantity;
+        private String productNumber;
+
+        public Builder(String productNumber) {
+            this.productNumber = productNumber;
+        }
+
+        public Builder setWasteDiscountValue(BigDecimal wasteDiscountValue) {
+            this.wasteDiscountValue = wasteDiscountValue;
+            return this;
+        }
+
+        public Builder setWasteDiscountPercentage(BigDecimal wasteDiscountPercentage) {
+            this.wasteDiscountPercentage = wasteDiscountPercentage;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder setWastedQuantity(Integer wastedQuantity) {
+            this.wastedQuantity = wastedQuantity;
+            return this;
+        }
+
+        public WastedProduct buildProduct() {
+            return buildWastedProduct(this);
+        }
+
+        private WastedProduct buildWastedProduct(Builder object) {
+            WastedProduct wastedProduct = new WastedProduct();
+            wastedProduct.setDescription(object.description);
+            wastedProduct.setWasteDiscountPercentage(object.wasteDiscountPercentage);
+            wastedProduct.setWasteDiscountValue(object.wasteDiscountValue);
+            wastedProduct.setWastedQuantity(object.wastedQuantity);
+            wastedProduct.setProductNumber(object.productNumber);
+            return wastedProduct;
+        }
     }
 }
