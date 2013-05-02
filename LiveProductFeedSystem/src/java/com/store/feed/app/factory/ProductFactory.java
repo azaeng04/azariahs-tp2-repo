@@ -24,7 +24,7 @@ public class ProductFactory {
         private String productNumber;
         private String productName;
         private Integer quantity;
-        private String productPicturURL;
+        private String productPictureURL;
         private BigDecimal productPrice;
         private Boolean onSpecial;
         private Boolean isWasted;
@@ -64,7 +64,7 @@ public class ProductFactory {
         }
 
         public Builder setProductPictureURL(String productPictureURL) {
-            this.productPicturURL = productPictureURL;
+            this.productPictureURL = productPictureURL;
             return this;
         }
 
@@ -107,7 +107,7 @@ public class ProductFactory {
             product.setProductLocations(object.productLocations);
             product.setProductName(object.productName);
             product.setProductNumber(object.productNumber);
-            product.setProductPicturURL(object.productPicturURL);
+            product.setProductPictureURL(object.productPictureURL);
             product.setProductPrice(object.productPrice);
             product.setProductStatus(object.productStatus);
             product.setQuantity(object.quantity);

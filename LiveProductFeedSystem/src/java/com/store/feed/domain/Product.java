@@ -31,7 +31,7 @@ public class Product implements Serializable {
     private String productNumber;
     private String productName;
     private Integer quantity;
-    private String productPicturURL;
+    private String productPictureURL;
     private BigDecimal productPrice;
     private Boolean onSpecial;
     private Boolean isWasted;
@@ -136,14 +136,14 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getProductPicturURL() {
-        return productPicturURL;
+    public String getProductPictureURL() {
+        return productPictureURL;
     }
 
-    public void setProductPicturURL(String productPicturURL) {
-        this.productPicturURL = productPicturURL;
+    public void setProductPictureURL(String productPictureURL) {
+        this.productPictureURL = productPictureURL;
     }
-
+    
     public Long getId() {
         return id;
     }
