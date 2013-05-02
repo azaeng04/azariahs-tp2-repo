@@ -16,15 +16,15 @@ public class ProductSpecialFactory {
 
     public static class Builder {
 
-        private String productSpecialNumber;
+        private String productNumber;
         private BigDecimal specialDiscountValue;
-        private Integer discountPercentage;
+        private BigDecimal discountPercentage;
         private String specialDescription;
         private Date startDate;
         private Date endDate;
 
-        public Builder(String productSpecialNumber) {
-            this.productSpecialNumber = productSpecialNumber;
+        public Builder(String productNumber) {
+            this.productNumber = productNumber;
         }
 
         public Builder setSpecialDiscountValue(BigDecimal specialDiscountValue) {
@@ -32,7 +32,7 @@ public class ProductSpecialFactory {
             return this;
         }
 
-        public Builder setDiscountPercentage(Integer discountPercentage) {
+        public Builder setDiscountPercentage(BigDecimal discountPercentage) {
             this.discountPercentage = discountPercentage;
             return this;
         }
@@ -52,15 +52,15 @@ public class ProductSpecialFactory {
             return this;
         }
         
-        public ProductSpecial buildProduct() {
+        public ProductSpecial buildProductSpecial() {
             return buildProductSpecial(this);
         }
 
         private ProductSpecial buildProductSpecial(Builder object) {
             ProductSpecial productSpecial = new ProductSpecial();
             productSpecial.setDiscountPercentage(object.discountPercentage);
+            productSpecial.setProductNumber(object.productNumber);
             productSpecial.setEndDate(object.endDate);
-            productSpecial.setProductSpecialNumber(object.productSpecialNumber);
             productSpecial.setSpecialDescription(object.specialDescription);
             productSpecial.setSpecialDiscountValue(object.specialDiscountValue);
             productSpecial.setStartDate(object.startDate);

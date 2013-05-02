@@ -27,15 +27,14 @@ public class WastedProduct implements Serializable {
     private BigDecimal wasteDiscountPercentage;
     private String description;
     private Integer wastedQuantity;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Product product;
+    private String productNumber;
 
-    public Product getProduct() {
-        return product;
+    public String getProductNumber() {
+        return productNumber;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductNumber(String productNumber) {
+        this.productNumber = productNumber;
     }
 
     public Integer getWastedQuantity() {
