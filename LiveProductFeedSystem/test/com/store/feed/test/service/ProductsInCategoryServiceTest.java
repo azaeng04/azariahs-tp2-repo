@@ -67,6 +67,8 @@ public class ProductsInCategoryServiceTest {
 
     @Test
     public void testFor() {
+        createCategory();
+        
         List<Product> products = productsInCategoryService.getProductList("Long life");
 
         assertTrue(products.size() == 2);
