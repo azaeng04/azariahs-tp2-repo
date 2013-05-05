@@ -22,7 +22,16 @@ public class ProductLocation implements Serializable {
     private Long id;
     private String productLocationNumber;
     private String productLocationName;
+    private Integer quantity;
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+    
     public String getProductLocationNumber() {
         return productLocationNumber;
     }
