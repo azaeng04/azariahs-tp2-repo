@@ -55,6 +55,14 @@ public class ProductServicesImpl implements ProductServices {
     
     @Override
     public List<Product> getWastedProducts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Product> products = productCrudService.findAll();
+        List<Product> wastedProducts = new ArrayList<Product>();
+        
+        for (Product product : products) {
+            if (product.getIsWasted().equals(Boolean.TRUE)) {
+                wastedProducts.add(product);
+            }
+        }
+        return wastedProducts;
     }
 }
