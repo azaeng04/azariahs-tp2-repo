@@ -19,7 +19,7 @@
         <f:form action="persist.php" method="POST" modelAttribute="categoryModel">
             <label> Category Name: </label> <br/>
             <f:input path="categoryName" /> <br/>
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Add category"/>
             <input type="reset" value="Reset"/>
         </f:form>
     </body>

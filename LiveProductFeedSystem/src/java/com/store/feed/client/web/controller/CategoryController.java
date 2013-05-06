@@ -7,8 +7,6 @@ package com.store.feed.client.web.controller;
 import com.store.feed.app.facade.CategoryFacade;
 import com.store.feed.client.web.model.CategoryModel;
 import com.store.feed.domain.Category;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +22,18 @@ public class CategoryController {
 
     CategoryFacade data = new CategoryFacade();
 
-    @RequestMapping(value = "/add.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/category.html", method = RequestMethod.GET)
+    public String category(Model model) {
+
+        return "category/category";
+    }
+    
+    @RequestMapping(value = "/addCategory.html", method = RequestMethod.GET)
     public String addCategory(Model model) {
 
         CategoryModel categoryModel = new CategoryModel();
         model.addAttribute("categoryModel", categoryModel);
-        return "category/add";
+        return "category/addCategory";
     }
 
     @RequestMapping(value = "/persist.php", method = RequestMethod.POST)

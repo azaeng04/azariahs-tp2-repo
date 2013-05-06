@@ -12,6 +12,9 @@
         <title>Home page</title>
     </head>
     <body>
-        <a href="add.html" >Add category</a>
+        <h1>Select the CRUD operation</h1>
+        <a href="category.html" >Category CRUD</a> <br/>
+        <a href="productSpecial.html" >Product Special CRUD</a><br/>
+        <a href="wastedProduct.html" >Wasted Product CRUD</a><br/>
     </body>
 </html>
