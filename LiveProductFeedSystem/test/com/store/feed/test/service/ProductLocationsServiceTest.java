@@ -4,7 +4,7 @@
  */
 package com.store.feed.test.service;
 
-import com.store.feed.service.ProductsInCategoryService;
+import com.store.feed.service.ProductServices;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.AfterClass;
@@ -17,11 +17,11 @@ import org.testng.annotations.Test;
  *
  * @author Ronalds
  */
-public class ProductsLocationServiceTest {
+public class ProductLocationsServiceTest {
     private static ApplicationContext ctx;
-    private static ProductsInCategoryService productsInCategoryService;
+    private static ProductServices productServices;
     
-    public ProductsLocationServiceTest() {
+    public ProductLocationsServiceTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -30,7 +30,7 @@ public class ProductsLocationServiceTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
-        productsInCategoryService = (ProductsInCategoryService)ctx.getBean("ProductsInCategoryService");
+        productServices = (ProductServices)ctx.getBean("ProductServices");
     }
 
     @AfterClass

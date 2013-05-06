@@ -76,7 +76,7 @@ public class CategoryCrudServiceTest {
                 .setProductName("Apricot Jam")
                 .setQuantity(100)
                 .setIsWasted(Boolean.FALSE)
-                .setOnSpecial(Boolean.FALSE)
+                .setIsOnSpecial(Boolean.FALSE)
                 .setProductLifespan(productLifespan1)
                 .setProductLocation(productLocations1)
                 .setProductPictureURL("apricot_jam.jpg")

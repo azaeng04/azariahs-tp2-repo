@@ -4,7 +4,7 @@
  */
 package com.store.feed.test.service;
 
-import com.store.feed.service.ProductsInCategoryService;
+import com.store.feed.service.ProductServices;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.AfterClass;
@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
  */
 public class ProductsOnWasteServiceTest {
     private static ApplicationContext ctx;
-    private static ProductsInCategoryService productsInCategoryService;
+    private static ProductServices productServices;
     
     public ProductsOnWasteServiceTest() {
     }
@@ -30,7 +30,7 @@ public class ProductsOnWasteServiceTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
-        productsInCategoryService = (ProductsInCategoryService)ctx.getBean("ProductsInCategoryService");
+        productServices = (ProductServices)ctx.getBean("ProductServices");
     }
 
     @AfterClass

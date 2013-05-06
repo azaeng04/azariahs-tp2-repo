@@ -12,7 +12,7 @@ import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.service.ProductsInCategoryService;
+import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class ProductsInCategoryServiceTest {
 
     private static ApplicationContext ctx;
     private static CategoryCrudService categoryCrudService;
-    private static ProductsInCategoryService productsInCategoryService;
+    private static ProductServices productServices;
 
     public ProductsInCategoryServiceTest() {
     }
@@ -46,7 +46,7 @@ public class ProductsInCategoryServiceTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
-        productsInCategoryService = (ProductsInCategoryService) ctx.getBean("ProductsInCategoryService");
+        productServices = (ProductServices) ctx.getBean("ProductServices");
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
 
     }
@@ -69,7 +69,7 @@ public class ProductsInCategoryServiceTest {
     public void testFor() {
         createCategory();
         
-        List<Product> products = productsInCategoryService.getProductList("Long life");
+        List<Product> products = productServices.getProductListOnCategory("Long life");
 
         assertTrue(products.size() == 2);
     }
@@ -95,7 +95,7 @@ public class ProductsInCategoryServiceTest {
                 .setProductName("Apricot Jam")
                 .setQuantity(100)
                 .setIsWasted(Boolean.FALSE)
-                .setOnSpecial(Boolean.FALSE)
+                .setIsOnSpecial(Boolean.FALSE)
                 .setProductLifespan(productLifespan1)
                 .setProductLocation(productLocations1)
                 .setProductPictureURL("apricot_jam.jpg")
@@ -106,7 +106,7 @@ public class ProductsInCategoryServiceTest {
                 .setProductName("Marmalade")
                 .setQuantity(100)
                 .setIsWasted(Boolean.FALSE)
-                .setOnSpecial(Boolean.FALSE)
+                .setIsOnSpecial(Boolean.FALSE)
                 .setProductLifespan(productLifespan1)
                 .setProductLocation(productLocations2)
                 .setProductPictureURL("marmalade.jpg")

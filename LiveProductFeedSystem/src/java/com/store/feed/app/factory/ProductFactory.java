@@ -26,7 +26,7 @@ public class ProductFactory {
         private Integer quantity;
         private String productPictureURL;
         private BigDecimal productPrice;
-        private Boolean onSpecial;
+        private Boolean isOnSpecial;
         private Boolean isWasted;
         private ProductStatus productStatus;
         private ProductLifespan productLifespan;
@@ -58,8 +58,8 @@ public class ProductFactory {
             return this;
         }
 
-        public Builder setOnSpecial(Boolean onSpecial) {
-            this.onSpecial = onSpecial;
+        public Builder setIsOnSpecial(Boolean isOnSpecial) {
+            this.isOnSpecial = isOnSpecial;
             return this;
         }
 
@@ -102,7 +102,7 @@ public class ProductFactory {
             product.setCategory(object.category);
             product.setIsWasted(object.isWasted);
             product.setNotifications(object.notifications);
-            product.setOnSpecial(object.onSpecial);
+            product.setIsOnSpecial(object.isOnSpecial);
             product.setProductLifespan(object.productLifespan);
             product.setProductLocations(object.productLocations);
             product.setProductName(object.productName);
