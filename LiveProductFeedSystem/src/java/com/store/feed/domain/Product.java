@@ -33,7 +33,7 @@ public class Product implements Serializable {
     private Integer quantity;
     private String productPictureURL;
     private BigDecimal productPrice;
-    private Boolean onSpecial;
+    private Boolean isOnSpecial;
     private Boolean isWasted;
     @Embedded
     private ProductStatus productStatus;
@@ -72,14 +72,14 @@ public class Product implements Serializable {
         this.productPrice = productPrice;
     }
 
-    public Boolean getOnSpecial() {
-        return onSpecial;
+    public Boolean getIsOnSpecial() {
+        return isOnSpecial;
     }
 
-    public void setOnSpecial(Boolean onSpecial) {
-        this.onSpecial = onSpecial;
+    public void setIsOnSpecial(Boolean isOnSpecial) {
+        this.isOnSpecial = isOnSpecial;
     }
-
+    
     public Boolean getIsWasted() {
         return isWasted;
     }

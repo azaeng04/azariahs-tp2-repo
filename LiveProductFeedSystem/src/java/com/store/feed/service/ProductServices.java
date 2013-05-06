@@ -11,6 +11,11 @@ import java.util.List;
  *
  * @author Ronalds
  */
-public interface ProductsInCategoryService {
-    public List<Product> getProductList(String category);
+public interface ProductServices {
+
+    public List<Product> getProductListOnCategory(String category);
+
+    public List<Product> getProductsOnSpecial();
+
+    public List<Product> getWastedProducts();
 }
