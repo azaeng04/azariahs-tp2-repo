@@ -68,7 +68,7 @@ public class ProductsInCategoryServiceTest {
     @Test
     public void testFor() {
         createCategory();
-        
+
         List<Product> products = productServices.getProductListOnCategory("Long life");
 
         assertTrue(products.size() == 2);
@@ -90,7 +90,7 @@ public class ProductsInCategoryServiceTest {
 
         productLocations2.add(productLocation3);
         productLocations2.add(productLocation4);
-        
+
         Product product1 = new ProductFactory.Builder("APR_03918")
                 .setProductName("Apricot Jam")
                 .setQuantity(100)
@@ -101,7 +101,7 @@ public class ProductsInCategoryServiceTest {
                 .setProductPictureURL("apricot_jam.jpg")
                 .setProductPrice(new BigDecimal("15.95"))
                 .buildProduct();
-        
+
         Product product2 = new ProductFactory.Builder("MAR_03918")
                 .setProductName("Marmalade")
                 .setQuantity(100)
@@ -122,7 +122,7 @@ public class ProductsInCategoryServiceTest {
         products.add(product2);
 
         category.setProducts(products);
-        
+
         categoryCrudService.persist(category);
     }
 }
