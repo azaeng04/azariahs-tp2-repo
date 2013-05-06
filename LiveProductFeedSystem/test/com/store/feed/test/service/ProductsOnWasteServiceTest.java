@@ -8,17 +8,14 @@ import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ProductFactory;
 import com.store.feed.app.factory.ProductLifespanFactory;
 import com.store.feed.app.factory.ProductLocationFactory;
-import com.store.feed.app.factory.ProductSpecialFactory;
 import com.store.feed.app.factory.WastedProductFactory;
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.domain.ProductSpecial;
 import com.store.feed.domain.WastedProduct;
 import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
-import com.store.feed.service.crud.ProductSpecialCrudService;
 import com.store.feed.service.crud.WastedProductCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -74,30 +71,34 @@ public class ProductsOnWasteServiceTest {
     
     @Test
     public void testForWastedProducts() {
-        createWastedProduct();
+        createWastedProducts();
 
         List<Product> products = productServices.getWastedProducts();
         
         assertTrue(products.size() == 2);
     }
     
-    public void createWastedProduct() {
+    public void createWastedProducts() {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2017, 8, 9, 0, 0).toDate(), new DateTime(2017, 9, 9, 0, 0).toDate());
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
         List<ProductLocation> productLocations2 = new ArrayList<ProductLocation>();
 
-        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
+        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_76757", 70);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_35453", 10);
+        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Wasted store", "WST_87593", 20);
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
+        productLocations1.add(productLocation3);
 
-        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
+        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("Back storage", "BKS_17354", 70);
+        ProductLocation productLocation5 = ProductLocationFactory.createProductLocation("In the store", "INS_95735", 10);
+        ProductLocation productLocation6 = ProductLocationFactory.createProductLocation("Wasted store", "WST_06744", 20);
 
-        productLocations2.add(productLocation3);
         productLocations2.add(productLocation4);
+        productLocations2.add(productLocation5);
+        productLocations2.add(productLocation6);
 
         Product product1 = new ProductFactory.Builder("LAM_82918")
                 .setProductName("Leg of Lamb")

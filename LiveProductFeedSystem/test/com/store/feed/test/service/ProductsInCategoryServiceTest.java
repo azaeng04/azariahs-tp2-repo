@@ -78,16 +78,16 @@ public class ProductsInCategoryServiceTest {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
-        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
-
+        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_17354", 80);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_95735", 20);
+        
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
 
         List<ProductLocation> productLocations2 = new ArrayList<ProductLocation>();
-        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
-
+        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_16454", 80);
+        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "INS_98735", 20);
+        
         productLocations2.add(productLocation3);
         productLocations2.add(productLocation4);
 
