@@ -66,9 +66,9 @@ public class CategoryCrudServiceTest {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
-        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
-
+        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_76757", 80);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_35453", 20);
+        
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
         

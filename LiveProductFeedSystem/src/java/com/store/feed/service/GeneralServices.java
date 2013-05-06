@@ -6,8 +6,8 @@ package com.store.feed.service;
 
 /**
  *
- * @author Azariahs
+ * @author Ronalds
  */
-public interface WastedProductServices {
-    public void updateWastedProducts(String productNumber);
+public interface GeneralServices {
+    
 }

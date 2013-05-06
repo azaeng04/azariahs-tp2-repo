@@ -12,10 +12,13 @@ import java.util.List;
  * @author Ronalds
  */
 public interface ProductServices {
-
+    public Product getProduct(String productNumber);
+    
     public List<Product> getProductListOnCategory(String category);
 
     public List<Product> getProductsOnSpecial();
 
     public List<Product> getWastedProducts();
+    
+    public void updateWastedProduct(String productNumber);
 }

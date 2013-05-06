@@ -19,7 +19,6 @@ import com.store.feed.service.crud.CategoryCrudService;
 import com.store.feed.service.crud.ProductSpecialCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
@@ -87,15 +86,15 @@ public class ProductsOnSpecialServiceTest {
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
         List<ProductLocation> productLocations2 = new ArrayList<ProductLocation>();
 
-        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
-
+        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_17354", 80);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_95735", 20);
+        
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
 
-        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_02918", 80);
-        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "BKS_02918", 20);
-
+        ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_11154", 80);
+        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "INS_95785", 20);
+        
         productLocations2.add(productLocation3);
         productLocations2.add(productLocation4);
 

@@ -42,12 +42,14 @@ public class ProductServicesImpl implements ProductServices {
 
     @Override
     public List<Product> getProductsOnSpecial() {
-        List<Product> products = productCrudService.findAll();
+        List<Category> categories = categoryCrudService.findAll();
         List<Product> productsOnSpecial = new ArrayList<Product>();
-        
-        for (Product product : products) {
-            if (product.getIsOnSpecial().equals(Boolean.TRUE)) {
-                productsOnSpecial.add(product);
+        for (Category category1 : categories) {
+            List<Product> products = category1.getProducts();
+            for (Product product : products) {
+                if (product.getIsOnSpecial().equals(Boolean.TRUE)) {
+                    productsOnSpecial.add(product);
+                }
             }
         }
         return productsOnSpecial;
@@ -55,14 +57,55 @@ public class ProductServicesImpl implements ProductServices {
     
     @Override
     public List<Product> getWastedProducts() {
-        List<Product> products = productCrudService.findAll();
+        List<Category> categories = categoryCrudService.findAll();
         List<Product> wastedProducts = new ArrayList<Product>();
-        
-        for (Product product : products) {
-            if (product.getIsWasted().equals(Boolean.TRUE)) {
-                wastedProducts.add(product);
+        for (Category category1 : categories) {
+            List<Product> products = category1.getProducts();
+            for (Product product : products) {
+                if (product.getIsWasted().equals(Boolean.TRUE)) {
+                    wastedProducts.add(product);
+                }
             }
         }
         return wastedProducts;
+    }
+
+    @Override
+    public Product getProduct(String productNumber) {
+        List<Category> categories = categoryCrudService.findAll();
+        Product product1 = null;
+        Boolean isFound = false;
+        
+        for (Category category1 : categories) {
+            List<Product> products = category1.getProducts();
+            for (Product product : products) {
+                if (product.getProductNumber().equals(productNumber)) {
+                    product1 = product;
+                    isFound = true;
+                    break;
+                }
+            }
+            if (isFound.equals(Boolean.TRUE)) {
+                break;
+            }
+        }
+        return product1;
+    }
+
+    @Override
+    public void updateWastedProduct(String productNumber) {
+        List<Category> categories = categoryCrudService.findAll();
+        int quantity = 0;
+        for (Category category : categories) {
+            List<Product> products = category.getProducts();
+            for (Product product : products) {
+                if (product.getProductNumber().equals(productNumber)) {
+                    quantity = product.getQuantity();
+                    quantity--;
+                    product.setQuantity(quantity);
+                    productCrudService.merge(product);
+                }
+            }
+        }
     }
 }
