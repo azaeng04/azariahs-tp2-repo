@@ -4,6 +4,7 @@
  */
 package com.store.feed.app.factory;
 
+import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductSpecial;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,15 +17,15 @@ public class ProductSpecialFactory {
 
     public static class Builder {
 
-        private String productNumber;
+        private Product product;
         private BigDecimal specialDiscountValue;
         private BigDecimal discountPercentage;
         private String specialDescription;
         private Date startDate;
         private Date endDate;
 
-        public Builder(String productNumber) {
-            this.productNumber = productNumber;
+        public Builder(Product product) {
+            this.product = product;
         }
 
         public Builder setSpecialDiscountValue(BigDecimal specialDiscountValue) {
@@ -59,7 +60,7 @@ public class ProductSpecialFactory {
         private ProductSpecial buildProductSpecial(Builder object) {
             ProductSpecial productSpecial = new ProductSpecial();
             productSpecial.setDiscountPercentage(object.discountPercentage);
-            productSpecial.setProductNumber(object.productNumber);
+            productSpecial.setProduct(object.product);
             productSpecial.setEndDate(object.endDate);
             productSpecial.setSpecialDescription(object.specialDescription);
             productSpecial.setSpecialDiscountValue(object.specialDiscountValue);

@@ -103,7 +103,7 @@ public class WastedProductCrudServiceTest {
 
         categoryCrudService.persist(category);
 
-        WastedProduct wastedProduct = new WastedProductFactory.Builder("LAM_82918")
+        WastedProduct wastedProduct = new WastedProductFactory.Builder(product1)
                 .setDescription("Product printing incorrect")
                 .setWasteDiscountPercentage(new BigDecimal("75"))
                 .setWasteDiscountValue(new BigDecimal("0"))
@@ -118,8 +118,9 @@ public class WastedProductCrudServiceTest {
     @Test(dependsOnMethods = "createWastedProduct")
     public void readWastedProduct() {
         WastedProduct wastedProduct = wastedProductCrudService.findById(wastedProductID);
-
-        assertEquals(wastedProduct.getProductNumber(), "LAM_82918");
+        Product product = wastedProduct.getProduct();
+        
+        assertEquals(product.getProductNumber(), "LAM_82918");
     }
 
     @Test(dependsOnMethods = "createWastedProduct")

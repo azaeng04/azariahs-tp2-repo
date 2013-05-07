@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -30,14 +31,15 @@ public class ProductSpecial implements Serializable {
     private Date startDate;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date endDate;
-    private String productNumber;
+    @OneToOne
+    private Product product;
 
-    public String getProductNumber() {
-        return productNumber;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductNumber(String productNumber) {
-        this.productNumber = productNumber;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public BigDecimal getSpecialDiscountValue() {

@@ -134,15 +134,15 @@ public class ProductsOnWasteServiceTest {
         
         categoryCrudService.persist(category);
 
-        WastedProduct wastedProduct1 = new WastedProductFactory.Builder("LAM_82918")
+        WastedProduct wastedProduct1 = new WastedProductFactory.Builder(product1)
                 .setDescription("Product printing incorrect")
                 .setWasteDiscountPercentage(new BigDecimal("75"))
                 .setWasteDiscountValue(new BigDecimal("0"))
                 .setWastedQuantity(25)
                 .buildProduct();
 
-        WastedProduct wastedProduct2 = new WastedProductFactory.Builder("LCP_82918")
-                .setDescription("Product printing incorrect")
+        WastedProduct wastedProduct2 = new WastedProductFactory.Builder(product2)
+                .setDescription("Product expiration date incorrect")
                 .setWasteDiscountPercentage(new BigDecimal("75"))
                 .setWasteDiscountValue(new BigDecimal("0"))
                 .setWastedQuantity(25)
