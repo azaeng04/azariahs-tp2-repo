@@ -87,13 +87,13 @@ public class ProductsOnSpecialServiceTest {
         List<ProductLocation> productLocations2 = new ArrayList<ProductLocation>();
 
         ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_17354", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_95735", 20);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("On special", "SPC_95735", 20);
         
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
 
         ProductLocation productLocation3 = ProductLocationFactory.createProductLocation("Back storage", "BKS_11154", 80);
-        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("In the store", "INS_95785", 20);
+        ProductLocation productLocation4 = ProductLocationFactory.createProductLocation("On special", "SPC_95785", 20);
         
         productLocations2.add(productLocation3);
         productLocations2.add(productLocation4);
@@ -132,7 +132,7 @@ public class ProductsOnSpecialServiceTest {
 
         categoryCrudService.persist(category);
 
-        ProductSpecial productSpecial1 = new ProductSpecialFactory.Builder("LAM_82918")
+        ProductSpecial productSpecial1 = new ProductSpecialFactory.Builder(product1)
                 .setDiscountPercentage(new BigDecimal("10"))
                 .setStartDate(new DateTime(2013, 5, 6, 0, 0).toDate())
                 .setEndDate(new DateTime(2013, 5, 15, 0, 0).toDate())
@@ -140,7 +140,7 @@ public class ProductsOnSpecialServiceTest {
                 .setSpecialDiscountValue(new BigDecimal("0"))
                 .buildProductSpecial();
 
-        ProductSpecial productSpecial2 = new ProductSpecialFactory.Builder("LCP_82918")
+        ProductSpecial productSpecial2 = new ProductSpecialFactory.Builder(product2)
                 .setDiscountPercentage(new BigDecimal("10"))
                 .setStartDate(new DateTime(2013, 5, 6, 0, 0).toDate())
                 .setEndDate(new DateTime(2013, 5, 15, 0, 0).toDate())

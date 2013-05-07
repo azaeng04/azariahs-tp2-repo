@@ -4,6 +4,7 @@
  */
 package com.store.feed.app.factory;
 
+import com.store.feed.domain.Product;
 import com.store.feed.domain.WastedProduct;
 import java.math.BigDecimal;
 
@@ -19,10 +20,10 @@ public class WastedProductFactory {
         private BigDecimal wasteDiscountPercentage;
         private String description;
         private Integer wastedQuantity;
-        private String productNumber;
+        private Product product;
 
-        public Builder(String productNumber) {
-            this.productNumber = productNumber;
+        public Builder(Product product) {
+            this.product = product;
         }
 
         public Builder setWasteDiscountValue(BigDecimal wasteDiscountValue) {
@@ -55,7 +56,7 @@ public class WastedProductFactory {
             wastedProduct.setWasteDiscountPercentage(object.wasteDiscountPercentage);
             wastedProduct.setWasteDiscountValue(object.wasteDiscountValue);
             wastedProduct.setWastedQuantity(object.wastedQuantity);
-            wastedProduct.setProductNumber(object.productNumber);
+            wastedProduct.setProduct(object.product);
             return wastedProduct;
         }
     }

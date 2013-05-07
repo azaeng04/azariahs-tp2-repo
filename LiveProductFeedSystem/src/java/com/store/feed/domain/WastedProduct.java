@@ -6,7 +6,6 @@ package com.store.feed.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,16 +26,18 @@ public class WastedProduct implements Serializable {
     private BigDecimal wasteDiscountPercentage;
     private String description;
     private Integer wastedQuantity;
-    private String productNumber;
 
-    public String getProductNumber() {
-        return productNumber;
+    @OneToOne
+    private Product product;
+
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductNumber(String productNumber) {
-        this.productNumber = productNumber;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
+    
     public Integer getWastedQuantity() {
         return wastedQuantity;
     }

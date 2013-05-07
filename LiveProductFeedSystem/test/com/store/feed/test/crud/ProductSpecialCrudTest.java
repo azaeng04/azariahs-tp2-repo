@@ -102,7 +102,7 @@ public class ProductSpecialCrudTest {
         
         categoryCrudService.persist(category);
         
-        ProductSpecial productSpecial = new ProductSpecialFactory.Builder("LAM_82918")
+        ProductSpecial productSpecial = new ProductSpecialFactory.Builder(product1)
                 .setDiscountPercentage(new BigDecimal("10"))
                 .setStartDate(new DateTime(2013, 5, 6, 0, 0).toDate())
                 .setEndDate(new DateTime(2013, 5, 15, 0, 0).toDate())
@@ -118,8 +118,9 @@ public class ProductSpecialCrudTest {
     @Test(dependsOnMethods = "createProductSpecial")
     public void readProductSpecial() {
         ProductSpecial productSpecial = productSpecialCrudService.findById(productSpecialID);
-
-        assertEquals(productSpecial.getProductNumber(), "LAM_82918");
+        Product product = productSpecial.getProduct();
+        
+        assertEquals(product.getProductNumber(), "LAM_82918");
     }
 
     @Test(dependsOnMethods = "createProductSpecial")
