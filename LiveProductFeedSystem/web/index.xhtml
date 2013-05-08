@@ -10,24 +10,25 @@
     </h:head>
     <h:body>
         <h:form style="vertical-align: central">
-            <p:panelGrid columns="2">
-                <f:facet name="header">
-                    Live Product Feed Login
-                </f:facet>
-
-                <h:outputLabel for="txtUsername" value="Username: " />
-                <p:inputText id="txtUsername" value="" label="Username" >
-                    <f:validateLength minimum="2" /> 
-                </p:inputText>  
-                <p:message for="txtUsername" display="icon"/>  
-
-                <h:outputLabel for="txtPassword" value="Password: " />
-                <p:password id="txtPassword" value="" />
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            <p:panel header="Live Product Feed Login">
+                <h:column>
+                    <h:outputLabel for="txtUsername" value="Username: " />
+                    <p:inputText id="txtUsername" value="" label="Username" >
+                    </p:inputText>  
+                    <br/>
+                    <br/>
+                    <h:outputLabel for="txtPassword" value="Password: " />
+                    <p:password id="txtPassword" value="" >
+                    </p:password>
+                </h:column>
 
                 <f:facet name="footer">
-                    <p:commandButton type="button" value="Login"/>
+                    <p:commandButton process="@form" type="button" value="Login" actionListener="#{loginController.checkLoginDetails}" update="growl">
+                    </p:commandButton>
+                    
                 </f:facet>
-            </p:panelGrid>
+            </p:panel>
         </h:form>
     </h:body>
 </html>
