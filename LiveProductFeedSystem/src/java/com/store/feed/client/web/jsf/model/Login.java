@@ -8,7 +8,7 @@ package com.store.feed.client.web.jsf.model;
  *
  * @author 210192461
  */
-public class LoginModel {
+public class Login {
     private String username;
     private String password;
 
