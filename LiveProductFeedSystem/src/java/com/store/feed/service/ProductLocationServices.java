@@ -14,5 +14,7 @@ import java.util.List;
 public interface ProductLocationServices {
     public List<ProductLocation> getProductLocations(String productNumber);
     
-//    public void updateWastedProductLocation(String productNumber);
+    public void updateProductLocationQuantity(String productLocationNumber, Integer quantity);
+    
+    public Boolean checkIfPrimaryKeyExists(String key);
 }

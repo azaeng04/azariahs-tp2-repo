@@ -8,6 +8,8 @@ package com.store.feed.service;
  *
  * @author Ronalds
  */
-public interface GeneralServices {
+public interface UserServices {
+    public Boolean checkIfUserExists(String username, String password);
     
+    public Boolean checkIfPrimaryKeyExists(String key);
 }

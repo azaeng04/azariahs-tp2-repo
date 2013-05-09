@@ -16,21 +16,29 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Ronald
  */
-@Service("ProductLocationServiceImpl")
+@Service("ProductLocationCrudService")
 @Transactional(readOnly = true)
 public class ProductLocationCrudServiceImpl implements ProductLocationCrudService {
     
     @Autowired
     private GenericDAO<ProductLocation> dao;
+    private static ProductLocationCrudServiceImpl productLocationCrudServiceImpl;
+    
+    private ProductLocationCrudServiceImpl() {
+    }
+    
+    public synchronized static ProductLocationCrudServiceImpl getInstance() {
+        if (productLocationCrudServiceImpl == null) {
+            productLocationCrudServiceImpl = new ProductLocationCrudServiceImpl();
+        }
+        return productLocationCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< ProductLocation> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(ProductLocation.class);
     }
     
-    public ProductLocationCrudServiceImpl() {
-    }
-
     @Override
     public ProductLocation findById(Long id) {
         setDao(dao);

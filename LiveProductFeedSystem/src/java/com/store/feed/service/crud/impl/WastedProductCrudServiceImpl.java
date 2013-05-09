@@ -22,15 +22,23 @@ public class WastedProductCrudServiceImpl implements WastedProductCrudService {
     
     @Autowired
     private GenericDAO<WastedProduct> dao;
+    private static WastedProductCrudServiceImpl wastedProductCrudServiceImpl;
+    
+    private WastedProductCrudServiceImpl() {
+    }
+    
+    public synchronized static WastedProductCrudServiceImpl getInstance() {
+        if (wastedProductCrudServiceImpl == null) {
+            wastedProductCrudServiceImpl = new WastedProductCrudServiceImpl();
+        }
+        return wastedProductCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< WastedProduct> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(WastedProduct.class);
     }
     
-    public WastedProductCrudServiceImpl() {
-    }
-
     @Override
     public WastedProduct findById(Long id) {
         setDao(dao);

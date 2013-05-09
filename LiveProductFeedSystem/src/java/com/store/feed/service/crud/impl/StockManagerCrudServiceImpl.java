@@ -22,15 +22,23 @@ public class StockManagerCrudServiceImpl implements StockManagerCrudService {
     
     @Autowired
     private GenericDAO<StockManager> dao;
+    private static StockManagerCrudServiceImpl stockManagerCrudServiceImpl;
+    
+    private StockManagerCrudServiceImpl() {
+    }
+    
+    public synchronized static StockManagerCrudServiceImpl getInstance() {
+        if (stockManagerCrudServiceImpl == null) {
+            stockManagerCrudServiceImpl = new StockManagerCrudServiceImpl();
+        }
+        return stockManagerCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< StockManager> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(StockManager.class);
     }
     
-    public StockManagerCrudServiceImpl() {
-    }
-
     @Override
     public StockManager findById(Long id) {
         setDao(dao);

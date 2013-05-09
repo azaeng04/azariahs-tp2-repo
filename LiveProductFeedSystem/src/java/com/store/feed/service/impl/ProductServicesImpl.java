@@ -6,6 +6,7 @@ package com.store.feed.service.impl;
 
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
+import com.store.feed.domain.ProductLocation;
 import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
 import com.store.feed.service.crud.ProductCrudService;
@@ -20,13 +21,23 @@ import org.springframework.stereotype.Service;
  */
 @Service("ProductServices")
 public class ProductServicesImpl implements ProductServices {
-    
-    @Autowired
-    private CategoryCrudService categoryCrudService;
 
     @Autowired
+    private CategoryCrudService categoryCrudService;
+    @Autowired
     private ProductCrudService productCrudService;
-    
+    private static ProductServicesImpl productServicesImpl;
+
+    private ProductServicesImpl() {
+    }
+
+    public synchronized static ProductServicesImpl getInstance() {
+        if (productServicesImpl == null) {
+            productServicesImpl = new ProductServicesImpl();
+        }
+        return productServicesImpl;
+    }
+
     @Override
     public List<Product> getProductListOnCategory(String category) {
         List<Category> categories = categoryCrudService.findAll();
@@ -54,7 +65,7 @@ public class ProductServicesImpl implements ProductServices {
         }
         return productsOnSpecial;
     }
-    
+
     @Override
     public List<Product> getWastedProducts() {
         List<Category> categories = categoryCrudService.findAll();
@@ -75,7 +86,7 @@ public class ProductServicesImpl implements ProductServices {
         List<Category> categories = categoryCrudService.findAll();
         Product product1 = null;
         Boolean isFound = false;
-        
+
         for (Category category1 : categories) {
             List<Product> products = category1.getProducts();
             for (Product product : products) {
@@ -93,7 +104,7 @@ public class ProductServicesImpl implements ProductServices {
     }
 
     @Override
-    public void updateWastedProduct(String productNumber) {
+    public void updateWastedProduct(String productNumber, String productLocationNumber) {
         List<Category> categories = categoryCrudService.findAll();
         int quantity = 0;
         for (Category category : categories) {
@@ -107,5 +118,24 @@ public class ProductServicesImpl implements ProductServices {
                 }
             }
         }
+    }
+
+    @Override
+    public Boolean checkIfPrimaryKeyExists(String key) {
+        List<Category> categories = categoryCrudService.findAll();
+        Boolean isFound = false;
+        for (Category category : categories) {
+            List<Product> products = category.getProducts();
+            for (Product product : products) {
+                if (product.getProductNumber().equals(key)) {
+                    isFound = true;
+                    break;
+                }
+            }
+            if (isFound.equals(Boolean.TRUE)) {
+                break;
+            }
+        }
+        return isFound;
     }
 }

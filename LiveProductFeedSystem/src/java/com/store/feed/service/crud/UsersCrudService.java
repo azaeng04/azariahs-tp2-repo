@@ -5,11 +5,11 @@
 package com.store.feed.service.crud;
 
 import com.store.feed.domain.Users;
-import com.store.feed.service.Service;
+import com.store.feed.service.Services;
 
 /**
  *
  * @author Ronald
  */
-public interface UsersCrudService extends Service<Users, Long> {
+public interface UsersCrudService extends Services<Users, Long> {
 }

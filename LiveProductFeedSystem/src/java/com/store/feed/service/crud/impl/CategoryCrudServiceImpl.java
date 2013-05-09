@@ -22,15 +22,23 @@ public class CategoryCrudServiceImpl implements CategoryCrudService {
     
     @Autowired
     private GenericDAO<Category> dao;
+    private static CategoryCrudServiceImpl categoryCrudServiceImpl;
+    
+    private CategoryCrudServiceImpl() {
+    }
+    
+    public synchronized static CategoryCrudServiceImpl getInstance() {
+        if (categoryCrudServiceImpl == null) {
+            categoryCrudServiceImpl = new CategoryCrudServiceImpl();
+        }
+        return categoryCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< Category> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Category.class);
     }
     
-    public CategoryCrudServiceImpl() {
-    }
-
     @Override
     public Category findById(Long id) {
         setDao(dao);

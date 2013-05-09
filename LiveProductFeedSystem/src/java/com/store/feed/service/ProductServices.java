@@ -20,5 +20,7 @@ public interface ProductServices {
 
     public List<Product> getWastedProducts();
     
-    public void updateWastedProduct(String productNumber);
+    public void updateWastedProduct(String productNumber, String productLocationNumber);
+    
+    public Boolean checkIfPrimaryKeyExists(String key);
 }
