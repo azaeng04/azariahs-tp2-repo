@@ -19,18 +19,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("UsersCrudService")
 @Transactional(readOnly = true)
 public class UsersCrudServiceImpl implements UsersCrudService {
-
+    
     @Autowired
     private GenericDAO<Users> dao;
-
+    private static UsersCrudServiceImpl usersCrudServiceImpl;
+    
+    private UsersCrudServiceImpl() {
+    }
+    
+    public synchronized static UsersCrudServiceImpl getInstance() {
+        if (usersCrudServiceImpl == null) {
+            usersCrudServiceImpl = new UsersCrudServiceImpl();
+        }
+        return usersCrudServiceImpl;
+    }
+    
     public final void setDao(final GenericDAO< Users> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Users.class);
     }
-
-    public UsersCrudServiceImpl() {
-    }
-
+    
     @Override
     public Users findById(Long id) {
         setDao(dao);
@@ -42,37 +50,37 @@ public class UsersCrudServiceImpl implements UsersCrudService {
         setDao(dao);
         return dao.findAll();
     }
-
+    
     @Override
     public void persist(Users entity) {
         setDao(dao);
         dao.persist(entity);
     }
-
+    
     @Override
     public void merge(Users entity) {
         setDao(dao);
         dao.merge(entity);
     }
-
+    
     @Override
     public void remove(Users entity) {
         setDao(dao);
         dao.remove(entity);
     }
-
+    
     @Override
     public void removeById(Long entityId) {
         setDao(dao);
         Users v = dao.findById(entityId);
         dao.remove(v);
     }
-
+    
     @Override
     public List<Users> findInRange(int firstResult, int maxResults) {
         setDao(dao);
         return dao.findInRange(firstResult, maxResults);
-
+        
     }
 
     @Override
@@ -86,22 +94,22 @@ public class UsersCrudServiceImpl implements UsersCrudService {
         setDao(dao);
         return dao.getByPropertyName(name, value);
     }
-
+    
     @Override
     public List<Users> getEntitiesByPropertyName(String name, String value) {
         setDao(dao);
         return dao.getEntitiesByPropertyName(name, value);
     }
-
+    
     @Override
-    public void persistMultipleEntities(List<Users> users) {
+    public void persistMultipleEntities(List<Users> object) {
         setDao(dao);
-        dao.persistMultipleEntites(users);
+        dao.persistMultipleEntites(object);
     }
-
+    
     @Override
-    public void removeMultipleEntities(List<Users> users) {
+    public void removeMultipleEntities(List<Users> object) {
         setDao(dao);
-        dao.removeMultipleEntities(users);
+        dao.removeMultipleEntities(object);
     }
 }

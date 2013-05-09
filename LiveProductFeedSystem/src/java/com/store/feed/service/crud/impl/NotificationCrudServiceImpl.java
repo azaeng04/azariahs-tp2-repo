@@ -22,15 +22,23 @@ public class NotificationCrudServiceImpl implements NotificationCrudService {
     
     @Autowired
     private GenericDAO<Notification> dao;
+    private static NotificationCrudServiceImpl notificationCrudServiceImpl;
+    
+    private NotificationCrudServiceImpl() {
+    }
+    
+    public synchronized static NotificationCrudServiceImpl getInstance() {
+        if (notificationCrudServiceImpl == null) {
+            notificationCrudServiceImpl = new NotificationCrudServiceImpl();
+        }
+        return notificationCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< Notification> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Notification.class);
     }
     
-    public NotificationCrudServiceImpl() {
-    }
-
     @Override
     public Notification findById(Long id) {
         setDao(dao);

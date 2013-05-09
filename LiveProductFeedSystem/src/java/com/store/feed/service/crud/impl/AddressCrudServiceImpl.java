@@ -22,15 +22,23 @@ public class AddressCrudServiceImpl implements AddressCrudService {
     
     @Autowired
     private GenericDAO<Address> dao;
+    private static AddressCrudServiceImpl addressCrudServiceImpl;
+    
+    private AddressCrudServiceImpl() {
+    }
+    
+    public synchronized static AddressCrudServiceImpl getInstance() {
+        if (addressCrudServiceImpl == null) {
+            addressCrudServiceImpl = new AddressCrudServiceImpl();
+        }
+        return addressCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< Address> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Address.class);
     }
     
-    public AddressCrudServiceImpl() {
-    }
-
     @Override
     public Address findById(Long id) {
         setDao(dao);

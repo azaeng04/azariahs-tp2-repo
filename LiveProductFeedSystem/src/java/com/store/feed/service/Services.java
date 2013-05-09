@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author boniface
  */
-public interface Service<T, ID> {
+public interface Services<T, ID> {
 
     public T findById(final ID id);
 

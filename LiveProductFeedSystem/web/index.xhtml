@@ -9,27 +9,51 @@
         <title>Live Product Feed Login</title>
     </h:head>
     <h:body>
-        <h:form style="vertical-align: central">
-            <p:growl id="growl" showDetail="true" sticky="true" />
-            <p:panel header="Live Product Feed Login">
-                <h:column>
-                    <h:outputLabel for="txtUsername" value="Username: " />
-                    <p:inputText id="txtUsername" value="" label="Username" >
-                    </p:inputText>  
-                    <br/>
-                    <br/>
-                    <h:outputLabel for="txtPassword" value="Password: " />
-                    <p:password id="txtPassword" value="" >
-                    </p:password>
-                </h:column>
-
-                <f:facet name="footer">
-                    <p:commandButton process="@form" type="button" value="Login" actionListener="#{loginController.checkLoginDetails}" update="growl">
-                    </p:commandButton>
-                    
-                </f:facet>
-            </p:panel>
-        </h:form>
+        <div style="margin:auto;alignment-adjust: 5;vertical-align: middle">
+            <h:form>
+                <p:growl id="growl" showDetail="true" sticky="true"/>
+                <center>
+                    <p:panelGrid columns="1" >
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column>
+                                    <h:outputText value="Live Product Feed Login System" /> 
+                                </p:column>
+                            </p:row>
+                        </f:facet>
+                        <p:row>
+                            <center>
+                                <p:column>
+                                    <h:outputText id="outUsername" value="Username: " /> 
+                                </p:column>
+                                <p:column>
+                                    <p:inputText id="inUsername" value="#{loginController.username}" required="true" label="Username" requiredMessage="Please enter your username"/>
+                                </p:column>
+                            </center>
+                        </p:row>
+                        <p:row>
+                            <center>
+                                <p:column>
+                                    <h:outputText id="outPassword" value="Password: " /> 
+                                </p:column>
+                                <p:column>
+                                    <p:password id="inPassword" value="#{loginController.password}" required="true" label="Password" requiredMessage="Please enter your password"/>
+                                </p:column>
+                            </center>
+                        </p:row>
+                        <f:facet name="footer">
+                            <center>
+                                <p:row>
+                                    <p:column rowspan="3">
+                                        <p:commandButton id="btnLogin" value="Login" actionListener="#{loginController.checkLoginDetails}" update="growl"/>
+                                    </p:column>
+                                </p:row>
+                            </center>
+                        </f:facet>
+                    </p:panelGrid>
+                </center>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

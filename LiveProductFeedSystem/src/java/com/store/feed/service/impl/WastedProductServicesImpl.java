@@ -27,6 +27,17 @@ public class WastedProductServicesImpl implements WastedProductServices {
     private ProductCrudService productCrudService;
     @Autowired
     private WastedProductCrudService wastedProductCrudService;
+    private static WastedProductServicesImpl wastedProductServicesImpl;
+
+    private WastedProductServicesImpl() {
+    }
+
+    public synchronized static WastedProductServicesImpl getInstance() {
+        if (wastedProductServicesImpl == null) {
+            wastedProductServicesImpl = new WastedProductServicesImpl();
+        }
+        return wastedProductServicesImpl;
+    }
 
     @Override
     public void updateWastedProducts(String productNumber) {

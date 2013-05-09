@@ -5,12 +5,12 @@
 package com.store.feed.service.crud;
 
 import com.store.feed.domain.StoreManager;
-import com.store.feed.service.Service;
+import com.store.feed.service.Services;
 
 /**
  *
  * @author Ronald
  */
-public interface StoreManagerCrudService extends Service<StoreManager, Long>{
+public interface StoreManagerCrudService extends Services<StoreManager, Long>{
     
 }

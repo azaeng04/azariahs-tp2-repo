@@ -22,15 +22,23 @@ public class CustomerCrudServiceImpl implements CustomerCrudService {
     
     @Autowired
     private GenericDAO<Customer> dao;
+    private static CustomerCrudServiceImpl customerCrudServiceImpl;
+    
+    private CustomerCrudServiceImpl() {
+    }
+    
+    public synchronized static CustomerCrudServiceImpl getInstance() {
+        if (customerCrudServiceImpl == null) {
+            customerCrudServiceImpl = new CustomerCrudServiceImpl();
+        }
+        return customerCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< Customer> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Customer.class);
     }
     
-    public CustomerCrudServiceImpl() {
-    }
-
     @Override
     public Customer findById(Long id) {
         setDao(dao);
@@ -92,7 +100,7 @@ public class CustomerCrudServiceImpl implements CustomerCrudService {
         setDao(dao);
         return dao.getEntitiesByPropertyName(name, value);
     }
-
+    
     @Override
     public void persistMultipleEntities(List<Customer> object) {
         setDao(dao);

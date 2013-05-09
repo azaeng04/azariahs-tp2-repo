@@ -5,12 +5,12 @@
 package com.store.feed.service.crud;
 
 import com.store.feed.domain.Product;
-import com.store.feed.service.Service;
+import com.store.feed.service.Services;
 
 /**
  *
  * @author Ronald
  */
-public interface ProductCrudService extends Service<Product, Long>{
+public interface ProductCrudService extends Services<Product, Long>{
     
 }

@@ -22,15 +22,23 @@ public class StoreManagerCrudServiceImpl implements StoreManagerCrudService {
     
     @Autowired
     private GenericDAO<StoreManager> dao;
+    private static StoreManagerCrudServiceImpl storeManagerCrudServiceImpl;
+    
+    private StoreManagerCrudServiceImpl() {
+    }
+    
+    public synchronized static StoreManagerCrudServiceImpl getInstance() {
+        if (storeManagerCrudServiceImpl == null) {
+            storeManagerCrudServiceImpl = new StoreManagerCrudServiceImpl();
+        }
+        return storeManagerCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< StoreManager> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(StoreManager.class);
     }
     
-    public StoreManagerCrudServiceImpl() {
-    }
-
     @Override
     public StoreManager findById(Long id) {
         setDao(dao);

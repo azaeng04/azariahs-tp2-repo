@@ -22,15 +22,23 @@ public class ProductCrudServiceImpl implements ProductCrudService {
     
     @Autowired
     private GenericDAO<Product> dao;
+    private static ProductCrudServiceImpl productCrudServiceImpl;
+    
+    private ProductCrudServiceImpl() {
+    }
+    
+    public synchronized static ProductCrudServiceImpl getInstance() {
+        if (productCrudServiceImpl == null) {
+            productCrudServiceImpl = new ProductCrudServiceImpl();
+        }
+        return productCrudServiceImpl;
+    }
     
     public final void setDao(final GenericDAO< Product> daoToSet) {
         this.dao = daoToSet;
         this.dao.setClazz(Product.class);
     }
     
-    public ProductCrudServiceImpl() {
-    }
-
     @Override
     public Product findById(Long id) {
         setDao(dao);
