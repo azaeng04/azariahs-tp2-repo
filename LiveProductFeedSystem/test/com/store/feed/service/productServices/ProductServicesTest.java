@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.service;
+package com.store.feed.service.productServices;
 
 import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ProductFactory;
@@ -16,6 +16,7 @@ import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
 import com.store.feed.domain.ProductSpecial;
 import com.store.feed.domain.WastedProduct;
+import com.store.feed.service.ProductServices;
 import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
 import com.store.feed.service.crud.ProductSpecialCrudService;

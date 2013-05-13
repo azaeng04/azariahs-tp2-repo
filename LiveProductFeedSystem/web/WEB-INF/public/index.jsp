@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>Select the CRUD operation</h1>
-        <a href="category.html" >Category CRUD</a> <br/>
-        <a href="productSpecial.html" >Product Special CRUD</a><br/>
-        <a href="wastedProduct.html" >Wasted Product CRUD</a><br/>
+        <a href="product/product.html" >Product CRUD</a> <br/>
+        <a href="customer/customer.html" >Customer CRUD</a><br/>
+        <a href="stockManager/stockManager.html" >Stock Manager CRUD</a><br/>
     </body>
 </html>

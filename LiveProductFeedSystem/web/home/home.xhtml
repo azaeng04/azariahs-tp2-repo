@@ -13,44 +13,19 @@
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" header="Live Product Feed System" style="text-align: center">
-                    <div style="text-align: right">
-                        <h:commandLink value="Logout" action="index" style="font-size: x-large"/>
-                    </div>
+                    <ui:include src="northLayoutContent.xhtml"/>
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="center">
-
                     <h:form id="form">
                         <p:tabView id="tabView" dynamic="true" cache="true">
-                            <p:tab id="tabHome" title="Home">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText
-                                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
-                                        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T
-                                        hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,
-                                        but given to ruthless violence whenever anything stands against the good of the family." />
-                                </h:panelGrid>
-                            </p:tab>
+                            <ui:include src="homeTab.xhtml"/>
 
-                            <p:tab id="tabCRUD" title="CRUD Operations">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    
-                                </h:panelGrid>
-                            </p:tab>
+                            <ui:include src="crudTab.xhtml"/>
 
-                            <p:tab id="tabAboutUs" title="About Us">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
-                                                  Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>
-                                </h:panelGrid>
-                            </p:tab>
+                            <ui:include src="aboutUsTab.xhtml"/>
 
-                            <p:tab id="tabContactUs" title="Contact Us">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
-                                                  Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>
-                                </h:panelGrid>
-                            </p:tab>
+                            <ui:include src="contactUsTab.xhtml"/>
                         </p:tabView>
                     </h:form>
                 </p:layoutUnit>

@@ -6,54 +6,20 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Live Product Feed Login</title>
+        <title>Live Product Feed</title>
     </h:head>
     <h:body>
-        <div style="margin:auto;alignment-adjust: 5;vertical-align: middle">
-            <h:form>
-                <p:growl id="growl" showDetail="true" sticky="true"/>
-                <center>
-                    <p:panelGrid columns="1" >
-                        <f:facet name="header">
-                            <p:row>
-                                <p:column>
-                                    <h:outputText value="Live Product Feed Login System" /> 
-                                </p:column>
-                            </p:row>
-                        </f:facet>
-                        <p:row>
-                            <center>
-                                <p:column>
-                                    <h:outputText id="outUsername" value="Username: " /> 
-                                </p:column>
-                                <p:column>
-                                    <p:inputText id="inUsername" value="#{loginController.username}" required="true" label="Username" requiredMessage="Please enter your username"/>
-                                </p:column>
-                            </center>
-                        </p:row>
-                        <p:row>
-                            <center>
-                                <p:column>
-                                    <h:outputText id="outPassword" value="Password: " /> 
-                                </p:column>
-                                <p:column>
-                                    <p:password id="inPassword" value="#{loginController.password}" required="true" label="Password" requiredMessage="Please enter your password"/>
-                                </p:column>
-                            </center>
-                        </p:row>
-                        <f:facet name="footer">
-                            <center>
-                                <p:row>
-                                    <p:column rowspan="3">
-                                        <p:commandButton id="btnLogin" value="Login" actionListener="#{loginController.checkLoginDetails}" update="growl"/>
-                                    </p:column>
-                                </p:row>
-                            </center>
-                        </f:facet>
-                    </p:panelGrid>
-                </center>
-            </h:form>
-        </div>
+        <h:form>
+            <h:outputText value="Welcome to the Live Product Feed CRUD operations."/>
+            <br/>
+            <h:outputText value="Welcome to the Live Product Feed CRUD operations."/>
+            <br/>
+            <p:commandLink value="Product" action="home/product/productCRUD.xhtml"/>
+            <br/>
+            <p:commandLink value="Customer" action="home/customer/productCRUD.xhtml"/>
+            <br/>
+            <p:commandLink value="Stock Manager" action="home/storeManager/storeManagerCRUD.xhtml"/>
+        </h:form>
     </h:body>
 </html>
 

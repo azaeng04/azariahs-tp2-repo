@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.crud;
+package com.store.feed.crud.wastedProduct;
 
 import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ProductFactory;
 import com.store.feed.app.factory.ProductLifespanFactory;
 import com.store.feed.app.factory.ProductLocationFactory;
-import com.store.feed.app.factory.ProductSpecialFactory;
+import com.store.feed.app.factory.WastedProductFactory;
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.domain.ProductSpecial;
+import com.store.feed.domain.WastedProduct;
 import com.store.feed.service.crud.CategoryCrudService;
-import com.store.feed.service.crud.ProductSpecialCrudService;
+import com.store.feed.service.crud.WastedProductCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +33,14 @@ import org.testng.annotations.Test;
  *
  * @author Ronalds
  */
-public class ProductSpecialCrudTest {
-   private static ApplicationContext ctx;
-    private static ProductSpecialCrudService productSpecialCrudService;
-    private static CategoryCrudService categoryCrudService;
-    private static Long productSpecialID;
+public class WastedProductCrudServiceTest {
 
-    public ProductSpecialCrudTest() {
+    private static ApplicationContext ctx;
+    private static WastedProductCrudService wastedProductCrudService;
+    private static CategoryCrudService categoryCrudService;
+    private static Long wastedProductID;
+
+    public WastedProductCrudServiceTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -50,16 +51,16 @@ public class ProductSpecialCrudTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
-        productSpecialCrudService = (ProductSpecialCrudService) ctx.getBean("ProductSpecialCrudService");
-        categoryCrudService = (CategoryCrudService)ctx.getBean("CategoryCrudService");
+        wastedProductCrudService = (WastedProductCrudService) ctx.getBean("WastedProductCrudService");
+        categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        List<ProductSpecial> productSpecials = productSpecialCrudService.findAll();
+        List<WastedProduct> wastedProducts = wastedProductCrudService.findAll();
         List<Category> categories = categoryCrudService.findAll();
+        wastedProductCrudService.removeMultipleEntities(wastedProducts);
         categoryCrudService.removeMultipleEntities(categories);
-        productSpecialCrudService.removeMultipleEntities(productSpecials);
     }
 
     @BeforeMethod
@@ -71,7 +72,7 @@ public class ProductSpecialCrudTest {
     }
 
     @Test
-    public void createProductSpecial() {
+    public void createWastedProduct() {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2017, 8, 9, 0, 0).toDate(), new DateTime(2017, 9, 9, 0, 0).toDate());
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
@@ -80,77 +81,76 @@ public class ProductSpecialCrudTest {
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
-        
+
         Product product1 = new ProductFactory.Builder("LAM_82918")
                 .setProductName("Leg of Lamb")
                 .setQuantity(100)
-                .setIsWasted(Boolean.FALSE)
-                .setIsOnSpecial(Boolean.TRUE)
+                .setIsWasted(Boolean.TRUE)
+                .setIsOnSpecial(Boolean.FALSE)
                 .setProductLifespan(productLifespan1)
                 .setProductLocation(productLocations1)
                 .setProductPictureURL("leg_of_lamb.jpg")
                 .setProductPrice(new BigDecimal("400.95"))
                 .buildProduct();
-        
-        Category category = CategoryFactory.createCategory("Protein", "PRN_02938", null);
-        
-        product1.setCategory(category);
-        
-        products.add(product1);
-        
-        category.setProducts(products);
-        
-        categoryCrudService.persist(category);
-        
-        ProductSpecial productSpecial = new ProductSpecialFactory.Builder(product1)
-                .setDiscountPercentage(new BigDecimal("10"))
-                .setStartDate(new DateTime(2013, 5, 6, 0, 0).toDate())
-                .setEndDate(new DateTime(2013, 5, 15, 0, 0).toDate())
-                .setSpecialDescription("")
-                .setSpecialDiscountValue(new BigDecimal("0"))
-                .buildProductSpecial();
-        
-        productSpecialCrudService.persist(productSpecial);
 
-        productSpecialID = productSpecial.getId();
+        Category category = CategoryFactory.createCategory("Protein", "PRN_02938", null);
+
+        product1.setCategory(category);
+
+        products.add(product1);
+
+        category.setProducts(products);
+
+        categoryCrudService.persist(category);
+
+        WastedProduct wastedProduct = new WastedProductFactory.Builder(product1)
+                .setDescription("Product printing incorrect")
+                .setWasteDiscountPercentage(new BigDecimal("75"))
+                .setWasteDiscountValue(new BigDecimal("0"))
+                .setWastedQuantity(25)
+                .buildProduct();
+
+        wastedProductCrudService.persist(wastedProduct);
+
+        wastedProductID = wastedProduct.getId();
     }
 
-    @Test(dependsOnMethods = "createProductSpecial")
-    public void readProductSpecial() {
-        ProductSpecial productSpecial = productSpecialCrudService.findById(productSpecialID);
-        Product product = productSpecial.getProduct();
+    @Test(dependsOnMethods = "createWastedProduct")
+    public void readWastedProduct() {
+        WastedProduct wastedProduct = wastedProductCrudService.findById(wastedProductID);
+        Product product = wastedProduct.getProduct();
         
         assertEquals(product.getProductNumber(), "LAM_82918");
     }
 
-    @Test(dependsOnMethods = "createProductSpecial")
+    @Test(dependsOnMethods = "createWastedProduct")
     public void readCategories() {
-        List<ProductSpecial> productSpecials = productSpecialCrudService.findAll();
+        List<WastedProduct> wastedProducts = wastedProductCrudService.findAll();
 
-        assertTrue(productSpecials.size() > 0);
+        assertTrue(wastedProducts.size() > 0);
     }
 
-    @Test(dependsOnMethods = "createProductSpecial")
-    public void updateProductSpecial() {
-        ProductSpecial productSpecial = productSpecialCrudService.findById(productSpecialID);
+    @Test(dependsOnMethods = "createWastedProduct")
+    public void updateWastedProduct() {
+        WastedProduct wastedProduct = wastedProductCrudService.findById(wastedProductID);
 
-        productSpecial.setDiscountPercentage(new BigDecimal("25"));
+        wastedProduct.setDescription("Product printing incorrect and packaging is torn");
 
-        productSpecialCrudService.merge(productSpecial);
+        wastedProductCrudService.merge(wastedProduct);
 
-        ProductSpecial productSpecial1 = productSpecialCrudService.findById(productSpecialID);
+        WastedProduct wastedProduct1 = wastedProductCrudService.findById(wastedProductID);
 
-        assertEquals(productSpecial1.getDiscountPercentage(), new BigDecimal("25"));
+        assertEquals(wastedProduct1.getDescription(), "Product printing incorrect and packaging is torn");
     }
 
-    @Test(dependsOnMethods = "readProductSpecial")
-    public void deleteProductSpecial() {
-        ProductSpecial productSpecial = productSpecialCrudService.findById(productSpecialID);
+    @Test(dependsOnMethods = "readWastedProduct")
+    public void deleteWastedProduct() {
+        WastedProduct wastedProduct = wastedProductCrudService.findById(wastedProductID);
 
-        productSpecialCrudService.remove(productSpecial);
+        wastedProductCrudService.remove(wastedProduct);
 
-        ProductSpecial productSpecial1 = productSpecialCrudService.findById(productSpecialID);
+        WastedProduct wastedProduct1 = wastedProductCrudService.findById(wastedProductID);
 
-        assertNull(productSpecial1);
+        assertNull(wastedProduct1);
     }
 }
