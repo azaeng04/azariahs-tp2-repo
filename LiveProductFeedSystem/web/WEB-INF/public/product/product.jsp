@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Category CRUD</title>
+        <title>Product CRUD</title>
     </head>
     <body>
-        <h1>CRUD Services for a category</h1>
+        <h1>CRUD Services for a product</h1>
+        <a href="addProduct.html" >Add Product</a> <br/>
+        <a href="updateProduct.html" >Update Product</a><br/>
+        <a href="deleteProduct.html" >Delete Product</a><br/>
     </body>
 </html>
