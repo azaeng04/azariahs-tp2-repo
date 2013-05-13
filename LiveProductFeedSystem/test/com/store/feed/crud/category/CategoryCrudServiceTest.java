@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.service;
+package com.store.feed.crud.category;
 
 import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.app.factory.ProductFactory;
@@ -12,33 +12,30 @@ import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
-import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
-import com.store.feed.service.impl.ProductLocationServicesImpl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 /**
  *
- * @author Ronalds
+ * @author Ronald
  */
-public class ProductLocationServicesTest {
+public class CategoryCrudServiceTest {
     private static ApplicationContext ctx;
     private static CategoryCrudService categoryCrudService;
-    private static ProductServices productServices;
-    private static ProductLocationServices productLocationServices;
+    private static Long categoryID;
     
-    public ProductLocationServicesTest() {
+    public CategoryCrudServiceTest() {
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -47,9 +44,7 @@ public class ProductLocationServicesTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
-        productServices = (ProductServices) ctx.getBean("ProductServices");
         categoryCrudService = (CategoryCrudService)ctx.getBean("CategoryCrudService");
-        productLocationServices = (ProductLocationServices)ctx.getBean("ProductLocationServices");
     }
 
     @AfterClass
@@ -65,26 +60,14 @@ public class ProductLocationServicesTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-
-    /**
-     * Test of getProductLocations method, of class ProductLocationServicesImpl.
-     */
-    @Test
-    public void testGetProductLocations() {
-        createCategory();
-        
-        List<ProductLocation> productLocations = productLocationServices.getProductLocations("APR_03918");
-        
-        assertEquals(productLocations.get(0).getProductLocationNumber(), "BKS_17354");
-        assertEquals(productLocations.get(1).getProductLocationNumber(), "INS_95735");
-    }
     
+    @Test
     public void createCategory() {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
-        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_17354", 80);
-        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_95735", 20);
+        ProductLocation productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_76757", 80);
+        ProductLocation productLocation2 = ProductLocationFactory.createProductLocation("In the store", "INS_35453", 20);
         
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
@@ -109,5 +92,45 @@ public class ProductLocationServicesTest {
         category.setProducts(products);
         
         categoryCrudService.persist(category);
+        
+        categoryID = category.getId();
+    }
+    
+    @Test(dependsOnMethods = "createCategory")
+    public void readCategory() {
+        Category category = categoryCrudService.findById(categoryID);
+        
+        assertEquals(category.getCategoryName(), "Long life");
+    }
+    
+    @Test(dependsOnMethods = "createCategory")
+    public void readCategories() {
+        List<Category> categories = categoryCrudService.findAll();
+        
+        assertTrue(categories.size()>0);
+    }
+    
+    @Test(dependsOnMethods = "createCategory")
+    public void updateCategory() {
+        Category category = categoryCrudService.findById(categoryID);
+        
+        category.setCategoryName("Long life products");
+        
+        categoryCrudService.merge(category);
+        
+        Category category1 = categoryCrudService.findById(categoryID);
+        
+        assertEquals(category1.getCategoryName(), "Long life products");
+    }
+    
+    @Test(dependsOnMethods = "readCategory")
+    public void deleteCategory() {
+        Category category = categoryCrudService.findById(categoryID);
+        
+        categoryCrudService.remove(category);
+        
+        Category category1 = categoryCrudService.findById(categoryID);
+        
+        assertNull(category1);
     }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.service;
+package com.store.feed.service.wastedProductServices;
 
 import com.store.feed.service.impl.WastedProductServicesImpl;
 import static org.testng.Assert.*;

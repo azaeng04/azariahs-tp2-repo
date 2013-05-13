@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.crud;
+package com.store.feed.crud.storeManager;
 
 import com.store.feed.app.factory.AddressFactory;
 import com.store.feed.app.factory.ContactFactory;
@@ -35,12 +35,14 @@ import org.testng.annotations.Test;
  * @author Ronalds
  */
 public class StoreManagerCrudServiceTest {
+
     private static ApplicationContext ctx;
     private static StoreManagerCrudService storeManagerCrudService;
     private static RolesCrudService rolesCrudService;
     private static UsersCrudService usersCrudService;
     private static AddressCrudService addressCrudService;
     private static Long stockManagerID;
+
     public StoreManagerCrudServiceTest() {
     }
     // TODO add test methods here.
@@ -78,7 +80,7 @@ public class StoreManagerCrudServiceTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-    
+
     @Test
     public void createStoreManager() {
         List<Address> addresses = new ArrayList<Address>();
@@ -109,41 +111,41 @@ public class StoreManagerCrudServiceTest {
                 .setPassword("evanJames")
                 .setRoles(roles)
                 .buildUser();
-        
+
         rolesCrudService.persistMultipleEntities(roles);
         addressCrudService.persistMultipleEntities(addresses);
         storeManagerCrudService.persist(storeManager);
         usersCrudService.persist(user);
-        
+
         stockManagerID = storeManager.getId();
     }
 
     @Test(dependsOnMethods = "createStoreManager")
     public void readStoreManager() {
         StoreManager stockManager = storeManagerCrudService.findById(stockManagerID);
-        
+
         assertNotNull(stockManager);
     }
 
     @Test(dependsOnMethods = "createStoreManager")
     public void readStoreManagers() {
         List<StoreManager> stockManagers = storeManagerCrudService.findAll();
-        
-        assertTrue(stockManagers.size()>0);
+
+        assertTrue(stockManagers.size() > 0);
     }
 
     @Test(dependsOnMethods = "createStoreManager")
     public void updateStoreManager() {
         StoreManager stockManager = storeManagerCrudService.findById(stockManagerID);
-        
+
         assertNotNull(stockManager);
-        
+
         stockManager.setFirstName("Jason");
-        
+
         storeManagerCrudService.merge(stockManager);
-        
+
         StoreManager stockManager1 = storeManagerCrudService.findById(stockManagerID);
-        
+
         assertEquals(stockManager1.getFirstName(), "Jason");
     }
 

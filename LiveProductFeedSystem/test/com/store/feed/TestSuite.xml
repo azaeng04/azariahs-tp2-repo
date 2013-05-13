@@ -20,8 +20,16 @@
     
     <test name="com.store.feed suite">
         <packages>
-            <package name="com.store.feed.crud"/>
-            <package name="com.store.feed.service"/>
+            <package name="com.store.feed.crud.category"/>
+            <package name="com.store.feed.crud.productSpecial"/>
+            <package name="com.store.feed.crud.stockManager"/>
+            <package name="com.store.feed.crud.storeManager"/>
+            <package name="com.store.feed.crud.wastedProduct"/>
+            
+            <package name="com.store.feed.service.productLocationServices"/>
+            <package name="com.store.feed.service.productServices"/>
+            <package name="com.store.feed.service.userServices"/>
+            <package name="com.store.feed.service.wastedProductServices"/>
         </packages>
     </test>
 

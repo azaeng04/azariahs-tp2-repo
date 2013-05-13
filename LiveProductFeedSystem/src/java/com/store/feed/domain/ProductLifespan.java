@@ -13,7 +13,8 @@ import javax.persistence.Embeddable;
  * @author Ronald
  */
 @Embeddable
-public class ProductLifespan implements Serializable{
+public class ProductLifespan implements Serializable {
+
     private Date bestBeforeDate;
     private Date expirationDate;
 

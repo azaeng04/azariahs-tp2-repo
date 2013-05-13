@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.service;
+package com.store.feed.crud.stockManager;
 
 import com.store.feed.app.factory.AddressFactory;
 import com.store.feed.app.factory.ContactFactory;
-import com.store.feed.app.factory.RolesFactory;
 import com.store.feed.app.factory.StockManagerFactory;
+import com.store.feed.app.factory.RolesFactory;
 import com.store.feed.app.factory.UsersFactory;
 import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
@@ -18,7 +18,6 @@ import com.store.feed.service.crud.AddressCrudService;
 import com.store.feed.service.crud.RolesCrudService;
 import com.store.feed.service.crud.StockManagerCrudService;
 import com.store.feed.service.crud.UsersCrudService;
-import com.store.feed.service.impl.UserServicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -35,15 +34,20 @@ import org.testng.annotations.Test;
  *
  * @author Ronalds
  */
-public class UserServicesTest {
+public class StockManagerCrudServiceTest {
     private static ApplicationContext ctx;
     private static StockManagerCrudService stockManagerCrudService;
     private static RolesCrudService rolesCrudService;
     private static UsersCrudService usersCrudService;
     private static AddressCrudService addressCrudService;
-    private static UserServices userServices;
-    public UserServicesTest() {
+    private static Long stockManagerID;
+    public StockManagerCrudServiceTest() {
     }
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -52,7 +56,6 @@ public class UserServicesTest {
         rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
         usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
         addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
-        userServices = (UserServices) ctx.getBean("UserServices");
     }
 
     @AfterClass
@@ -75,19 +78,8 @@ public class UserServicesTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-
-    /**
-     * Test of checkUser method, of class UserServicesImpl.
-     */
-    @Test
-    public void testCheckIfUserExists() {
-        createStockManager();
-        
-        Boolean exists = userServices.checkIfUserExists("mikeJoans1234", "mikeJoans");
-        
-        assertTrue(exists);
-    }
     
+    @Test
     public void createStockManager() {
         List<Address> addresses = new ArrayList<Address>();
         Address address = AddressFactory.createAddress("637 Parkers Avenue", "PO Box", "7831");
@@ -122,5 +114,51 @@ public class UserServicesTest {
         addressCrudService.persistMultipleEntities(addresses);
         stockManagerCrudService.persist(stockManager);
         usersCrudService.persist(user);
+        
+        stockManagerID = stockManager.getId();
+    }
+
+    @Test(dependsOnMethods = "createStockManager")
+    public void readStockManager() {
+        StockManager stockManager = stockManagerCrudService.findById(stockManagerID);
+        
+        assertNotNull(stockManager);
+    }
+
+    @Test(dependsOnMethods = "createStockManager")
+    public void readStockManagers() {
+        List<StockManager> stockManagers = stockManagerCrudService.findAll();
+        
+        assertTrue(stockManagers.size()>0);
+    }
+
+    @Test(dependsOnMethods = "createStockManager")
+    public void updateStockManager() {
+        StockManager stockManager = stockManagerCrudService.findById(stockManagerID);
+        
+        assertNotNull(stockManager);
+        
+        stockManager.setFirstName("Jason");
+        
+        stockManagerCrudService.merge(stockManager);
+        
+        StockManager stockManager1 = stockManagerCrudService.findById(stockManagerID);
+        
+        assertEquals(stockManager1.getFirstName(), "Jason");
+    }
+
+    @Test(dependsOnMethods = "readStockManager")
+    public void deleteStockManager() {
+        StockManager stockManager = stockManagerCrudService.findById(stockManagerID);
+        List<Address> addresses = addressCrudService.findAll();
+        List<Users> users = usersCrudService.findAll();
+        
+        addressCrudService.removeMultipleEntities(addresses);
+        usersCrudService.removeMultipleEntities(users);
+        stockManagerCrudService.remove(stockManager);
+        
+        StockManager stockManager1 = stockManagerCrudService.findById(stockManagerID);
+        
+        assertNull(stockManager1);
     }
 }
