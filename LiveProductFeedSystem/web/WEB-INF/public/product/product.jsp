@@ -12,7 +12,7 @@
         <title>Product CRUD</title>
     </head>
     <body>
-        <h1>CRUD Services for a product</h1>
+        <h1>Product CRUD services</h1>
         <a href="addProduct.html" >Add Product</a> <br/>
         <a href="updateProduct.html" >Update Product</a><br/>
         <a href="deleteProduct.html" >Delete Product</a><br/>

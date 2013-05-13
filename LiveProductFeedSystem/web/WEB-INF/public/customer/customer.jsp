@@ -12,9 +12,9 @@
         <title>Customer CRUD</title>
     </head>
     <body>
-        <h1>CRUD Services for a customer</h1>
-        <a href="addProduct.html" >Product CRUD</a> <br/>
-        <a href="updateProduct.html" >Customer CRUD</a><br/>
-        <a href="deleteProduct.html" >Stock Manager CRUD</a><br/>
+        <h1>Customer CRUD services</h1>
+        <a href="addCustomer.html" >Add Customer</a> <br/>
+        <a href="updateCustomer.html" >Update Customer</a><br/>
+        <a href="deleteCustomer.html" >Delete Customer</a><br/>
     </body>
 </html>
