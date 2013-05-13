@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Wasted Product CRUD</title>
+        <title>Stock Manager CRUD</title>
     </head>
     <body>
-        <h1>CRUD for Wasted Product</h1>
+        <h1>CRUD for Stock Manager</h1>
     </body>
 </html>
