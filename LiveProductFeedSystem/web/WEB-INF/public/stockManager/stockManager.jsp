@@ -12,6 +12,9 @@
         <title>Stock Manager CRUD</title>
     </head>
     <body>
-        <h1>CRUD for Stock Manager</h1>
+        <h1>Stock Manager CRUD services</h1>
+        <a href="addStockManager.html" >Add Stock Manager</a> <br/>
+        <a href="updateStockManager.html" >Update Product</a><br/>
+        <a href="deleteStockManager.html" >Delete Product</a><br/>
     </body>
 </html>

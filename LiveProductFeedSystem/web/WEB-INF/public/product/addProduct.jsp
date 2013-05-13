@@ -12,13 +12,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Product Management</title>
+        <title>Product CRUD Management</title>
     </head>
     <body>
-        <h1>Add Category</h1>
-        <f:form action="persist.php" method="POST" modelAttribute="categoryModel">
-            <label> Category Name: </label> <br/>
-            <f:input path="categoryName" /> <br/>
+        <h1>Add Product</h1>
+        <f:form action="persist.php" method="POST" modelAttribute="productModel">
+            <label> Product Name: </label> <br/>
+            
             <input type="submit" value="Add category"/>
             <input type="reset" value="Reset"/>
         </f:form>

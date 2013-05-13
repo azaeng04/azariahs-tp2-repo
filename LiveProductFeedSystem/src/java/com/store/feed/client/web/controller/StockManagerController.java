@@ -30,4 +30,16 @@ public class StockManagerController {
 
         return "stockManager/addStockManager";
     }
+    
+    @RequestMapping(value = "/updateStockManager.html", method = RequestMethod.GET)
+    public String updateStockManager(Model model) {
+
+        return "stockManager/updateStockManager";
+    }
+    
+    @RequestMapping(value = "/deleteStockManager.html", method = RequestMethod.GET)
+    public String deleteStockManager(Model model) {
+
+        return "stockManager/deleteStockManager";
+    }
 }

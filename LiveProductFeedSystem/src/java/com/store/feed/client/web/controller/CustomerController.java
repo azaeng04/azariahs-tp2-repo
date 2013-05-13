@@ -30,4 +30,16 @@ public class CustomerController {
 
         return "customer/addCustomer";
     }
+
+    @RequestMapping(value = "/updateCustomer.html", method = RequestMethod.GET)
+    public String updateProduct(Model model) {
+
+        return "customer/updateCustomer";
+    }
+    
+    @RequestMapping(value = "/deleteCustomer.html", method = RequestMethod.GET)
+    public String deleteProduct(Model model) {
+
+        return "customer/deleteCustomer";
+    }
 }
