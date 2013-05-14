@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Product CRUD services</h1>
+        <a href="index.html" >Go Home</a><br/><br/>
         <a href="addProduct.html" >Add Product</a> <br/>
         <a href="updateProduct.html" >Update Product</a><br/>
         <a href="deleteProduct.html" >Delete Product</a><br/>
