@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Stock Manager CRUD services</h1>
+        <a href="index.html" >Go Home</a><br/><br/>
         <a href="addStockManager.html" >Add Stock Manager</a> <br/>
         <a href="updateStockManager.html" >Update Product</a><br/>
         <a href="deleteStockManager.html" >Delete Product</a><br/>

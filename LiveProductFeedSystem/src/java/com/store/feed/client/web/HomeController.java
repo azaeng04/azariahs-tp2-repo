@@ -19,4 +19,9 @@ public class HomeController {
     public String home(Model model) {
         return "index";
     }
+    
+    @RequestMapping({"/index.html"})
+    public String goHome(Model model) {
+        return "index";
+    }
 }

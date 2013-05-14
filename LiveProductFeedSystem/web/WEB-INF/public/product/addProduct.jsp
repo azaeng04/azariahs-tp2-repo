@@ -16,6 +16,10 @@
     </head>
     <body>
         <h1>Add Product</h1>
+        <div>
+            <a href="index.html" >Go Home</a>
+            <a href="customer.html" >Go back</a><br/><br/>
+        </div>
         <f:form action="persist.php" method="POST" modelAttribute="productModel">
             <label> Product Name: </label> <br/>
             
