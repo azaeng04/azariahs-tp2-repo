@@ -38,9 +38,6 @@ public class StoreManagerCrudServiceTest {
 
     private static ApplicationContext ctx;
     private static StoreManagerCrudService storeManagerCrudService;
-    private static RolesCrudService rolesCrudService;
-    private static UsersCrudService usersCrudService;
-    private static AddressCrudService addressCrudService;
     private static Long stockManagerID;
 
     public StoreManagerCrudServiceTest() {
@@ -55,22 +52,13 @@ public class StoreManagerCrudServiceTest {
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
         storeManagerCrudService = (StoreManagerCrudService) ctx.getBean("StoreManagerCrudService");
-        rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
-        usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
-        addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-//        List<Address> addresses = addressCrudService.findAll();
-//        List<Roles> roles = rolesCrudService.findAll();
-//        List<Users> users = usersCrudService.findAll();
-//        List<StoreManager> stockManagers = storeManagerCrudService.findAll();
-//        
-//        addressCrudService.removeMultipleEntities(addresses);
-//        rolesCrudService.removeMultipleEntities(roles);
-//        usersCrudService.removeMultipleEntities(users);
-//        storeManagerCrudService.removeMultipleEntities(stockManagers);
+        List<StoreManager> stockManagers = storeManagerCrudService.findAll();
+        
+        storeManagerCrudService.removeMultipleEntities(stockManagers);
     }
 
     @BeforeMethod
@@ -90,12 +78,17 @@ public class StoreManagerCrudServiceTest {
         Contact contact = ContactFactory.createContact("0728374615", "evanJames@gmail.com", "0217057362", "0218392837");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.createRoles("View products", "View");
-        Roles role2 = RolesFactory.createRoles("Write products", "Write");
+        Roles role1 = RolesFactory.createRoles("View products", "STOREMANAGER", "evanJames1234");
+        Roles role2 = RolesFactory.createRoles("Write products", "STOREMANAGER", "evanJames1234");
         roles.add(role1);
         roles.add(role2);
-
-        StoreManager storeManager = new StoreManagerFactory.Builder("STR_82118")
+        
+        Users user = new UsersFactory.Builder("evanJames1234")
+                .setPassword("evanJames")
+                .setRoles(roles)
+                .buildUser();
+        
+        StoreManager storeManager = new StoreManagerFactory.Builder("82118", user)
                 .setAddresses(addresses)
                 .setContact(contact)
                 .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
@@ -105,18 +98,8 @@ public class StoreManagerCrudServiceTest {
                 .setMiddleName("Miguel")
                 .buildStockManager();
 
-        Users user = new UsersFactory.Builder()
-                .setPersonNumber(storeManager.getUsersIDNumber())
-                .setUsername("evanJames1234")
-                .setPassword("evanJames")
-                .setRoles(roles)
-                .buildUser();
-
-        rolesCrudService.persistMultipleEntities(roles);
-        addressCrudService.persistMultipleEntities(addresses);
         storeManagerCrudService.persist(storeManager);
-        usersCrudService.persist(user);
-
+        
         stockManagerID = storeManager.getId();
     }
 
@@ -151,16 +134,12 @@ public class StoreManagerCrudServiceTest {
 
     @Test(dependsOnMethods = "readStoreManager")
     public void deleteStoreManager() {
-//        StoreManager stockManager = storeManagerCrudService.findById(stockManagerID);
-//        List<Address> addresses = addressCrudService.findAll();
-//        List<Users> users = usersCrudService.findAll();
-//        
-//        addressCrudService.removeMultipleEntities(addresses);
-//        usersCrudService.removeMultipleEntities(users);
-//        storeManagerCrudService.remove(stockManager);
-//        
-//        StoreManager stockManager1 = storeManagerCrudService.findById(stockManagerID);
-//        
-//        assertNull(stockManager1);
+        StoreManager stockManager = storeManagerCrudService.findById(stockManagerID);
+        
+        storeManagerCrudService.remove(stockManager);
+        
+        StoreManager stockManager1 = storeManagerCrudService.findById(stockManagerID);
+        
+        assertNull(stockManager1);
     }
 }

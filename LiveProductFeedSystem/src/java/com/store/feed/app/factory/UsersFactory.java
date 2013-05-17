@@ -18,17 +18,11 @@ public class UsersFactory {
 
         private String username;
         private String password;
-        private String personNumber;
+        private Boolean enabled = false;
         private List<Roles> roles;
 
-        public Builder setPersonNumber(String personNumber) {
-            this.personNumber = personNumber;
-            return this;
-        }
-
-        public Builder setUsername(String username) {
+        public Builder(String username) {
             this.username = username;
-            return this;
         }
 
         public Builder setPassword(String password) {
@@ -47,7 +41,7 @@ public class UsersFactory {
 
         private Users buildUser(Builder object) {
             Users user = new Users();
-            user.setPersonNumber(object.personNumber);
+            user.setEnabled(object.enabled);
             user.setPassword(object.password);
             user.setRoles(object.roles);
             user.setUsername(object.username);

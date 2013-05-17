@@ -8,6 +8,7 @@ import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.Customer;
 import com.store.feed.domain.Notification;
+import com.store.feed.domain.Users;
 import java.util.Date;
 import java.util.List;
 
@@ -18,18 +19,20 @@ import java.util.List;
 public class CustomerFactory {
     public static class Builder {
 
-        private String customerNumber;
+        private String customerNumber = "CUS_";
         private String firstName;
         private String lastName;
         private String middleName;
         private String gender;
         private Date dateOfBirth;
         private Contact contact;
+        private Users user;
         private List<Address> addresses;
         private List<Notification> notifications;
 
-        public Builder(String customerNumber) {
-            this.customerNumber = customerNumber;
+        public Builder(String customerNumber, Users user) {
+            this.customerNumber += customerNumber;
+            this.user = user;
         }
 
         public Builder setFirstName(String firstName) {
@@ -79,6 +82,7 @@ public class CustomerFactory {
         private Customer buildCustomer(Builder object) {
             Customer customer = new Customer();
             customer.setUsersIDNumber(object.customerNumber);
+            customer.setUser(object.user);
             customer.setAddresses(object.addresses);
             customer.setDateOfBirth(object.dateOfBirth);
             customer.setFirstName(object.firstName);

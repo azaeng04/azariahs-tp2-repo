@@ -17,11 +17,9 @@ import com.store.feed.domain.ProductLocation;
 import com.store.feed.domain.ProductSpecial;
 import com.store.feed.domain.WastedProduct;
 import com.store.feed.service.ProductServices;
-import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
 import com.store.feed.service.crud.ProductSpecialCrudService;
 import com.store.feed.service.crud.WastedProductCrudService;
-import com.store.feed.service.impl.ProductServicesImpl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +134,19 @@ public class ProductServicesTest {
         
     }
 
+    @Test
+    public void testIdenticalPrimaryKey() {
+        Boolean exists = productServices.checkIfPrimaryKeyExists("APR_03918");
+        
+        assertFalse(exists);
+        
+        createCategory();
+        
+        exists = productServices.checkIfPrimaryKeyExists("APR_03918");
+        
+        assertTrue(exists);
+    }
+    
     public void createCategory() {
         List<Product> products = new ArrayList<Product>();
         ProductLifespan productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
@@ -176,9 +187,6 @@ public class ProductServicesTest {
                 .buildProduct();
 
         Category category = CategoryFactory.createCategory("Long life", "LLF_02938", null);
-
-        product1.setCategory(category);
-        product2.setCategory(category);
 
         products.add(product1);
         products.add(product2);
@@ -229,9 +237,6 @@ public class ProductServicesTest {
                 .buildProduct();
 
         Category category = CategoryFactory.createCategory("Protein", "PRN_02938", null);
-
-        product1.setCategory(category);
-        product2.setCategory(category);
 
         products.add(product1);
         products.add(product2);
@@ -308,9 +313,6 @@ public class ProductServicesTest {
                 .buildProduct();
 
         Category category = CategoryFactory.createCategory("Protein", "PRN_02938", null);
-
-        product1.setCategory(category);
-        product2.setCategory(category);
 
         products.add(product1);
         products.add(product2);

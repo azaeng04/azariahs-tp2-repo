@@ -7,6 +7,7 @@ package com.store.feed.service.impl;
 import com.store.feed.domain.Users;
 import com.store.feed.service.UserServices;
 import com.store.feed.service.crud.UsersCrudService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,21 +51,15 @@ public class UserServicesImpl implements UserServices {
     }
 
     @Override
-    public Boolean checkIfPrimaryKeyExists(String key) {
-//        List<Category> categories = categoryCrudService.findAll();
-        Boolean isFound = false;
-//        for (Category category : categories) {
-//            List<Product> products = category.getProducts();
-//            for (Product product : products) {
-//                if (product.getProductNumber().equals(key)) {
-//                    isFound = true;
-//                    break;
-//                }
-//            }
-//            if (isFound.equals(Boolean.TRUE)) {
-//                break;
-//            }
-//        }
-        return isFound;
+    public Boolean checkIfUsernameExists(String username) {
+        Boolean exists = false;
+        List<Users> users = usersCrudService.findAll();
+        for (Users users1 : users) {
+            if (users1.getUsername().equals(username)) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
     }
 }

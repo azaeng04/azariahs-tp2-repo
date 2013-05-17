@@ -16,12 +16,22 @@ import javax.persistence.Id;
  */
 @Entity
 public class Roles implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
     private String roleName;
     private String description;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getRoleName() {
         return roleName;
@@ -38,7 +48,7 @@ public class Roles implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -71,5 +81,4 @@ public class Roles implements Serializable {
     public String toString() {
         return "com.store.feed.domain.Roles[ id=" + id + " ]";
     }
-    
 }

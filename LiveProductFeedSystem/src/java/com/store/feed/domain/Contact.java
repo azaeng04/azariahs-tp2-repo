@@ -5,6 +5,7 @@
 package com.store.feed.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -13,7 +14,9 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class Contact implements Serializable{
+    @Column(unique = true)
     private String emailAddress;
+    @Column(unique = true)
     private String cellPhoneNumber;
     private String homeNumber;
     private String officeNumber;

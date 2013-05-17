@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String productNumber;
     private String productName;
     private Integer quantity;
@@ -39,8 +41,6 @@ public class Product implements Serializable {
     private ProductStatus productStatus;
     @Embedded
     private ProductLifespan productLifespan;
-    @OneToOne
-    private Category category;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "productNumber")
     private List<ProductLocation> productLocations;
@@ -86,14 +86,6 @@ public class Product implements Serializable {
 
     public void setIsWasted(Boolean isWasted) {
         this.isWasted = isWasted;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public ProductStatus getProductStatus() {

@@ -45,4 +45,8 @@ public interface Person extends Serializable{
     String getUsersIDNumber();
 
     void setUsersIDNumber(String customerNumber);
+    
+    Users getUser();
+
+    void setUser(Users user);
 }

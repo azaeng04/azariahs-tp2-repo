@@ -85,8 +85,6 @@ public class CategoryCrudServiceTest {
         
         Category category = CategoryFactory.createCategory("Long life", "LLF_02938", null);
         
-        product1.setCategory(category);
-        
         products.add(product1);
         
         category.setProducts(products);

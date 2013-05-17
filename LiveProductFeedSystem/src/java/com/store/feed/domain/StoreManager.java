@@ -7,6 +7,7 @@ package com.store.feed.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -35,8 +37,9 @@ public class StoreManager implements Person, Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     private String gender;
-
-    @OneToMany
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Users user;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "storeManagerNumber")
     private List<Address> addresses;
     
@@ -74,6 +77,16 @@ public class StoreManager implements Person, Serializable {
     @Override
     public String toString() {
         return "com.store.feed.domain.StoreManager[ id=" + id + " ]";
+    }
+
+    @Override
+    public Users getUser() {
+        return user;
+    }
+
+    @Override
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override
