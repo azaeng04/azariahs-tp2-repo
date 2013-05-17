@@ -4,14 +4,21 @@
  */
 package com.store.feed.service.impl;
 
+import com.store.feed.app.factory.ProductFactory;
+import com.store.feed.app.factory.ProductLifespanFactory;
+import com.store.feed.app.factory.ProductStatusFactory;
+import com.store.feed.client.web.jsp.model.category.ProductModel;
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
-import com.store.feed.domain.ProductLocation;
+import com.store.feed.domain.ProductLifespan;
+import com.store.feed.domain.ProductStatus;
 import com.store.feed.service.ProductServices;
 import com.store.feed.service.crud.CategoryCrudService;
 import com.store.feed.service.crud.ProductCrudService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -137,5 +144,30 @@ public class ProductServicesImpl implements ProductServices {
             }
         }
         return isFound;
+    }
+
+    @Override
+    public Product addProduct(ProductModel productModel) {
+        ProductLifespan productLifespan = ProductLifespanFactory.createProductLifespan(DateTime.parse(productModel.getProductBestBeforeDate()).toDate(), DateTime.parse(productModel.getProductExpirationDate()).toDate());
+        ProductStatus productStatus = ProductStatusFactory.createStatus(DateTime.parse(productModel.getProductDeliveryDate()).toDate(), productModel.getProductStatus());
+
+        Product product = new ProductFactory.Builder(productModel.getProductNumber())
+                .setProductLifespan(productLifespan)
+                .setProductStatus(productStatus)
+                .setProductName(productModel.getProductName())
+                .setQuantity(Integer.parseInt(productModel.getProductQuantity()))
+                .setProductPrice(new BigDecimal(productModel.getProductPrice()))
+                .buildProduct();
+        return product;
+    }
+
+    @Override
+    public void updateProduct(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

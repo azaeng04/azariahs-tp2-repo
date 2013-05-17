@@ -7,6 +7,7 @@ package com.store.feed.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -23,6 +25,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class StockManager implements Person, Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,14 +38,14 @@ public class StockManager implements Person, Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     private String gender;
-
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "stockManagerNumber")
     private List<Address> addresses;
-    
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Users user;
     @Embedded
     private Contact contact;
-        
+
     public Long getId() {
         return id;
     }
@@ -74,6 +77,16 @@ public class StockManager implements Person, Serializable {
     @Override
     public String toString() {
         return "com.store.feed.domain.StockManager[ id=" + id + " ]";
+    }
+
+    @Override
+    public Users getUser() {
+        return user;
+    }
+
+    @Override
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override
@@ -145,7 +158,7 @@ public class StockManager implements Person, Serializable {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-    
+
     @Override
     public String getUsersIDNumber() {
         return stockManagerNumber;

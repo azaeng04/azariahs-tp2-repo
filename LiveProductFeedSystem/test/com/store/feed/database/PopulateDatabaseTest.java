@@ -175,12 +175,6 @@ public class PopulateDatabaseTest {
         
         Category category = CategoryFactory.createCategory("Long life", "LLF_02938", null);
 
-        product1.setCategory(category);
-        product2.setCategory(category);
-        product3.setCategory(category);
-        product4.setCategory(category);
-        product5.setCategory(category);
-
         products.add(product1);
         products.add(product2);
         products.add(product3);

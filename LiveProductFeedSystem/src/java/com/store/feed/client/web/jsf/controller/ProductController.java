@@ -8,7 +8,7 @@ package com.store.feed.client.web.jsf.controller;
  *
  * @author Ronalds
  */
-import com.store.feed.app.facade.ProductFacade;
+import com.store.feed.app.facade.CategoryFacade;
 import com.store.feed.domain.Product;
 import com.store.feed.service.crud.ProductCrudService;
 import java.io.Serializable;
@@ -19,7 +19,8 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class ProductController implements Serializable {
-    ProductFacade data = new ProductFacade();
+
+    CategoryFacade data = CategoryFacade.getCategoryFacadeInstance();
     private ProductCrudService productCrudService;
     private List<Product> filteredProducts;
     private List<Product> products;

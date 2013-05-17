@@ -15,11 +15,7 @@ import com.store.feed.domain.Roles;
 import com.store.feed.domain.StockManager;
 import com.store.feed.domain.Users;
 import com.store.feed.service.UserServices;
-import com.store.feed.service.crud.AddressCrudService;
-import com.store.feed.service.crud.RolesCrudService;
 import com.store.feed.service.crud.StockManagerCrudService;
-import com.store.feed.service.crud.UsersCrudService;
-import com.store.feed.service.impl.UserServicesImpl;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -39,9 +35,6 @@ import org.testng.annotations.Test;
 public class UserServicesTest {
     private static ApplicationContext ctx;
     private static StockManagerCrudService stockManagerCrudService;
-    private static RolesCrudService rolesCrudService;
-    private static UsersCrudService usersCrudService;
-    private static AddressCrudService addressCrudService;
     private static UserServices userServices;
     public UserServicesTest() {
     }
@@ -50,22 +43,13 @@ public class UserServicesTest {
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
         stockManagerCrudService = (StockManagerCrudService) ctx.getBean("StockManagerCrudService");
-        rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
-        usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
-        addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
         userServices = (UserServices) ctx.getBean("UserServices");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        List<Address> addresses = addressCrudService.findAll();
-        List<Roles> roles = rolesCrudService.findAll();
-        List<Users> users = usersCrudService.findAll();
         List<StockManager> stockManagers = stockManagerCrudService.findAll();
         
-        addressCrudService.removeMultipleEntities(addresses);
-        rolesCrudService.removeMultipleEntities(roles);
-        usersCrudService.removeMultipleEntities(users);
         stockManagerCrudService.removeMultipleEntities(stockManagers);
     }
 
@@ -75,6 +59,9 @@ public class UserServicesTest {
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
+        List<StockManager> stockManagers = stockManagerCrudService.findAll();
+        
+        stockManagerCrudService.removeMultipleEntities(stockManagers);
     }
 
     /**
@@ -89,6 +76,19 @@ public class UserServicesTest {
         assertTrue(exists);
     }
     
+    @Test
+    public void testIdenticalUsername() {
+        Boolean exists = userServices.checkIfUsernameExists("mikeJoans1234");
+        
+        assertFalse(exists);
+        
+        createStockManager();
+        
+        exists = userServices.checkIfUsernameExists("mikeJoans1234");
+        
+        assertTrue(exists);
+    }
+    
     public void createStockManager() {
         List<Address> addresses = new ArrayList<Address>();
         Address address = AddressFactory.createAddress("637 Parkers Avenue", "PO Box", "7831");
@@ -97,12 +97,17 @@ public class UserServicesTest {
         Contact contact = ContactFactory.createContact("0728374615", "mikejoans@gmail.com", "0217057362", "0218392837");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.createRoles("View products", "View");
-        Roles role2 = RolesFactory.createRoles("Write products", "Write");
+        Roles role1 = RolesFactory.createRoles("View", "STOCKMANAGER", "mikeJoans1234");
+        Roles role2 = RolesFactory.createRoles("Write", "STOCKMANAGER", "mikeJoans1234");
         roles.add(role1);
         roles.add(role2);
 
-        StockManager stockManager = new StockManagerFactory.Builder("STK_82118")
+        Users user = new UsersFactory.Builder("mikeJoans1234")
+                .setPassword("mikeJoans")
+                .setRoles(roles)
+                .buildUser();
+        
+        StockManager stockManager = new StockManagerFactory.Builder("82118", user)
                 .setAddresses(addresses)
                 .setContact(contact)
                 .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
@@ -112,16 +117,8 @@ public class UserServicesTest {
                 .setMiddleName("Daniel")
                 .buildStockManager();
 
-        Users user = new UsersFactory.Builder()
-                .setPersonNumber(stockManager.getUsersIDNumber())
-                .setUsername("mikeJoans1234")
-                .setPassword("mikeJoans")
-                .setRoles(roles)
-                .buildUser();
         
-        rolesCrudService.persistMultipleEntities(roles);
-        addressCrudService.persistMultipleEntities(addresses);
+        
         stockManagerCrudService.persist(stockManager);
-        usersCrudService.persist(user);
     }
 }

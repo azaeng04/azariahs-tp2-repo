@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -36,7 +37,9 @@ public class Customer implements Person, Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOfBirth;
     private String gender;
-
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Users user;
+    
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "customerNumber")
     private List<Address> addresses;
@@ -87,6 +90,16 @@ public class Customer implements Person, Serializable{
     @Override
     public String toString() {
         return "com.store.feed.domain.Customer[ id=" + id + " ]";
+    }
+
+    @Override
+    public Users getUser() {
+        return user;
+    }
+
+    @Override
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override

@@ -6,6 +6,8 @@ package com.store.feed.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,19 +26,20 @@ public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String username;
     private String password;
-    private String personNumber;
-    @OneToMany
+    private Boolean enabled;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "username")
     private List<Roles> roles;
 
-    public String getPersonNumber() {
-        return personNumber;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setPersonNumber(String personNumber) {
-        this.personNumber = personNumber;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public List<Roles> getRoles() {

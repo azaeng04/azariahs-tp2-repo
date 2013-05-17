@@ -7,6 +7,7 @@ package com.store.feed.app.factory;
 import com.store.feed.domain.Address;
 import com.store.feed.domain.Contact;
 import com.store.feed.domain.StoreManager;
+import com.store.feed.domain.Users;
 import java.util.Date;
 import java.util.List;
 
@@ -18,17 +19,19 @@ public class StoreManagerFactory {
 
     public static class Builder {
 
-        private String storeManagerNumber;
+        private String storeManagerNumber = "STR_";
         private String firstName;
         private String lastName;
         private String middleName;
         private String gender;
         private Date dateOfBirth;
         private Contact contact;
+        private Users user;
         private List<Address> addresses;
 
-        public Builder(String storeManagerNumber) {
-            this.storeManagerNumber = storeManagerNumber;
+        public Builder(String storeManagerNumber, Users user) {
+            this.storeManagerNumber += storeManagerNumber;
+            this.user = user;
         }
 
         public Builder setFirstName(String firstName) {
@@ -73,6 +76,7 @@ public class StoreManagerFactory {
         private StoreManager buildStoreManager(Builder object) {
             StoreManager storeManager = new StoreManager();
             storeManager.setUsersIDNumber(object.storeManagerNumber);
+            storeManager.setUser(object.user);
             storeManager.setAddresses(object.addresses);
             storeManager.setDateOfBirth(object.dateOfBirth);
             storeManager.setFirstName(object.firstName);

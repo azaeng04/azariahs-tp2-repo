@@ -17,5 +17,10 @@
             <a href="index.html" >Go Home</a>
             <a href="customer.html" >Go back</a><br/><br/>
         </div>
+        <form id="formCustomerDetails">
+            <div>
+                
+            </div>
+        </form>
     </body>
 </html>

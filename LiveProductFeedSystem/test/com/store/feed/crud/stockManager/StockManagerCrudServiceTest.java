@@ -14,10 +14,7 @@ import com.store.feed.domain.Contact;
 import com.store.feed.domain.Roles;
 import com.store.feed.domain.StockManager;
 import com.store.feed.domain.Users;
-import com.store.feed.service.crud.AddressCrudService;
-import com.store.feed.service.crud.RolesCrudService;
 import com.store.feed.service.crud.StockManagerCrudService;
-import com.store.feed.service.crud.UsersCrudService;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -37,9 +34,6 @@ import org.testng.annotations.Test;
 public class StockManagerCrudServiceTest {
     private static ApplicationContext ctx;
     private static StockManagerCrudService stockManagerCrudService;
-    private static RolesCrudService rolesCrudService;
-    private static UsersCrudService usersCrudService;
-    private static AddressCrudService addressCrudService;
     private static Long stockManagerID;
     public StockManagerCrudServiceTest() {
     }
@@ -53,21 +47,12 @@ public class StockManagerCrudServiceTest {
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
         stockManagerCrudService = (StockManagerCrudService) ctx.getBean("StockManagerCrudService");
-        rolesCrudService = (RolesCrudService) ctx.getBean("RolesCrudService");
-        usersCrudService = (UsersCrudService) ctx.getBean("UsersCrudService");
-        addressCrudService = (AddressCrudService) ctx.getBean("AddressCrudService");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        List<Address> addresses = addressCrudService.findAll();
-        List<Roles> roles = rolesCrudService.findAll();
-        List<Users> users = usersCrudService.findAll();
         List<StockManager> stockManagers = stockManagerCrudService.findAll();
         
-        addressCrudService.removeMultipleEntities(addresses);
-        rolesCrudService.removeMultipleEntities(roles);
-        usersCrudService.removeMultipleEntities(users);
         stockManagerCrudService.removeMultipleEntities(stockManagers);
     }
 
@@ -88,12 +73,17 @@ public class StockManagerCrudServiceTest {
         Contact contact = ContactFactory.createContact("0728374615", "mikejoans@gmail.com", "0217057362", "0218392837");
 
         List<Roles> roles = new ArrayList<Roles>();
-        Roles role1 = RolesFactory.createRoles("View products", "View");
-        Roles role2 = RolesFactory.createRoles("Write products", "Write");
+        Roles role1 = RolesFactory.createRoles("View products", "STOCKMANAGER", "mikeJoans1234");
+        Roles role2 = RolesFactory.createRoles("Write products", "STOCKMANAGER", "mikeJoans1234");
         roles.add(role1);
         roles.add(role2);
 
-        StockManager stockManager = new StockManagerFactory.Builder("STK_82118")
+        Users user = new UsersFactory.Builder("mikeJoans1234")
+                .setPassword("mikeJoans")
+                .setRoles(roles)
+                .buildUser();
+        
+        StockManager stockManager = new StockManagerFactory.Builder("82118", user)
                 .setAddresses(addresses)
                 .setContact(contact)
                 .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
@@ -103,17 +93,9 @@ public class StockManagerCrudServiceTest {
                 .setMiddleName("Daniel")
                 .buildStockManager();
 
-        Users user = new UsersFactory.Builder()
-                .setPersonNumber(stockManager.getUsersIDNumber())
-                .setUsername("mikeJoans1234")
-                .setPassword("mikeJoans")
-                .setRoles(roles)
-                .buildUser();
         
-        rolesCrudService.persistMultipleEntities(roles);
-        addressCrudService.persistMultipleEntities(addresses);
+        
         stockManagerCrudService.persist(stockManager);
-        usersCrudService.persist(user);
         
         stockManagerID = stockManager.getId();
     }
@@ -150,11 +132,7 @@ public class StockManagerCrudServiceTest {
     @Test(dependsOnMethods = "readStockManager")
     public void deleteStockManager() {
         StockManager stockManager = stockManagerCrudService.findById(stockManagerID);
-        List<Address> addresses = addressCrudService.findAll();
-        List<Users> users = usersCrudService.findAll();
         
-        addressCrudService.removeMultipleEntities(addresses);
-        usersCrudService.removeMultipleEntities(users);
         stockManagerCrudService.remove(stockManager);
         
         StockManager stockManager1 = stockManagerCrudService.findById(stockManagerID);

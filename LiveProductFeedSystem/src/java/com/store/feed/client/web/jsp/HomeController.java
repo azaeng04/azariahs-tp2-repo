@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.store.feed.client.web;
+package com.store.feed.client.web.jsp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

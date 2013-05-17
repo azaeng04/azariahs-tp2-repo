@@ -26,11 +26,10 @@ public class ProductFactory {
         private Integer quantity;
         private String productPictureURL;
         private BigDecimal productPrice;
-        private Boolean isOnSpecial;
-        private Boolean isWasted;
+        private Boolean isOnSpecial = false;
+        private Boolean isWasted = false;
         private ProductStatus productStatus;
         private ProductLifespan productLifespan;
-        private Category category;
         private List<ProductLocation> productLocations;
         private List<Notification> notifications;
 
@@ -78,11 +77,6 @@ public class ProductFactory {
             return this;
         }
 
-        public Builder setCategory(Category category) {
-            this.category = category;
-            return this;
-        }
-
         public Builder setProductLifespan(ProductLifespan productLifespan) {
             this.productLifespan = productLifespan;
             return this;
@@ -99,7 +93,6 @@ public class ProductFactory {
 
         private Product buildProduct(Builder object) {
             Product product = new Product();
-            product.setCategory(object.category);
             product.setIsWasted(object.isWasted);
             product.setNotifications(object.notifications);
             product.setIsOnSpecial(object.isOnSpecial);

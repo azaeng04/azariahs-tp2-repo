@@ -13,7 +13,8 @@ import javax.persistence.Embeddable;
  * @author Ronald
  */
 @Embeddable
-public class ProductStatus implements Serializable{
+public class ProductStatus implements Serializable {
+
     private String productStatus;
     private Date date;
 

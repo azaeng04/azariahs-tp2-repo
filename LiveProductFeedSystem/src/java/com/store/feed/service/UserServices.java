@@ -11,5 +11,5 @@ package com.store.feed.service;
 public interface UserServices {
     public Boolean checkIfUserExists(String username, String password);
     
-    public Boolean checkIfPrimaryKeyExists(String key);
+    public Boolean checkIfUsernameExists(String username);
 }

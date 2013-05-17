@@ -5,11 +5,13 @@
 package com.store.feed.service.impl;
 
 import com.store.feed.app.factory.ProductLocationFactory;
+import com.store.feed.client.web.jsp.model.category.ProductLocationModel;
 import com.store.feed.domain.Category;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLocation;
 import com.store.feed.service.ProductLocationServices;
 import com.store.feed.service.crud.CategoryCrudService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,8 @@ public class ProductLocationServicesImpl implements ProductLocationServices {
     @Autowired
     private CategoryCrudService categoryCrudService;
     private static ProductLocationServicesImpl productLocationServicesImpl;
-
+    private static List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
+    
     private ProductLocationServicesImpl() {
     }
 
@@ -65,25 +68,51 @@ public class ProductLocationServicesImpl implements ProductLocationServices {
     @Override
     public Boolean checkIfPrimaryKeyExists(String key) {
         List<Category> categories = categoryCrudService.findAll();
-        Boolean isFound = false;
-        for (Category category : categories) {
-            List<Product> products = category.getProducts();
-            for (Product product : products) {
-                List<ProductLocation> productLocations = product.getProductLocations();
-                for (ProductLocation productLocation : productLocations) {
-                    if (productLocation.getProductLocationNumber().equals(key)) {
-                        isFound = true;
+        Boolean exists;
+        try {
+            exists = false;
+            for (Category category : categories) {
+                List<Product> products = category.getProducts();
+                for (Product product : products) {
+                    List<ProductLocation> productLocations = product.getProductLocations();
+                    for (ProductLocation productLocation : productLocations) {
+                        if (productLocation.getProductLocationNumber().equals(key)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (exists.equals(Boolean.TRUE)) {
                         break;
                     }
                 }
-                if (isFound.equals(Boolean.TRUE)) {
+                if (exists.equals(Boolean.TRUE)) {
                     break;
                 }
             }
-            if (isFound.equals(Boolean.TRUE)) {
-                break;
-            }
+        } catch (NullPointerException e) {
+            exists = false;
         }
-        return isFound;
+        return exists;
+    }
+
+    @Override
+    public List<ProductLocation> addProductLocation(ProductLocationModel productLocationModel) {
+        if (productLocationModel.getProductLocationNumber() != null) {
+            ProductLocation productLocation = ProductLocationFactory.createProductLocation(productLocationModel.getProductLocationName(), productLocationModel.getProductLocationNumber(), Integer.parseInt(productLocationModel.getQuantity()));
+            productLocations1.add(productLocation);
+        } else {
+            productLocations1.clear();
+        }
+        return productLocations1;
+    }
+
+    @Override
+    public void updateProductLocation(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteProductLocation(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
