@@ -22,12 +22,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  *
  * @author Ronalds
  */
 @Controller
+@SessionAttributes
 public class PersistCategoryController {
 
     @Autowired
@@ -38,7 +40,7 @@ public class PersistCategoryController {
     private ProductLocationServices productLocationServices;
     private Category category;
     private Product product;
-    private List<ProductLocation> productLocations;
+    private ProductLocation productLocations;
     CategoryFacade dataCrudService = CategoryFacade.getCategoryFacadeInstance();
 
     @RequestMapping(value = "/persistCategory.php", method = RequestMethod.POST)
@@ -74,14 +76,20 @@ public class PersistCategoryController {
             return "add";
         }
         
-        List<Product> products = new ArrayList<Product>();
-        
-        productLocations = productLocationServices.addProductLocation(productLocationModel);
-        product.setProductLocations(productLocations);
-        products.add(product);
-        category.setProducts(products);
-        dataCrudService.getCategoryCrudService().persist(category);
-        productLocationServices.addProductLocation(null);
+        try {
+            List<Product> products = new ArrayList<Product>();
+            List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
+            
+            productLocations = productLocationServices.addProductLocation(productLocationModel);
+            productLocations1.add(productLocations);
+            product.setProductLocations(productLocations1);
+            products.add(product);
+            category.setProducts(products);
+            dataCrudService.getCategoryCrudService().persist(category);
+            productLocations = productLocationServices.addProductLocation(null);
+        } catch (NullPointerException e) {
+            return "redirect:category.html";
+        }
         return "redirect:category.html";
     }
 }

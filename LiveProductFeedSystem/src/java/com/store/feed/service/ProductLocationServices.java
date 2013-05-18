@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ProductLocationServices {
 
-    public List<ProductLocation> addProductLocation(com.store.feed.client.web.jsp.model.category.ProductLocationModel productLocationModel);
+    public ProductLocation addProductLocation(com.store.feed.client.web.jsp.model.category.ProductLocationModel productLocationModel);
 
     public void updateProductLocation(Long id);
 

@@ -26,8 +26,7 @@ public class ProductLocationServicesImpl implements ProductLocationServices {
     @Autowired
     private CategoryCrudService categoryCrudService;
     private static ProductLocationServicesImpl productLocationServicesImpl;
-    private static List<ProductLocation> productLocations1 = new ArrayList<ProductLocation>();
-    
+
     private ProductLocationServicesImpl() {
     }
 
@@ -96,16 +95,10 @@ public class ProductLocationServicesImpl implements ProductLocationServices {
     }
 
     @Override
-    public List<ProductLocation> addProductLocation(ProductLocationModel productLocationModel) {
-        if (productLocationModel.getProductLocationNumber() != null) {
-            ProductLocation productLocation = ProductLocationFactory.createProductLocation(productLocationModel.getProductLocationName(), productLocationModel.getProductLocationNumber(), Integer.parseInt(productLocationModel.getQuantity()));
-            productLocations1.add(productLocation);
-        } else {
-            productLocations1.clear();
-        }
-        return productLocations1;
+    public ProductLocation addProductLocation(ProductLocationModel productLocationModel) {
+        ProductLocation productLocation = ProductLocationFactory.createProductLocation(productLocationModel.getProductLocationName(), productLocationModel.getProductLocationNumber(), Integer.parseInt(productLocationModel.getQuantity()));
+        return productLocation;
     }
-
     @Override
     public void updateProductLocation(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

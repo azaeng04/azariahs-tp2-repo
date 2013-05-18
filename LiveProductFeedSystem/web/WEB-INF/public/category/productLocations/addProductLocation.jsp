@@ -36,9 +36,6 @@
                     <input type="submit" value="Add Category"/>
                 </td>
                 <td>
-                    <a href="addProductLocations.html">Add next product location</a><br/>
-                </td>
-                <td>
                     <input type="reset" value="Reset"/>
                 </td>
             </tr>

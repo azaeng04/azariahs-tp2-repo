@@ -6,6 +6,7 @@ package com.store.feed.service;
 
 import com.store.feed.client.web.jsp.model.category.CategoryModel;
 import com.store.feed.domain.Category;
+import java.util.List;
 
 /**
  *
@@ -15,7 +16,9 @@ public interface CategoryServices {
 
     public Category addCategory(CategoryModel categoryModel);
 
-    public void updateCategory(Long id);
+    public CategoryModel editCategory(Long id);
 
-    public void deleteCategory(Long id);
+    public List<Category> updateCategory(CategoryModel categoryModel);
+    
+    public List<Category> deleteCategory(Long id);
 }
