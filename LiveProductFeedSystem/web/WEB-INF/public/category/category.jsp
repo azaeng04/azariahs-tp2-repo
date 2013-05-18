@@ -25,13 +25,13 @@
                         ${category.categoryName}
                     </td>
                     <td>
-                        <a href="updateCategory?category_id=${category.id}">Update</a>
+                        <a href="edit_category_id=${category.id}">Edit</a>
                     </td>
                     <td>
-                        <a href="deleteCategory?category_id=${category.id}">Delete</a>
+                        <a href="delete_category_id=${category.id}">Delete</a>
                     </td>
                     <td>
-                        <a href="products?category_id=${category.id}">View Products</a>
+                        <a href="products_category_id=${category.id}">View Products</a>
                     </td>
                 </tr>
             </c:forEach>
