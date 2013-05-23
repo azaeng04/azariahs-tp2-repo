@@ -8,6 +8,7 @@ import com.store.feed.client.web.jsp.model.category.CategoryModel;
 import com.store.feed.domain.Category;
 import com.store.feed.service.CategoryServices;
 import com.store.feed.service.crud.CategoryCrudService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,11 +54,12 @@ public class CategoryController {
         return "category/editCategory";
     }
     
-    @RequestMapping(value = "/update_category_id={id}", method = RequestMethod.POST)
-    public String updateCategory(@PathVariable("id") Long id, @ModelAttribute("categoryModel") CategoryModel categoryModel, BindingResult result, Model model) {
-        categoryModel.setId(id);
-        List<Category> categories = categoryServices.updateCategory(categoryModel);
-        model.addAttribute("categories", categories);
+    @RequestMapping(value = "/update_category", method = RequestMethod.POST)
+    public String updateCategory(@ModelAttribute("categoryModel") CategoryModel categoryModel, BindingResult result, Model model) {
+//        List<Category> categories = categoryServices.updateCategory(categoryModel);
+        List<CategoryModel> categoryModels = new ArrayList<CategoryModel>();
+        categoryModels.add(categoryModel);
+        model.addAttribute("categories", categoryModels);
         return "redirect:category.html";
     }
     
@@ -65,6 +67,6 @@ public class CategoryController {
     public String deleteCategory(@PathVariable("id") Long id, Model model) {
         List<Category> categories = categoryServices.deleteCategory(id);
         model.addAttribute("categories", categories);
-        return "redirect:category.html";
+        return "category/category";
     }
 }

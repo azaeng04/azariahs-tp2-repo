@@ -7,7 +7,6 @@ package com.store.feed.service.impl;
 import com.store.feed.app.factory.CategoryFactory;
 import com.store.feed.client.web.jsp.factory.category.CategoryModelFactory;
 import com.store.feed.client.web.jsp.model.category.CategoryModel;
-import com.store.feed.client.web.jsp.model.category.ProductModel;
 import com.store.feed.domain.Category;
 import com.store.feed.service.CategoryServices;
 import com.store.feed.service.crud.CategoryCrudService;
@@ -51,7 +50,10 @@ public class CategoryServicesImpl implements CategoryServices {
 
     @Override
     public List<Category> deleteCategory(Long id) {
-        categoryCrudService.removeById(id);
+        Category category = categoryCrudService.findById(id);
+        if (category != null) {
+            categoryCrudService.remove(category);
+        }
         return categoryCrudService.findAll();
     }
 
