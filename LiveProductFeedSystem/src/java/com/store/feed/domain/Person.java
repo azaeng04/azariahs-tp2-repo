@@ -42,9 +42,9 @@ public interface Person extends Serializable{
 
     public String getGender();
 
-    String getUsersIDNumber();
+    String getUserNumber();
 
-    void setUsersIDNumber(String customerNumber);
+    void setUserNumber(String customerNumber);
     
     Users getUser();
 

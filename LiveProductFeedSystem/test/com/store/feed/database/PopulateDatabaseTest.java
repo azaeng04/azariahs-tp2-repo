@@ -4,15 +4,26 @@
  */
 package com.store.feed.database;
 
+import com.store.feed.app.factory.AddressFactory;
 import com.store.feed.app.factory.CategoryFactory;
+import com.store.feed.app.factory.ContactFactory;
 import com.store.feed.app.factory.ProductFactory;
 import com.store.feed.app.factory.ProductLifespanFactory;
 import com.store.feed.app.factory.ProductLocationFactory;
+import com.store.feed.app.factory.RolesFactory;
+import com.store.feed.app.factory.StockManagerFactory;
+import com.store.feed.app.factory.UsersFactory;
+import com.store.feed.domain.Address;
 import com.store.feed.domain.Category;
+import com.store.feed.domain.Contact;
 import com.store.feed.domain.Product;
 import com.store.feed.domain.ProductLifespan;
 import com.store.feed.domain.ProductLocation;
+import com.store.feed.domain.Roles;
+import com.store.feed.domain.StockManager;
+import com.store.feed.domain.Users;
 import com.store.feed.service.crud.CategoryCrudService;
+import com.store.feed.service.crud.StockManagerCrudService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +45,7 @@ public class PopulateDatabaseTest {
 
     private static ApplicationContext ctx;
     private static CategoryCrudService categoryCrudService;
+    private static StockManagerCrudService stockManagerCrudService;
 
     public PopulateDatabaseTest() {
     }
@@ -44,11 +56,12 @@ public class PopulateDatabaseTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
+        stockManagerCrudService = (StockManagerCrudService) ctx.getBean("StockManagerCrudService");
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
     }
 
     @AfterClass
-    public static void tearDownClass() throws Exception {        
+    public static void tearDownClass() throws Exception {
     }
 
     @BeforeMethod
@@ -63,17 +76,7 @@ public class PopulateDatabaseTest {
     public void popluateDatabase() {
         createCategory1();
 
-//        createCustomer1();
-//        createCustomer2();
-//        createCustomer3();
-//        createCustomer4();
-//        createCustomer5();
-//
-//        createStockManager1();
-//        createStockManager2();
-//        createStockManager3();
-//        createStockManager4();
-//        createStockManager5();
+        createStockManager();
     }
 
     public void createCategory1() {
@@ -104,7 +107,7 @@ public class PopulateDatabaseTest {
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
-        
+
         Product product2 = new ProductFactory.Builder("VGO_03918")
                 .setProductName("Vegetable Oil")
                 .setQuantity(100)
@@ -115,7 +118,7 @@ public class PopulateDatabaseTest {
                 .setProductPictureURL("vegetable_oil.jpg")
                 .setProductPrice(new BigDecimal("15.95"))
                 .buildProduct();
-        
+
         productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         productLocations1.clear();
         productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_96757", 80);
@@ -123,7 +126,7 @@ public class PopulateDatabaseTest {
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
-        
+
         Product product3 = new ProductFactory.Builder("LNT_03918")
                 .setProductName("Lentils")
                 .setQuantity(100)
@@ -134,7 +137,7 @@ public class PopulateDatabaseTest {
                 .setProductPictureURL("lentils.jpg")
                 .setProductPrice(new BigDecimal("15.95"))
                 .buildProduct();
-        
+
         productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         productLocations1.clear();
         productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_79857", 80);
@@ -142,7 +145,7 @@ public class PopulateDatabaseTest {
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
-        
+
         Product product4 = new ProductFactory.Builder("JLP_03918")
                 .setProductName("Jell Powder")
                 .setQuantity(100)
@@ -153,7 +156,7 @@ public class PopulateDatabaseTest {
                 .setProductPictureURL("jelly_powder.jpg")
                 .setProductPrice(new BigDecimal("15.95"))
                 .buildProduct();
-        
+
         productLifespan1 = ProductLifespanFactory.createProductLifespan(new DateTime(2018, 8, 9, 0, 0).toDate(), new DateTime(2017, 12, 12, 0, 0).toDate());
         productLocations1.clear();
         productLocation1 = ProductLocationFactory.createProductLocation("Back storage", "BKS_76717", 80);
@@ -161,7 +164,7 @@ public class PopulateDatabaseTest {
 
         productLocations1.add(productLocation1);
         productLocations1.add(productLocation2);
-        
+
         Product product5 = new ProductFactory.Builder("OLO_03918")
                 .setProductName("Olive Oil")
                 .setQuantity(100)
@@ -172,7 +175,7 @@ public class PopulateDatabaseTest {
                 .setProductPictureURL("olive_oil.jpg")
                 .setProductPrice(new BigDecimal("15.95"))
                 .buildProduct();
-        
+
         Category category = CategoryFactory.createCategory("Long life", "LLF_02938", null);
 
         products.add(product1);
@@ -184,5 +187,36 @@ public class PopulateDatabaseTest {
         category.setProducts(products);
 
         categoryCrudService.persist(category);
+    }
+
+    public void createStockManager() {
+        List<Address> addresses = new ArrayList<Address>();
+        Address address = AddressFactory.createAddress("637 Parkers Avenue", "PO Box", "7831");
+        addresses.add(address);
+
+        Contact contact = ContactFactory.createContact("0728374615", "mikejoans@gmail.com", "0217057362", "0218392837");
+
+        List<Roles> roles = new ArrayList<Roles>();
+        Roles role1 = RolesFactory.createRoles("View", "STOCKMANAGER", "mikeJoans1234");
+        roles.add(role1);
+
+        Users user = new UsersFactory.Builder("mikeJoans1234")
+                .setPassword("mikeJoans")
+                .setRoles(roles)
+                .buildUser();
+
+        StockManager stockManager = new StockManagerFactory.Builder("82118", user)
+                .setAddresses(addresses)
+                .setContact(contact)
+                .setDateOfBirth(new DateTime(1988, 4, 4, 0, 0).toDate())
+                .setFirstName("Mike")
+                .setGender("Male")
+                .setLastName("Joans")
+                .setMiddleName("Daniel")
+                .buildStockManager();
+
+
+
+        stockManagerCrudService.persist(stockManager);
     }
 }

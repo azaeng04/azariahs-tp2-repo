@@ -8,41 +8,159 @@ package com.store.feed.client.web.jsp.model.user;
  *
  * @author Birds pc
  */
-public interface PersonModel {
+public class PersonModel {
 
-    UserCredentialsModel getUserCredentialsModel();
+    private Long id;
+    private String typeOfUser = "default";
+    private String userNumber;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String dateOfBirth;
+    private String gender;
+    private String postalAddress;
+    private String physicalAddress;
+    private String postalCode;
+    private String emailAddress;
+    private String cellPhoneNumber;
+    private String homeNumber;
+    private String officeNumber;
+    private String username;
+    private String password;
 
-    void setUserCredentialsModel(UserCredentialsModel userCredentialsModel);
+    public Long getId() {
+        return id;
+    }
 
-    AddressModel getAddressModel();
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    ContactModel getContactModel();
+    public String getTypeOfUser() {
+        return typeOfUser;
+    }
 
-    String getDateOfBirth();
+    public void setTypeOfUser(String typeOfUser) {
+        this.typeOfUser = typeOfUser;
+    }
 
-    String getFirstName();
+    public String getUserNumber() {
+        return userNumber;
+    }
 
-    String getGender();
+    public void setUserNumber(String userNumber) {
+        this.userNumber = userNumber;
+    }
 
-    String getLastName();
+    public String getFirstName() {
+        return firstName;
+    }
 
-    String getMiddleName();
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    String getUserNumber();
+    public String getMiddleName() {
+        return middleName;
+    }
 
-    void setAddressModel(AddressModel addressModel);
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
 
-    void setContactModel(ContactModel contactModel);
+    public String getLastName() {
+        return lastName;
+    }
 
-    void setDateOfBirth(String dateOfBirth);
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    void setFirstName(String firstName);
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-    void setGender(String gender);
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-    void setLastName(String lastName);
+    public String getGender() {
+        return gender;
+    }
 
-    void setMiddleName(String middleName);
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-    void setUserNumber(String userNumber);
+    public String getPostalAddress() {
+        return postalAddress;
+    }
+
+    public void setPostalAddress(String postalAddress) {
+        this.postalAddress = postalAddress;
+    }
+
+    public String getPhysicalAddress() {
+        return physicalAddress;
+    }
+
+    public void setPhysicalAddress(String physicalAddress) {
+        this.physicalAddress = physicalAddress;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public String getCellPhoneNumber() {
+        return cellPhoneNumber;
+    }
+
+    public void setCellPhoneNumber(String cellPhoneNumber) {
+        this.cellPhoneNumber = cellPhoneNumber;
+    }
+
+    public String getHomeNumber() {
+        return homeNumber;
+    }
+
+    public void setHomeNumber(String homeNumber) {
+        this.homeNumber = homeNumber;
+    }
+
+    public String getOfficeNumber() {
+        return officeNumber;
+    }
+
+    public void setOfficeNumber(String officeNumber) {
+        this.officeNumber = officeNumber;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

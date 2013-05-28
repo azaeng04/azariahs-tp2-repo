@@ -75,7 +75,7 @@ public class StoreManagerFactory {
 
         private StoreManager buildStoreManager(Builder object) {
             StoreManager storeManager = new StoreManager();
-            storeManager.setUsersIDNumber(object.storeManagerNumber);
+            storeManager.setUserNumber(object.storeManagerNumber);
             storeManager.setUser(object.user);
             storeManager.setAddresses(object.addresses);
             storeManager.setDateOfBirth(object.dateOfBirth);

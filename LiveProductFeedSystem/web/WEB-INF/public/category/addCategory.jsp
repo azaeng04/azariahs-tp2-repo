@@ -31,7 +31,7 @@
                     <input type="submit" value="Add Products to Category"/>
                 </td>
                 <td>
-                    <input type="reset" value="Reset"/>
+                    <input type="reset" value="Clear all fields"/>
                 </td>
             </tr>
         </table>

@@ -5,7 +5,9 @@
 package com.store.feed.database;
 
 import com.store.feed.domain.Category;
+import com.store.feed.domain.StockManager;
 import com.store.feed.service.crud.CategoryCrudService;
+import com.store.feed.service.crud.StockManagerCrudService;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
@@ -21,9 +23,10 @@ import org.testng.annotations.Test;
  * @author Birds pc
  */
 public class EmptyDatabaseTest {
-    
+
     private static ApplicationContext ctx;
     private static CategoryCrudService categoryCrudService;
+    private static StockManagerCrudService stockManagerCrudService;
 
     public EmptyDatabaseTest() {
     }
@@ -34,6 +37,7 @@ public class EmptyDatabaseTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         ctx = new ClassPathXmlApplicationContext("classpath:com/store/feed/app/config/applicationContext-*.xml");
+        stockManagerCrudService = (StockManagerCrudService) ctx.getBean("StockManagerCrudService");
         categoryCrudService = (CategoryCrudService) ctx.getBean("CategoryCrudService");
     }
 
@@ -48,10 +52,13 @@ public class EmptyDatabaseTest {
     @AfterMethod
     public void tearDownMethod() throws Exception {
     }
-    
+
     @Test
     public void emptyDatabase() {
         List<Category> categories = categoryCrudService.findAll();
+        List<StockManager> stockManagers = stockManagerCrudService.findAll();
+        
         categoryCrudService.removeMultipleEntities(categories);
+        stockManagerCrudService.removeMultipleEntities(stockManagers);
     }
 }

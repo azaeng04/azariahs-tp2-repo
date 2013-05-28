@@ -31,7 +31,7 @@ public class Users implements Serializable {
     private String password;
     private Boolean enabled;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "username")
+    @JoinColumn(name = "user_id")
     private List<Roles> roles;
 
     public Boolean getEnabled() {
