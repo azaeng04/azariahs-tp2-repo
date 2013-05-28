@@ -7,7 +7,7 @@
     <table>
         <thead>
             <tr>
-                <th>Category Number ${categoryModel.id}</th>
+                <th>Category Number</th>
                 <th>Category Name </th>
                 <th>Update </th>
                 <th>Delete</th>

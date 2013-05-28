@@ -30,7 +30,7 @@ public class StoreManager implements Person, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
-    private String storeManagerNumber;
+    private String userNumber;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -160,12 +160,12 @@ public class StoreManager implements Person, Serializable {
     }
     
     @Override
-    public String getUsersIDNumber() {
-        return storeManagerNumber;
+    public String getUserNumber() {
+        return userNumber;
     }
 
     @Override
-    public void setUsersIDNumber(String storeManagerNumber) {
-        this.storeManagerNumber = storeManagerNumber;
+    public void setUserNumber(String storeManagerNumber) {
+        this.userNumber = storeManagerNumber;
     }
 }

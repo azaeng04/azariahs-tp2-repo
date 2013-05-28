@@ -81,7 +81,7 @@ public class CustomerFactory {
 
         private Customer buildCustomer(Builder object) {
             Customer customer = new Customer();
-            customer.setUsersIDNumber(object.customerNumber);
+            customer.setUserNumber(object.customerNumber);
             customer.setUser(object.user);
             customer.setAddresses(object.addresses);
             customer.setDateOfBirth(object.dateOfBirth);

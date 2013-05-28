@@ -30,6 +30,11 @@ public class UsersFactory {
             return this;
         }
 
+        public Builder isEnabled(Boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+        
         public Builder setRoles(List<Roles> roles) {
             this.roles = roles;
             return this;

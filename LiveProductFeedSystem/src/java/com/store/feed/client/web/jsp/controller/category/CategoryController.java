@@ -4,6 +4,7 @@
  */
 package com.store.feed.client.web.jsp.controller.category;
 
+import com.store.feed.app.facade.CategoryFacade;
 import com.store.feed.client.web.jsp.model.category.CategoryModel;
 import com.store.feed.domain.Category;
 import com.store.feed.service.CategoryServices;
@@ -30,8 +31,7 @@ public class CategoryController {
     
     @Autowired
     private CategoryServices categoryServices;
-    @Autowired
-    private CategoryCrudService categoryCrudService;
+    private CategoryFacade categoryFacade = CategoryFacade.getCategoryFacadeInstance();
     
     @RequestMapping(value = "/addCategory.html", method = RequestMethod.GET)
     public String addCategory(Model model) {
@@ -42,7 +42,7 @@ public class CategoryController {
     
     @RequestMapping(value = "/category.html", method = RequestMethod.GET)
     public String category(Model model) {
-        List<Category> categories = categoryCrudService.findAll();
+        List<Category> categories = categoryFacade.getCategoryCrudService().findAll();
         model.addAttribute("categories", categories);
         return "category/category";
     }
@@ -56,10 +56,8 @@ public class CategoryController {
     
     @RequestMapping(value = "/update_category", method = RequestMethod.POST)
     public String updateCategory(@ModelAttribute("categoryModel") CategoryModel categoryModel, BindingResult result, Model model) {
-//        List<Category> categories = categoryServices.updateCategory(categoryModel);
-        List<CategoryModel> categoryModels = new ArrayList<CategoryModel>();
-        categoryModels.add(categoryModel);
-        model.addAttribute("categories", categoryModels);
+        List<Category> categories = categoryServices.updateCategory(categoryModel);
+        model.addAttribute("categories", categories);
         return "redirect:category.html";
     }
     

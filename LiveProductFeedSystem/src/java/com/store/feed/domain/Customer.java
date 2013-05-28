@@ -30,7 +30,7 @@ public class Customer implements Person, Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
-    private String customerNumber;
+    private String userNumber;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -173,12 +173,12 @@ public class Customer implements Person, Serializable{
     }
     
     @Override
-    public String getUsersIDNumber() {
-        return customerNumber;
+    public String getUserNumber() {
+        return userNumber;
     }
 
     @Override
-    public void setUsersIDNumber(String customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setUserNumber(String customerNumber) {
+        this.userNumber = customerNumber;
     }
 }

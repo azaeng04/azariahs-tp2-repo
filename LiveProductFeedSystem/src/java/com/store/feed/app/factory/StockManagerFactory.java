@@ -75,7 +75,7 @@ public class StockManagerFactory {
 
         private StockManager buildStockManager(Builder object) {
             StockManager stockManager = new StockManager();
-            stockManager.setUsersIDNumber(object.stockManagerNumber);
+            stockManager.setUserNumber(object.stockManagerNumber);
             stockManager.setUser(object.user);
             stockManager.setAddresses(object.addresses);
             stockManager.setDateOfBirth(object.dateOfBirth);

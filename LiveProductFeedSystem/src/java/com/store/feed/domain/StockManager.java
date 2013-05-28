@@ -31,7 +31,7 @@ public class StockManager implements Person, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
-    private String stockManagerNumber;
+    private String userNumber;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -160,12 +160,12 @@ public class StockManager implements Person, Serializable {
     }
 
     @Override
-    public String getUsersIDNumber() {
-        return stockManagerNumber;
+    public String getUserNumber() {
+        return userNumber;
     }
 
     @Override
-    public void setUsersIDNumber(String stockManagerNumber) {
-        this.stockManagerNumber = stockManagerNumber;
+    public void setUserNumber(String stockManagerNumber) {
+        this.userNumber = stockManagerNumber;
     }
 }

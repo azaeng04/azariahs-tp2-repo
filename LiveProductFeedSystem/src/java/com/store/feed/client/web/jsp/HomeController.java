@@ -22,6 +22,6 @@ public class HomeController {
     
     @RequestMapping({"/index.html"})
     public String goHome(Model model) {
-        return "index";
+        return "home";
     }
 }
