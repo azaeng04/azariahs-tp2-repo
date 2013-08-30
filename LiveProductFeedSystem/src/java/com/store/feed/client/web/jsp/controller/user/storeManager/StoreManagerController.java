@@ -7,7 +7,6 @@ package com.store.feed.client.web.jsp.controller.user.storeManager;
 import com.store.feed.app.facade.UserFacade;
 import com.store.feed.client.web.jsp.model.user.PersonModel;
 import com.store.feed.domain.StoreManager;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +25,6 @@ public class StoreManagerController {
     @RequestMapping(value = "/storeManager.html", method = RequestMethod.GET)
     public String storeManager(Model model) {
         List<StoreManager> storeManagers = userFacade.getStoreManagerCrudService().findAll();
-        String thePerson = "Store Manager";
-        model.addAttribute("thePerson", thePerson);
         model.addAttribute("persons", storeManagers);
         return "storeManager/storeManager";
     }

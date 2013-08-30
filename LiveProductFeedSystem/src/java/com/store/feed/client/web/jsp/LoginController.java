@@ -27,8 +27,8 @@ public class LoginController {
         return "login/login";
     }
     
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(Model model) {
-        return "redirect:login/login";
+        return "redirect:/login";
     }
 }

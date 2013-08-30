@@ -169,7 +169,7 @@
         <table>
             <tr>
                 <td>
-                    <input type="submit" value="Add Customer"/>
+                    <input type="submit" value="Add User"/>
                 </td>
                 <td>
                     <input type="reset" value="Clear all fields"/>

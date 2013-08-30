@@ -27,8 +27,6 @@ public class StockManagerController {
     @RequestMapping(value = "/stockManager.html", method = RequestMethod.GET)
     public String stockManager(Model model) {
         List<StockManager> stockManagers = userFacade.getStockManagerCrudService().findAll();
-        String thePerson = "Stock Manager";
-        model.addAttribute("thePerson", thePerson);
         model.addAttribute("persons", stockManagers);
         return "stockManager/stockManager";
     }

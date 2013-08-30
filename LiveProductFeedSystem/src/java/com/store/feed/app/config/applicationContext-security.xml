@@ -14,19 +14,19 @@
 
 <!-- SECTION C -->
     <http auto-config="true" >
-        <intercept-url pattern="/index*" access="ROLE_STOCKMANAGER"/>
+        <intercept-url pattern="/index.html" access="ROLE_STOCKMANAGER"/>
         <form-login login-page="/login" 
                     default-target-url="/index.html" 
                     authentication-failure-url="/loginfailed"
         />
-        <logout logout-success-url="/login"/>
+        <logout logout-success-url="/logout"/>
     </http>
 <!-- SECTION C -->
 
 <!-- SECTION D -->
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
-           <password-encoder hash="md5"/>
+           <!--<password-encoder hash="md5"/> -->
             <jdbc-user-service 
                 data-source-ref="dataSource"
                 users-by-username-query="SELECT username, password, enabled FROM Users u WHERE u.username=?"

@@ -1,13 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../header/header.jsp" />
 <body>
-    <h1>Person CRUD services</h1>
+    <h1>Customer CRUD services</h1>
     <a href="index.html" >Go Home</a><br/><br/>
     <a href="addCustomer.html" >Add Customer</a><br/>
     <a href="addStockManager.html" >Add Stock Manager</a><br/>
     <a href="addStoreManager.html" >Add Store Manager</a><br/><br/>
     
-    <label style="font-size: x-large">${thePerson} details</label><br/>
+    <label style="font-size: x-large">All user details</label><br/>
     <table>
         <thead>
             <tr>
@@ -19,9 +19,9 @@
                 <th>Gender </th>
                 <th>View address details </th>
                 <th>View contact details </th>
-                <th>View user credentials  </th>
-                <th>Update customer</th>
-                <th>Delete customer</th>
+                <th>View Customer credentials  </th>
+                <th>Update Customer</th>
+                <th>Delete Customer</th>
             </tr>
         </thead>
 
@@ -53,13 +53,13 @@
                         <a href="person_contact_details=${person.id}">View contact details</a>
                     </td>
                     <td>
-                        <a href="person_user_credentials=${person.id}">View user credentials</a>
+                        <a href="person_user_credentials=${person.id}">View Customer credentials</a>
                     </td>
                     <td>
-                        <a href="edit_person_id=${person.id}">Edit customer</a>
+                        <a href="edit_person_id=${person.id}">Edit Customer</a>
                     </td>
                     <td>
-                        <a href="delete_person_id=${person.id}">Delete customer</a>
+                        <a href="delete_person_id=${person.id}">Delete Customer</a>
                     </td>
                 </tr>
             </c:forEach>

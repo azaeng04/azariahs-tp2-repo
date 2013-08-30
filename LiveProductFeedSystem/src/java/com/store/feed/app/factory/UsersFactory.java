@@ -18,7 +18,7 @@ public class UsersFactory {
 
         private String username;
         private String password;
-        private Boolean enabled = false;
+        private Boolean enabled = true;
         private List<Roles> roles;
 
         public Builder(String username) {

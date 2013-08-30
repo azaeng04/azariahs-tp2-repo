@@ -5,9 +5,7 @@
 package com.store.feed.client.web.jsp.controller.user;
 
 import com.store.feed.client.web.jsp.model.user.PersonModel;
-import com.store.feed.domain.Person;
 import com.store.feed.service.PersonServices;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +29,10 @@ public class PersistPersonController {
         personServices.addPerson(personModel);
         if (personModel.getTypeOfUser().equals("customer")) {
             return "redirect:customer.html";
-        } if (personModel.getTypeOfUser().equals("stockManager")) {
-            return "redirect:stockManager.html";
-        }else {
-            return "redirect:storeManager.html";
+        } else if (personModel.getTypeOfUser().equals("stockManager")) {
+            return "redirect:customer.html";
+        } else {
+            return "redirect:customer.html";
         }
     }
 }
