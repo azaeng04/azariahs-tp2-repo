@@ -7,6 +7,8 @@ package com.store.feed.client.web.jsp.controller.user.customer;
 import com.store.feed.app.facade.UserFacade;
 import com.store.feed.client.web.jsp.model.user.PersonModel;
 import com.store.feed.domain.Customer;
+import com.store.feed.domain.StockManager;
+import com.store.feed.domain.StoreManager;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CustomerController {
 
     UserFacade userFacade = UserFacade.getUserFacadeInstance();
-    
+
     @RequestMapping(value = "/customer.html", method = RequestMethod.GET)
     public String customer(Model model) {
         List<Customer> customers = userFacade.getCustomerCrudService().findAll();
-        String thePerson = "Customer";
+
         model.addAttribute("persons", customers);
-        model.addAttribute("thePerson", thePerson);
         return "customer/customer";
     }
 
@@ -43,7 +44,7 @@ public class CustomerController {
 
         return "customer/updateCustomer";
     }
-    
+
     @RequestMapping(value = "/updateCustomer.html", method = RequestMethod.GET)
     public String updateCustomer(Model model) {
 

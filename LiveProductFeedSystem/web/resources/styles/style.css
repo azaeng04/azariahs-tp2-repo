@@ -6,15 +6,28 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
+/*root { 
     display: block;
-}
+}*/
 
 .errorblock {
-	color: #ff0000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
+    color: #ff0000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    padding: 8px;
+    margin: 16px;
 }
 
+.central_align{
+    vertical-align: central;
+}
+
+.form { 
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position:center; 
+}
+
+.box {
+    background-color:#d9d9d9;
+}

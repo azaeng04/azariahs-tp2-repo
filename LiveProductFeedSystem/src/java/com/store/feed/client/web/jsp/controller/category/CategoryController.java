@@ -8,8 +8,6 @@ import com.store.feed.app.facade.CategoryFacade;
 import com.store.feed.client.web.jsp.model.category.CategoryModel;
 import com.store.feed.domain.Category;
 import com.store.feed.service.CategoryServices;
-import com.store.feed.service.crud.CategoryCrudService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
