@@ -57,10 +57,10 @@ public class CategoryServicesImpl implements CategoryServices {
 
     @Override
     public List<Category> updateCategory(CategoryModel categoryModel) {
-        Category category = categoryFacade.getCategoryCrudService().findById(categoryModel.getId());
-        category.setCategoryName(categoryModel.getCategoryName());
-        category.setCategoryNumber(categoryModel.getCategoryNumber());
-        categoryFacade.getCategoryCrudService().merge(category);
+//        Category category = categoryFacade.getCategoryCrudService().findById(categoryModel.getId());
+//        category.setCategoryName(categoryModel.getCategoryName());
+//        category.setCategoryNumber(categoryModel.getCategoryNumber());
+//        categoryFacade.getCategoryCrudService().merge(category);
         return categoryFacade.getCategoryCrudService().findAll();
     }
 }
