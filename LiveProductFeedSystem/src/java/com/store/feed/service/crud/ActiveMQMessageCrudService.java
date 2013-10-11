@@ -4,13 +4,13 @@
  */
 package com.store.feed.service.crud;
 
-import com.store.feed.domain.WastedProduct;
+import com.store.feed.domain.ActiveMQMessage;
 import com.store.feed.service.Services;
 
 /**
  *
  * @author Ronald
  */
-public interface WastedProductCrudService extends Services<WastedProduct, Long>{
+public interface ActiveMQMessageCrudService extends Services<ActiveMQMessage, Long>{
     
 }
